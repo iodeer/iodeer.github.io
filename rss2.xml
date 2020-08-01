@@ -9,28 +9,8 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>最美的相遇，不言过往；最好的离别，不问归期。</description>
-    <pubDate>Sat, 01 Aug 2020 00:21:33 GMT</pubDate>
+    <pubDate>Fri, 31 Jul 2020 10:17:36 GMT</pubDate>
     <generator>http://hexo.io/</generator>
-    
-    <item>
-      <title>demo</title>
-      <link>http://yoursite.com/2020/08/01/demo/</link>
-      <guid>http://yoursite.com/2020/08/01/demo/</guid>
-      <pubDate>Fri, 31 Jul 2020 17:01:01 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;h1 id=&quot;Demo&quot;&gt;&lt;a href=&quot;#Demo&quot; class=&quot;headerlink&quot; title=&quot;Demo&quot;&gt;&lt;/a&gt;Demo&lt;/h1&gt;
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1>]]></content:encoded>
-      
-      <comments>http://yoursite.com/2020/08/01/demo/#disqus_thread</comments>
-    </item>
     
     <item>
       <title>2.IOC理论推导</title>
