@@ -79,6 +79,17 @@
       </tags>
   </entry>
   <entry>
+    <title>demo</title>
+    <url>/2020/08/01/demo/</url>
+    <content><![CDATA[<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>-导航 -分享</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第一个Mybatis程序</title>
     <url>/2020/08/01/%E7%AC%AC%E4%B8%80%E4%B8%AAMybatis%E7%A8%8B%E5%BA%8F/</url>
     <content><![CDATA[<h2 id="2、第一个Mybatis程序"><a href="#2、第一个Mybatis程序" class="headerlink" title="2、第一个Mybatis程序"></a>2、第一个Mybatis程序</h2><p><strong>思路：搭建环境–》导入Mybatis–》编写代码–》测试</strong></p>
@@ -166,17 +177,6 @@
       </categories>
       <tags>
         <tag>-笔记 -Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>demo</title>
-    <url>/2020/08/01/demo/</url>
-    <content><![CDATA[<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>-导航 -分享</tag>
       </tags>
   </entry>
 </search>
