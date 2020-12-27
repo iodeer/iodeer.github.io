@@ -409,4 +409,762 @@
         <tag>-笔记 -Mybatis</tag>
       </tags>
   </entry>
+  <entry>
+    <title>处理机调度、层次概念</title>
+    <url>/posts/c21ce3f9/</url>
+    <content><![CDATA[<h3 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h3><p>处理机调度：从就绪队列中<strong>按照一定的算法选择一个进程</strong>并将<strong>处理机分配给他</strong>运行，以实现进程的并发执行</p>
+<h3 id="二、三个层次"><a href="#二、三个层次" class="headerlink" title="二、三个层次"></a>二、三个层次</h3><h4 id="1、高级调度（作业调度）"><a href="#1、高级调度（作业调度）" class="headerlink" title="1、高级调度（作业调度）"></a>1、高级调度（作业调度）</h4><ul>
+<li>按一定的原则<strong>从外存上</strong>处于后备队列的作业中挑选一个（或多个）作业，将他们分配内存等必要资源，并建立<strong>相应的进程（建立PCB）</strong>，以使<strong>它们获得竞争处理机的权利</strong>.</li>
+<li>高级调度是外存与内存之间的调度，每个作业只调入一次，调出一次。<strong>作业调入时建立PCB，作业调出时才销毁PCB，</strong></li>
+<li>高级调度主要是指<strong>作业调入的问题</strong>，因为只有调入的时机才需要操作系统来确定，但调出的时机必然是作业运行结束后才调出，</li>
+</ul>
+<h4 id="2、中级调度（内存调度）"><a href="#2、中级调度（内存调度）" class="headerlink" title="2、中级调度（内存调度）"></a>2、中级调度（内存调度）</h4><ul>
+<li>引入虚拟存储技术后，可以将暂时不能运行的进程调至到外存等待，等到它重新具备运行条件后且内存又稍有空闲后，再重新调入到内存中，目的是<strong>提高内存效率和系统吞吐量</strong></li>
+<li>暂时调到外存等待的进程的状态为“<strong>挂起状态</strong>”，<ul>
+<li><strong>PCB并不会一起调到外存</strong>，而是会<strong>常驻内存</strong></li>
+<li>被挂起的进程PCB会放到<strong>挂起队列</strong>中</li>
+</ul>
+</li>
+<li><strong>中级调度就是决定将哪一个挂起状态的进程重新调入进程</strong><ul>
+<li>一个进程可能多次被调入调出内存，所以<strong>中级调度</strong>发生的频率要比高级调度要<strong>更高</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="3、低级调度（进程调度）"><a href="#3、低级调度（进程调度）" class="headerlink" title="3、低级调度（进程调度）"></a>3、低级调度（进程调度）</h4><ul>
+<li><strong>低级调度（进程调度）：按照某一种算法和策略从就绪队列中选取一个进程，将处理机分配给它</strong></li>
+<li>进程调度是操作系统中<strong>最基本的一种调度</strong></li>
+<li>进程调度的<strong>频率很高</strong>，一般几十毫秒一次</li>
+</ul>
+<h3 id="三、三层调度的联系对比"><a href="#三、三层调度的联系对比" class="headerlink" title="三、三层调度的联系对比"></a>三、三层调度的联系对比</h3><p><img src="https://i.loli.net/2020/12/26/5UKe1HpBxQyGZAj.png" alt="image-20201226104000403"></p>
+<h3 id="四、补充知识"><a href="#四、补充知识" class="headerlink" title="四、补充知识"></a>四、补充知识</h3><h4 id="1、进程的“挂状态”"><a href="#1、进程的“挂状态”" class="headerlink" title="1、进程的“挂状态”"></a>1、进程的“挂状态”</h4><ul>
+<li>就绪挂起</li>
+<li>堵塞挂起</li>
+</ul>
+<h4 id="2、七状态模型"><a href="#2、七状态模型" class="headerlink" title="2、七状态模型"></a>2、七状态模型</h4><p><img src="https://i.loli.net/2020/12/26/MDmwtQdg3pWeiJA.png" alt="image-20201226103617756"></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/26/eVFG9HcDZ8EWdbM.png" alt="image-20201226104129845"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>中断-异常</title>
+    <url>/posts/a76ffb5a/</url>
+    <content><![CDATA[<h3 id="一、中断机制的诞生"><a href="#一、中断机制的诞生" class="headerlink" title="一、中断机制的诞生"></a>一、中断机制的诞生</h3><ul>
+<li><p>在单批道处理阶段，各个程序只能串行处理，系统资利用低，为了解决上诉问题，人们发明了操作系统（作为管理者），引入中断机制，实现了多道程序并发执行</p>
+</li>
+<li><p><strong>本质：发生中断就意味着需要操作系统介入，开展管理工作</strong></p>
+</li>
+</ul>
+<h3 id="二、中断的概念和作业"><a href="#二、中断的概念和作业" class="headerlink" title="二、中断的概念和作业"></a>二、中断的概念和作业</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><ul>
+<li>当中断发生时，CPU立即进入<strong>核心态</strong></li>
+<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理</li>
+<li>对于不同的中断信号，会进行不同的处理</li>
+</ul>
+<h4 id="2、中断的作用"><a href="#2、中断的作用" class="headerlink" title="2、中断的作用"></a>2、中断的作用</h4><p>​    发生了中断，就意味着需要操作系统介入，发展管理工作。由于操作系统的管理工作（比如进程切换、分配I/O设备等）需要使用特权指令，因此CPU需要从用户态转变成核心态。<strong>中断</strong>可以<strong>使CPU从用户态转变成核心态，使操作系统获得计算机的控制权</strong>.。有了中断，才能实现多道程序并发执行。</p>
+<h4 id="3、用户态、核心态切换的实现"><a href="#3、用户态、核心态切换的实现" class="headerlink" title="3、用户态、核心态切换的实现"></a>3、用户态、核心态切换的实现</h4><ul>
+<li><strong>“用户态—》核心态“</strong>是通过<strong>中断</strong>实现的。并且<strong>中断</strong>是<strong>唯一的</strong>方式</li>
+<li>”核心态—》用户态“的切换是通过<strong>执行一个特权指令</strong>，将程序状态字（PSW）的标志位设置为”用户态“</li>
+</ul>
+<h3 id="三、中断-广义的中断-分类"><a href="#三、中断-广义的中断-分类" class="headerlink" title="三、中断{广义的中断}分类"></a>三、中断{广义的中断}分类</h3><h4 id="1、内中断（异常、例外、陷入）"><a href="#1、内中断（异常、例外、陷入）" class="headerlink" title="1、内中断（异常、例外、陷入）"></a>1、内中断（异常、例外、陷入）</h4><ul>
+<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
+</li>
+<li><p>自愿中断</p>
+<ul>
+<li>指令中断</li>
+</ul>
+</li>
+<li><p>强迫中断</p>
+<ul>
+<li>硬件故障</li>
+<li>软件中断</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、外中断（中断-狭义的中断-）"><a href="#2、外中断（中断-狭义的中断-）" class="headerlink" title="2、外中断（中断{狭义的中断}）"></a>2、外中断（中断{狭义的中断}）</h4><ul>
+<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
+</li>
+<li><p>外设请求</p>
+</li>
+<li><p>人工干预</p>
+</li>
+</ul>
+<h3 id="四、外中断的处理过程"><a href="#四、外中断的处理过程" class="headerlink" title="四、外中断的处理过程"></a>四、外中断的处理过程</h3><p><img src="https://i.loli.net/2020/12/15/N1OuBLW9Zj7YbAy.png" alt="image-20201215203027037"></p>
+<h3 id="五、回顾"><a href="#五、回顾" class="headerlink" title="五、回顾"></a>五、回顾</h3><p><img src="https://i.loli.net/2020/12/15/OEjrGxoAeT5cUM4.png" alt="image-20201215203338519"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>操作系统发展和分类</title>
+    <url>/posts/2ce96af5/</url>
+    <content><![CDATA[<h3 id="一、手工操作阶段"><a href="#一、手工操作阶段" class="headerlink" title="一、手工操作阶段"></a>一、手工操作阶段</h3><h3 id="二、批处理阶段"><a href="#二、批处理阶段" class="headerlink" title="二、批处理阶段"></a>二、批处理阶段</h3><h4 id="1、单道批处理阶段"><a href="#1、单道批处理阶段" class="headerlink" title="1、单道批处理阶段"></a>1、单道批处理阶段</h4><p>引入<strong>脱机输入/输出技术</strong>（用磁带完成），并<strong>监督程序</strong>负责控制作业的输入、输出。</p>
+<p><strong>优点</strong>：缓解了一定程序的人机速度矛盾，资源利用率有所提高</p>
+<p><strong>缺点</strong>：<strong>内存中仅能由一道程序运行</strong>，只有该程序运行结束后才能调入下一道程序，<strong>CPU有大量的时间是空闲等待I/O完成</strong>，资源利用依然低。</p>
+<h4 id="2、多批道处理系统"><a href="#2、多批道处理系统" class="headerlink" title="2、多批道处理系统"></a>2、多批道处理系统</h4><p><strong>操作系统正式诞生</strong>，并引入了<strong>中断技术</strong>，由操作系统负责管理这些程序的执行，各个程序并发执行。</p>
+<p><strong>优点</strong>：多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源，<strong>资源利用率大幅度提升</strong>，CPU和其他资源保持“忙碌”状态，系统吞吐量增大</p>
+<p><strong>缺点</strong>：用户响应时间长，<strong>没有人机交互功能</strong>（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p>
+<h3 id="三、分时操作系统"><a href="#三、分时操作系统" class="headerlink" title="三、分时操作系统"></a>三、分时操作系统</h3><p>：计算机以<strong>时间片</strong>为单位轮转为<strong>各个用户/作业服务</strong>，各个用户可通过终端与计算机进行交互</p>
+<p><strong>优点</strong>：用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</p>
+<p><strong>缺点</strong>：<strong>不能优先处理一些紧急任务</strong>。操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</p>
+<h3 id="四、实时操作系统"><a href="#四、实时操作系统" class="headerlink" title="四、实时操作系统"></a>四、实时操作系统</h3><p><strong>优点</strong>：<strong>能够优先响应一些紧急任务</strong>，某些紧急任务不需要时间片排队。</p>
+<p>在实时操作系统的控制下，计算机系统接受到外部信号后及时进行处理，并且要<strong>在严格的时限内处理完事件。</strong></p>
+<p>实时操作系统的主要特点是<strong>及时性和可靠性</strong></p>
+<h3 id="五、思维导图"><a href="#五、思维导图" class="headerlink" title="五、思维导图"></a>五、思维导图</h3><p><img src="https://i.loli.net/2020/12/05/EnZ5Vka3DG7pzgN.png" alt="image-20201205204558085"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>操作系统的四个特征</title>
+    <url>/posts/d04bd5bc/</url>
+    <content><![CDATA[<h3 id="一、目录"><a href="#一、目录" class="headerlink" title="一、目录"></a>一、目录</h3><p><img src="https://i.loli.net/2020/12/05/qeNlfD3iR8P6wLz.png" alt="image-20201205153539331"></p>
+<h3 id="二、并发"><a href="#二、并发" class="headerlink" title="二、并发"></a>二、并发</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>并发</strong>：指两个或多个事件在同一时间间隔内发生。这些事件<strong>宏观上是同时发生</strong>的，但是<strong>微观上是交替发生</strong>的</p>
+<p><strong>易于混淆</strong>的概念：<strong>并行</strong>：指两个或多个事件<strong>同一时刻</strong>发生</p>
+<h4 id="2、操作系统的并发性"><a href="#2、操作系统的并发性" class="headerlink" title="2、操作系统的并发性"></a>2、操作系统的并发性</h4><p>​    操作系统的并发性：指计算机系统同时存在着多个运行着的程序</p>
+<h3 id="三、共享"><a href="#三、共享" class="headerlink" title="三、共享"></a>三、共享</h3><h4 id="1、概念-1"><a href="#1、概念-1" class="headerlink" title="1、概念"></a>1、概念</h4><p>​    共享：即<strong>资源共享</strong>，是指系统内的资源可供内存中多个并发执行的进程共同使用。</p>
+<p><img src="https://i.loli.net/2020/12/05/PbZ4SJHftFU5Gqp.png" alt="image-20201205155800371"></p>
+<p>​    </p>
+<h3 id="四、虚拟"><a href="#四、虚拟" class="headerlink" title="四、虚拟"></a>四、虚拟</h3><h4 id="1、概念-2"><a href="#1、概念-2" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>虚拟</strong>：指把一个物理上的实体变成若干个逻辑上的对应物，物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的</p>
+<p><img src="https://i.loli.net/2020/12/05/Aj7WMiY1uRqQUt5.png" alt="image-20201205160547807"></p>
+<h4 id="2、注意"><a href="#2、注意" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
+<li><strong><em>没有并发性，就没有虚拟性</em></strong></li>
+</ul>
+<h3 id="五、异步"><a href="#五、异步" class="headerlink" title="五、异步"></a>五、异步</h3><h4 id="1、概念-3"><a href="#1、概念-3" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>异步：</strong>在多道程序环境下，运行多个程序并发执行，但<strong>由于资源有限</strong>，进程的执行不是一贯到底的，而是走走停停的，以不可预知的速度向前推进，这就是进程的异步性。</p>
+<h4 id="2、注意-1"><a href="#2、注意-1" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
+<li><strong><em>只有系统拥有并发性，才有可能导致异步性</em></strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>系统调用</title>
+    <url>/posts/4f5d4e8d/</url>
+    <content><![CDATA[<h3 id="一-什么是系统调用，有何作用"><a href="#一-什么是系统调用，有何作用" class="headerlink" title="一 什么是系统调用，有何作用"></a>一 什么是系统调用，有何作用</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p>应用程序通过<strong>系统调用</strong>请求操作系统的服务。系统中的各种共享资源都由操作系统统一掌管，因此在用户程序中，凡是与资源有关的操作（如存储分配、I/O操作、文件管理等），都必须通过系统调用的方式向操作系统提供服务请求，由操作系统代为完成</p>
+<h4 id="2、作用"><a href="#2、作用" class="headerlink" title="2、作用"></a>2、作用</h4><p>可以保证系统的稳定性和安全性，防止用户进行非法操作</p>
+<h4 id="3、分类（功能）"><a href="#3、分类（功能）" class="headerlink" title="3、分类（功能）"></a>3、分类（功能）</h4><ul>
+<li>设备管理<ul>
+<li>完成设备的请求/释放/启动等功能</li>
+</ul>
+</li>
+<li>文件管理<ul>
+<li>完成文件的读/写/创建/删除等功能</li>
+</ul>
+</li>
+<li>进程控制<ul>
+<li>完成进程的创建/撤销/阻塞/唤醒/等功能</li>
+</ul>
+</li>
+<li>进程通信<ul>
+<li>完成进程之间的消息传递/信号传递等功能</li>
+</ul>
+</li>
+<li>内存管理<ul>
+<li>完成内存的分配/回收等功能</li>
+</ul>
+</li>
+</ul>
+<h4 id="4、注意"><a href="#4、注意" class="headerlink" title="4、注意"></a>4、注意</h4><p>​    系统调用相关处理涉及到对系统资源的管理、对进程的控制。这些功能需要<strong>执行一些特权指令</strong>才能完成，因此<strong>系统调用的相关处理</strong>，需要<strong>在核心态完成</strong></p>
+<h3 id="二-系统调用和函数库的区别"><a href="#二-系统调用和函数库的区别" class="headerlink" title="二 系统调用和函数库的区别"></a>二 系统调用和函数库的区别</h3><p><img src="https://i.loli.net/2020/12/18/ujoQrK3UiRtsWcw.png" alt="image-20201218111839800"></p>
+<h3 id="三-系统调用背后的过程"><a href="#三-系统调用背后的过程" class="headerlink" title="三 系统调用背后的过程"></a>三 系统调用背后的过程</h3><p><img src="https://i.loli.net/2020/12/18/a563MetRrPnzjZh.png" alt="image-20201218112528140"></p>
+<h3 id="四-知识回顾"><a href="#四-知识回顾" class="headerlink" title="四 知识回顾"></a>四 知识回顾</h3><p><img src="https://i.loli.net/2020/12/18/62QAHhde1g8Gpzf.png" alt="image-20201218112743161"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线程概念与多线程模型</title>
+    <url>/posts/3971d124/</url>
+    <content><![CDATA[<h3 id="一、什么是线程，为什么要引入线程"><a href="#一、什么是线程，为什么要引入线程" class="headerlink" title="一、什么是线程，为什么要引入线程"></a>一、什么是线程，为什么要引入线程</h3><p><img src="https://i.loli.net/2020/12/24/o7UagnA9ZLlehpB.png" alt="image-20201224103051529"></p>
+<ul>
+<li>线程是<strong>一个基本的CPU执行单元</strong>，也是<strong>程序执行流的最小单位</strong>。</li>
+<li></li>
+</ul>
+<h3 id="二、引入线程机制后，有什么变化"><a href="#二、引入线程机制后，有什么变化" class="headerlink" title="二、引入线程机制后，有什么变化"></a>二、引入线程机制后，有什么变化</h3><p><img src="https://i.loli.net/2020/12/24/W5mpHxk6glcXnrP.png" alt="image-20201224103311213"></p>
+<h3 id="三、线程的重要属性"><a href="#三、线程的重要属性" class="headerlink" title="三、线程的重要属性"></a>三、线程的重要属性</h3><p><img src="https://i.loli.net/2020/12/24/t4VSpF7yecUiY2g.png" alt="image-20201224104737922"></p>
+<h3 id="四、实现方式"><a href="#四、实现方式" class="headerlink" title="四、实现方式"></a>四、实现方式</h3><h4 id="1、用户级线程"><a href="#1、用户级线程" class="headerlink" title="1、用户级线程"></a>1、用户级线程</h4><ul>
+<li><p>用户级线程由应用程序通过线程库来实现的</p>
+</li>
+<li><p>所有的<strong>线程管理工作</strong>都由<strong>应用程序</strong>负责（包括线程切换）</p>
+</li>
+<li><p>用户级线程，<strong>线程切换</strong>可以在<strong>用户态下即可完成</strong>，无需操作系统的干预</p>
+</li>
+<li><p>用户级线程对用户不透明，对操作系统透明</p>
+</li>
+<li><p>用户级线程，就是“从用户视角看到的线程”</p>
+<p><img src="https://i.loli.net/2020/12/24/g86KlfCz3BxHPhM.png" alt="image-20201224110917123"></p>
+</li>
+</ul>
+<h4 id="2、内核级线程"><a href="#2、内核级线程" class="headerlink" title="2、内核级线程"></a>2、内核级线程</h4><ul>
+<li><strong>内核级线程管理工作</strong>由<strong>操作系统内核</strong>完成。</li>
+<li>线程调度、切换等工作都由内核完成，因此<strong>内核级线程的切换</strong>必然需要在<strong>核心态</strong>下才能完成</li>
+<li>”内核级线程“就是”从操作系统内核视角才能看到的线程“</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/24/UyoGcdegKJFWku7.png" alt="image-20201224111539618"></p>
+<h4 id="3、组合模式"><a href="#3、组合模式" class="headerlink" title="3、组合模式"></a>3、组合模式</h4><ul>
+<li>同时支持用户级线程和内核级线程，将n个用户级线程映射到m个内核级线程上（n&gt;=m）;</li>
+<li><strong>内核级线程才是处理机分配的单位</strong></li>
+<li><img src="https://i.loli.net/2020/12/24/jaX4oh6FTmctWRy.png" alt="image-20201224111727851"></li>
+<li></li>
+</ul>
+<h3 id="五、多线程模型"><a href="#五、多线程模型" class="headerlink" title="五、多线程模型"></a>五、多线程模型</h3><h4 id="1、多对一模型"><a href="#1、多对一模型" class="headerlink" title="1、多对一模型"></a>1、多对一模型</h4><p><img src="https://i.loli.net/2020/12/24/QD4V3I7ajKLbvEn.png" alt="image-20201224112057178"></p>
+<h4 id="2、一对一模型"><a href="#2、一对一模型" class="headerlink" title="2、一对一模型"></a>2、一对一模型</h4><p><img src="https://i.loli.net/2020/12/24/XpCsl7TmuntqGEA.png" alt="image-20201224112328130"></p>
+<h4 id="3、多对多模型"><a href="#3、多对多模型" class="headerlink" title="3、多对多模型"></a>3、多对多模型</h4><p><img src="https://i.loli.net/2020/12/24/nZIym2Fghwp9u65.png" alt="image-20201224112443274"></p>
+<h3 id="六、总"><a href="#六、总" class="headerlink" title="六、总"></a>六、总</h3><p><img src="https://i.loli.net/2020/12/24/SJustWoQIp1lE2f.png" alt="image-20201224112624565"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调度算法的评判标准</title>
+    <url>/posts/110d173/</url>
+    <content><![CDATA[<h3 id="一、CPU利用率"><a href="#一、CPU利用率" class="headerlink" title="一、CPU利用率"></a>一、CPU利用率</h3><ul>
+<li>CPU“忙碌”的时间占总时间的比例</li>
+<li>利用率 = 忙碌的时间 / 总时间</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/Dzav7BIkj8Z3Spe.png" alt="image-20201226112636011"></p>
+<h3 id="二、系统吞吐量"><a href="#二、系统吞吐量" class="headerlink" title="二、系统吞吐量"></a>二、系统吞吐量</h3><ul>
+<li><strong>系统吞吐量</strong>：单位时间内完成作业的数量</li>
+<li><strong>系统吞吐量</strong> = 总共完成了多少作业 / 总共花了多少时间</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/G7SYZwVAfk28DJF.png" alt="image-20201226112952425"></p>
+<h3 id="三、周转时间"><a href="#三、周转时间" class="headerlink" title="三、周转时间"></a>三、周转时间</h3><ul>
+<li>周转时间：指作业<strong>被提交到系统开始</strong>，到<strong>作业完成为止</strong>的这段时间间隔</li>
+<li>包括四个部分<ul>
+<li>作业在外存。后备队列上等待作业调度（高级调度）的时间</li>
+<li>进程在就绪队列上等待进程调度（低级调度）的时间</li>
+<li>进程在CPU上执行的时间</li>
+<li>进程等待I/O操作完成的时间</li>
+</ul>
+</li>
+<li><strong>后三个部分在一个作业上在整个处理过程中，可能发生多次。</strong></li>
+</ul>
+<h4 id="1、周转时间、平均周转时间"><a href="#1、周转时间、平均周转时间" class="headerlink" title="1、周转时间、平均周转时间"></a>1、周转时间、平均周转时间</h4><ul>
+<li>（作业）周转时间 = 作业完成时间 — 作业提交时间<ul>
+<li>对于用户来说，更关心自己的单个作业的周转时间</li>
+</ul>
+</li>
+<li>平均周转时间 = 各个作业时间之和 / 作业数<ul>
+<li>对于操作系统来说，更关心系统的整体表现，因此更关心所有作业的周转时间的平均值</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、带权周转时间、平均带权周转时间"><a href="#2、带权周转时间、平均带权周转时间" class="headerlink" title="2、带权周转时间、平均带权周转时间"></a>2、带权周转时间、平均带权周转时间</h4><ul>
+<li>带权周转时间 = 作业周转时间 / 作业实际运行的时间 = （作业完成时间-作业提交的时间） / 作业实际运行的时间<ul>
+<li>带权周转时间越低，用户满意度更高</li>
+<li>带权周转时间必然 &gt;= 1</li>
+<li>带权周转时间与周转时间都是越小越好</li>
+</ul>
+</li>
+<li>平均带权周转时间 = 各个作业带权周转时间之和 / 作业数</li>
+</ul>
+<h3 id="四、等待时间"><a href="#四、等待时间" class="headerlink" title="四、等待时间"></a>四、等待时间</h3><ul>
+<li><strong>等待时间</strong>：指<strong>进程/作业处于等待处理机状态时间之和</strong>，等待时间越长，用户满意度越低</li>
+<li>对于<strong>进程</strong>来说,，等待时间就是指进程建立后<strong>等待被服务的时间之和</strong>，在等待I/O完成的期间其实进程也是在被服务的，所有不计入的等待时间</li>
+<li>对于<strong>作业</strong>来说，不仅要考虑<strong>建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间</strong></li>
+</ul>
+<h3 id="五、响应时间"><a href="#五、响应时间" class="headerlink" title="五、响应时间"></a>五、响应时间</h3><ul>
+<li>响应时间：指从用户<strong>提交请求</strong>到<strong>首次产生响应</strong>所用的时间</li>
+</ul>
+<h3 id="六、计算"><a href="#六、计算" class="headerlink" title="六、计算"></a>六、计算</h3><p><img src="https://i.loli.net/2020/12/26/Fv4Sdg6MkT7InNA.png" alt="image-20201226162238234"></p>
+<h3 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h3><p><img src="https://i.loli.net/2020/12/26/RO7BiEb5LnhSKpq.png" alt="image-20201226160424754"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调度算法(FCFS,SJF,HRRN)</title>
+    <url>/posts/25b3caf9/</url>
+    <content><![CDATA[<h3 id="一、算法的研究思路"><a href="#一、算法的研究思路" class="headerlink" title="一、算法的研究思路"></a>一、算法的研究思路</h3><ul>
+<li>算法思想</li>
+<li>算法规则</li>
+<li>这种调度算法是用于作业调度还是进程调度</li>
+<li>抢占式？非抢占式</li>
+<li>优缺点</li>
+<li>是否导致<strong>饥饿</strong><ul>
+<li>饥饿：某进程/作业长期得不到服务</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、先来先服务（FCFS）"><a href="#二、先来先服务（FCFS）" class="headerlink" title="二、先来先服务（FCFS）"></a>二、先来先服务（FCFS）</h3><p>1、算法思想</p>
+<ul>
+<li>主要从“公平”的角度考虑</li>
+</ul>
+<p>2、算法规则</p>
+<ul>
+<li>按照作业/进程到达的先后顺序就绪服务</li>
+</ul>
+<p>3、用于作业/进程调度</p>
+<ul>
+<li>用于作业调度时，考虑的是哪个作业先到达后备队列当中</li>
+<li>用于进程调度时，考虑的是哪个进程先到达就绪队列中</li>
+</ul>
+<p>4、是否抢占</p>
+<ul>
+<li>非抢占算法</li>
+</ul>
+<p>5、优缺点</p>
+<ul>
+<li>优点<ul>
+<li>公平</li>
+<li>算法实现简单</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>排在长作业（进程）后面的短作业需要等待很长时间，带权周转时间很大，对短作业来说体验感很差</li>
+</ul>
+</li>
+<li>即 FCFS算法<strong>对长作业（进程）有利，对短作业（进程）不利</strong></li>
+</ul>
+<p>6、是否导致饥饿</p>
+<ul>
+<li>不会</li>
+</ul>
+<h3 id="三、短作业优先（SJF）"><a href="#三、短作业优先（SJF）" class="headerlink" title="三、短作业优先（SJF）"></a>三、短作业优先（SJF）</h3><p>1、算法思想</p>
+<ul>
+<li>追求最少的平均等待时间，最少的平均周转时间，最少的平均平均带权周转时间</li>
+</ul>
+<p>2、算法规则</p>
+<ul>
+<li>最短作业/进程优先得到服务（所谓最短是指要求<strong>服务时间最短</strong>）</li>
+</ul>
+<p>3、用于作业/进程调度</p>
+<ul>
+<li>用于作业调度，叫做短作业优先调度算法（SJF）</li>
+<li>用于进程调度，叫做短进程优先调度算法（SPF）</li>
+</ul>
+<p>4、是否抢占</p>
+<ul>
+<li>SJF和SPF是<strong>非抢占式</strong>的算法</li>
+<li><strong>最短剩余时间优先算法（SRTN，shortest Remaing Time Next）</strong></li>
+</ul>
+<p>5、优缺点</p>
+<ul>
+<li>优点<ul>
+<li><strong>“最短的”</strong>平均等待时间，平均周转时间</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>不公平<ul>
+<li>对于“<strong>短作业有利、对长作业不利</strong>”，可能产生<strong>饥饿现象</strong>，</li>
+<li>作业/进程的运行时间是由用户提供的，并不一定真实，不一定能做到真正的短作业优先</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>6、是否导致饥饿</p>
+<ul>
+<li>会导致饥饿，<ul>
+<li>如果由源源不断的短作业/进程到来，可能使得长作业/进程长时间得不到服务，产生<strong>“饥饿”现象</strong>，如果一直得不到服务，则称为<strong>“饿死”</strong></li>
+</ul>
+</li>
+</ul>
+<p>7、注意细节</p>
+<p><img src="https://i.loli.net/2020/12/26/7vdYbnfWrMxwNBD.png" alt="image-20201226173431484"></p>
+<p>8、计算</p>
+<ul>
+<li>非抢占式的短作业优先调度算法</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/C9DEQlL3reqT7XK.png" alt="image-20201226163453336"></p>
+<ul>
+<li>抢占式的短作业优点调度算法</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/RzsOhuCHkGWjP23.png" alt="image-20201226163933556"></p>
+<p><img src="https://i.loli.net/2020/12/26/NKbXQFDMOvhit9p.png" alt="image-20201226164020154"></p>
+<h3 id="四、高响应比优先（HRRN）"><a href="#四、高响应比优先（HRRN）" class="headerlink" title="四、高响应比优先（HRRN）"></a>四、高响应比优先（HRRN）</h3><p>1、算法思想</p>
+<ul>
+<li>综合考虑作业/进程的等待时间和要求服务时间</li>
+</ul>
+<p>2、算法规则</p>
+<ul>
+<li>在每次调度时先计算各个作业/进程的<strong>响应比</strong>，选择<strong>响应比最高的</strong>作业/进程为其服务</li>
+<li>响应比 = (等待时间 + 要求服务时间)  / 要求服务时间</li>
+</ul>
+<p>3、用于作业/进程调度</p>
+<ul>
+<li>可用于作业调度</li>
+<li>可用于进程调度</li>
+</ul>
+<p>4、是否抢占</p>
+<ul>
+<li><strong>非抢占式算法</strong><ul>
+<li>只有当前进程/作业主动放弃处理机，才需要调度，才需要计算响应比</li>
+</ul>
+</li>
+</ul>
+<p>5、优缺点</p>
+<ul>
+<li>优点<ul>
+<li>综合考虑了等待时间和运行时间（要求服务时间）</li>
+<li>等待时间相同时，要求服务时间短的优先（SJF的优点）</li>
+<li>要求服务时间相同时，等待时间长的优先（FCFS的优点）</li>
+<li>对于长作业来说，随着等待时间越来越久，其响应比也会越来越大，从而避免的长作业饥饿的问题</li>
+</ul>
+</li>
+</ul>
+<p>6、是否导致饥饿</p>
+<ul>
+<li>不会导致饥饿</li>
+</ul>
+<p>7、计算</p>
+<p><img src="https://i.loli.net/2020/12/26/NlZCXLD7ArREU8p.png" alt="image-20201226174523153"></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/26/E7jOTMYgaVRzpFJ.png" alt="image-20201226175523961"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>运行机制-体系结构</title>
+    <url>/posts/31685368/</url>
+    <content><![CDATA[<h3 id="一、运行机制"><a href="#一、运行机制" class="headerlink" title="一、运行机制"></a>一、运行机制</h3><h4 id="1、指令"><a href="#1、指令" class="headerlink" title="1、指令"></a>1、指令</h4><p>1.概念：处理器（CPU）能识别、执行的最基本命令</p>
+<p>2.分类：</p>
+<ul>
+<li>特权指令：不允许用户程序使用</li>
+<li>非特权指令</li>
+</ul>
+<h4 id="2、处理器状态"><a href="#2、处理器状态" class="headerlink" title="2、处理器状态"></a>2、处理器状态</h4><p>1.分类</p>
+<ul>
+<li>用户态（目态）：次时CPU只能执行非特权指令</li>
+<li>核心态（管态）：特权指令、非特权指令都能执行</li>
+</ul>
+<p>2、怎么判断状态</p>
+<p>用程序状态字寄存器（PSW）中的某标志位来标识当前处理器处于什么状态。如 0为用户态，1为核心态。</p>
+<h4 id="3、两种程序"><a href="#3、两种程序" class="headerlink" title="3、两种程序"></a>3、两种程序</h4><p>1.分类</p>
+<ul>
+<li>内核程序：操作系统的内核程序是系统的管理者。既可以执行特权指令，也可以执行非特权指令，运行在核心态。</li>
+<li>应用程序：为了保证系统的安全运行，普通应用程序只能执行非特权指令，运行在用户态。</li>
+</ul>
+<h3 id="二、内核"><a href="#二、内核" class="headerlink" title="二、内核"></a>二、内核</h3><h4 id="1、图解"><a href="#1、图解" class="headerlink" title="1、图解"></a>1、图解</h4><p><img src="https://i.loli.net/2020/12/05/FZJ1NXgrkG6aMKi.png" alt="image-20201205211540841"></p>
+<h4 id="2、概念"><a href="#2、概念" class="headerlink" title="2、概念"></a>2、概念</h4><ul>
+<li><p>内核是计算机上配置的<strong>底层软件</strong>，是操作系统最基本、最核心的部分。</p>
+</li>
+<li><p>实现操作系统内核功能的哪些程序就是内核程序</p>
+<p><img src="https://i.loli.net/2020/12/15/94Az5WIhvfPgsyn.png" alt="image-20201215193609256"></p>
+</li>
+</ul>
+<h4 id="3、内核分类"><a href="#3、内核分类" class="headerlink" title="3、内核分类"></a>3、内核分类</h4><ul>
+<li>大内核、微内核</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/15/SxdQ7uCcHRInYqZ.png" alt="image-20201215193804729"></p>
+<ul>
+<li><p>大内核、微内核的优缺点</p>
+<p><img src="https://i.loli.net/2020/12/15/9tDKGPLcXmofMbw.png" alt="image-20201215194114688"></p>
+</li>
+<li><p>类比</p>
+<p><img src="https://i.loli.net/2020/12/15/hcy6SJYFe7Q9ZDo.png" alt="image-20201215194403334"></p>
+</li>
+</ul>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p><img src="https://i.loli.net/2020/12/15/dDoiBXmfkvrjlQx.png" alt="image-20201215194829134"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程的定义、组成、组织方式、特征</title>
+    <url>/posts/ffb9b075/</url>
+    <content><![CDATA[<h3 id="一-定义"><a href="#一-定义" class="headerlink" title="一 定义"></a>一 定义</h3><p><img src="https://i.loli.net/2020/12/22/uvnZYEo3WKlBm6C.png" alt="image-20201222192549537"></p>
+<p><img src="https://i.loli.net/2020/12/22/32eqBhHiUxsRnjy.png" alt="image-20201222192851223"></p>
+<h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><ul>
+<li><p><strong>程序段、数据段、PCB</strong>三部分组成了<strong>进程实体（进程映像）</strong>，</p>
+<p>一般情况下，我们把进程实体简称为进程。</p>
+</li>
+<li><p>PCB是进程存在的<strong>唯一标志</strong></p>
+</li>
+<li><p>定义：</p>
+<ul>
+<li>进程是程序的一次<strong>执行过程</strong></li>
+<li>进程是一个程序及其数据在处理机上顺序执行时所<strong>发生的活动</strong></li>
+<li>进程是具有独立功能的程序在数据集合上<strong>运行的过程</strong>，它是系统进行资源分配和调度的一个独立单位</li>
+</ul>
+</li>
+</ul>
+<h3 id="二-组成"><a href="#二-组成" class="headerlink" title="二 组成"></a>二 组成</h3><ul>
+<li><p>进程（进程实体）是由<strong>程序段、数据段、PCB</strong>三部分组成的</p>
+<ul>
+<li>程序段：程序代码即存放在此</li>
+<li>数据段：程序运行时使用、产生的运算数据。</li>
+<li>PCB：操作系统通过PCB来管理进程。因此PCB中应该包含操作系统对其进行管理所需的各种信息。</li>
+</ul>
+</li>
+<li><p>PCB</p>
+<p><img src="https://i.loli.net/2020/12/22/jkAaglLvhU4ZEIx.png" alt="image-20201222194431273"></p>
+</li>
+<li><p>总</p>
+<p><img src="https://i.loli.net/2020/12/22/xX6gib1SY74NsLl.png" alt="image-20201222194604517"></p>
+</li>
+</ul>
+<h3 id="三-组织方式"><a href="#三-组织方式" class="headerlink" title="三 组织方式"></a>三 组织方式</h3><ul>
+<li><p>两种方式</p>
+<p><img src="https://i.loli.net/2020/12/22/FbePLshoJr3dU1t.png" alt="image-20201222194722777"></p>
+</li>
+<li><p>链接方式（队列）</p>
+<ul>
+<li>执行指针<ul>
+<li>指向当前处于运行态（执行态）的进程</li>
+<li>单CPU计算机中，同一时刻只会有一个处于运行态的进程</li>
+</ul>
+</li>
+<li>就绪队列指针<ul>
+<li>指向当下处于就绪态的进程</li>
+<li>指向的是一个链式PCB，通常会将优先级高的进程放在队头</li>
+</ul>
+</li>
+<li>阻塞队列指针<ul>
+<li>指向当前处于阻塞的进程，很多操作系统还会根据阻塞原因不同，分成不同的阻塞队列</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>索引方式（索引表）</p>
+<ul>
+<li>执行指针</li>
+<li>就绪表指针</li>
+<li>阻塞表指针</li>
+</ul>
+</li>
+</ul>
+<h3 id="四-特征"><a href="#四-特征" class="headerlink" title="四 特征"></a>四 特征</h3><ul>
+<li>动态性<ul>
+<li>进程是程序的一次执行过程，是动态地产生、变化和消亡</li>
+<li>动态性是进程最基本的特征</li>
+</ul>
+</li>
+<li>并发性<ul>
+<li>内存存在多个进程实体，各个进程可并发执行</li>
+</ul>
+</li>
+<li>独立性<ul>
+<li>进程是能独立运行、独立获得资源、独立接受调度的基本单位</li>
+<li>进程是资源调度、接受调度的基本单位</li>
+</ul>
+</li>
+<li>异步性<ul>
+<li>各个进程按照各自独立的、不可预知的速度向前推进</li>
+<li>操作系统要提供“进程同步机制”来解决异步问题</li>
+<li>异步性会导致并发程序执行结果的不确定性</li>
+</ul>
+</li>
+<li>结构性<ul>
+<li>每个进程都配置一个PCB</li>
+<li>从结构上看，进程由程序段、数据段、PCB组成的</li>
+</ul>
+</li>
+</ul>
+<h3 id="五-总结"><a href="#五-总结" class="headerlink" title="五 总结"></a>五 总结</h3><p><img src="https://i.loli.net/2020/12/22/7ZcXxpruak6qKjU.png" alt="image-20201222200132634"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程状态的转换</title>
+    <url>/posts/ada646f9/</url>
+    <content><![CDATA[<h3 id="一、概括"><a href="#一、概括" class="headerlink" title="一、概括"></a>一、概括</h3><p><img src="https://i.loli.net/2020/12/22/EOQtlMj316C72vV.png" alt="image-20201222200250316"></p>
+<h3 id="二、进程的状态"><a href="#二、进程的状态" class="headerlink" title="二、进程的状态"></a>二、进程的状态</h3><h4 id="1、三种基本状态"><a href="#1、三种基本状态" class="headerlink" title="1、三种基本状态"></a>1、三种基本状态</h4><ul>
+<li>运行态<ul>
+<li>占用CPU，并在CPU上运行</li>
+<li>在单核处理机环境下，每一个时刻最多只由一个进程处于运行态（双核环境下由两个进程处于运行态）</li>
+</ul>
+</li>
+<li>就绪态<ul>
+<li>依据具备运行条件，但由于没有空闲的CPU，而暂时不能运行。</li>
+<li>进程已经拥有了除处理机之外的所有需要的资源，一旦获取处理机，就可以立刻进入运行态开始运行</li>
+</ul>
+</li>
+<li>阻塞态<ul>
+<li>因等待一事件而暂时不能运行</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、另外两种状态"><a href="#2、另外两种状态" class="headerlink" title="2、另外两种状态"></a>2、另外两种状态</h4><ul>
+<li>创建状态<ul>
+<li>操作系统需要完成创建进程，操作系统为该进程分配所需要的内存空间等资源，并为其初始化PCB</li>
+</ul>
+</li>
+<li>终止状态<ul>
+<li>进程运行结束，需要撤销进程</li>
+<li>操作系统需要完成撤销进程相关的工作，完成将分配给进程的资源回收，撤销进程PCB等工作</li>
+</ul>
+</li>
+</ul>
+<h3 id="三-进程的转换"><a href="#三-进程的转换" class="headerlink" title="三 进程的转换"></a>三 进程的转换</h3><p><img src="https://i.loli.net/2020/12/22/CFziGAK976WSVQf.png" alt="image-20201222202632115"></p>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四 总结"></a>四 总结</h3><p><img src="https://i.loli.net/2020/12/22/mo21wSXtpCODsYr.png" alt="image-20201222202732624"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程控制</title>
+    <url>/posts/d9c2550/</url>
+    <content><![CDATA[<h3 id="一-基本概念"><a href="#一-基本概念" class="headerlink" title="一 基本概念"></a>一 基本概念</h3><h4 id="1、什么是进程控制"><a href="#1、什么是进程控制" class="headerlink" title="1、什么是进程控制"></a>1、什么是进程控制</h4><p>​    进程控制的主要功能就是对系统中的所有进程进行有效的管理，它具有创建新进程、撤销已有进程、实现进程转换等功能</p>
+<h4 id="2、如何实现进程控制"><a href="#2、如何实现进程控制" class="headerlink" title="2、如何实现进程控制"></a>2、如何实现进程控制</h4><p>​    <img src="https://i.loli.net/2020/12/22/xw6di8GcAoj9zN7.png" alt="image-20201222203441542"></p>
+<ul>
+<li><strong>为了避免PCB内的标志位与PCB所处的队列不一致，</strong>使用<strong>原语来实现基础控制</strong>，原语的特点是<strong>执行期间不允许中断</strong>，只能一气呵成。这种不可被中断的操作即<strong>原子操作</strong></li>
+<li>原语采用“<strong>关中断</strong>指令”和“<strong>开中断</strong>操作”实现。<strong>关/开中断指令</strong>的权限非常大，所以只允许在<strong>核心态</strong>下执行的<strong>特权指令</strong></li>
+<li>原语的目的<ul>
+<li>更新PCB中的信息<ul>
+<li>所有的进程控制原语一定都会修改进程状态标志</li>
+<li>剥夺当前允许进程的CPU使用权必然需要保存其运行环境</li>
+<li>某进程开始运行前必然要恢复运行状态</li>
+</ul>
+</li>
+<li>将PCB插入到合适的队列中</li>
+<li>分配/回收资源</li>
+</ul>
+</li>
+</ul>
+<h3 id="二-进程控制相关的原语"><a href="#二-进程控制相关的原语" class="headerlink" title="二 进程控制相关的原语"></a>二 进程控制相关的原语</h3><h4 id="1、进程的创建"><a href="#1、进程的创建" class="headerlink" title="1、进程的创建"></a>1、进程的创建</h4><p><img src="https://i.loli.net/2020/12/22/yoM1Fb96GhBfqOQ.png" alt="image-20201222205630647"></p>
+<h4 id="2、进程的终止"><a href="#2、进程的终止" class="headerlink" title="2、进程的终止"></a>2、进程的终止</h4><p><img src="https://i.loli.net/2020/12/22/2SA34PLszkRBeKG.png" alt="image-20201222205844888"></p>
+<h4 id="3、进程的阻塞、唤醒"><a href="#3、进程的阻塞、唤醒" class="headerlink" title="3、进程的阻塞、唤醒"></a>3、进程的阻塞、唤醒</h4><p><img src="https://i.loli.net/2020/12/22/E7rFRDTq3fBviCK.png" alt="image-20201222210009333"></p>
+<h4 id="4、进程的切换"><a href="#4、进程的切换" class="headerlink" title="4、进程的切换"></a>4、进程的切换</h4><p><img src="https://i.loli.net/2020/12/22/QaUOc8WrXDRjJAs.png" alt="image-20201222210112018"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程调度的时机、切换与过程、调度方式</title>
+    <url>/posts/7f586123/</url>
+    <content><![CDATA[<h3 id="一、时机"><a href="#一、时机" class="headerlink" title="一、时机"></a>一、时机</h3><h4 id="1、什么时候需要进程调度"><a href="#1、什么时候需要进程调度" class="headerlink" title="1、什么时候需要进程调度"></a>1、什么时候需要进程调度</h4><ul>
+<li>当前运行的进程<strong>主动放弃</strong>处理机(<strong>在有的系统中只允许进程主动放弃处理机</strong>)<ul>
+<li>进程正常终止</li>
+<li>进程发生异常而终止</li>
+</ul>
+</li>
+<li>当前运行的进程<strong>被动放弃</strong>处理机<ul>
+<li>分给进程的时间片用完了</li>
+<li>有更高优先级的进程进入就绪队列</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、什么时候不能进行进程调度"><a href="#2、什么时候不能进行进程调度" class="headerlink" title="2、什么时候不能进行进程调度"></a>2、什么时候不能进行进程调度</h4><ul>
+<li>在<strong>处理中断</strong>的过程中。</li>
+<li>进程在<strong>操作系统内核程序临界区</strong>中<ul>
+<li>进程<strong>是可以在</strong>普通临界区中是可以进行调度与切换的</li>
+</ul>
+</li>
+<li>在<strong>原子操作过程中（原语）</strong>。</li>
+</ul>
+<h3 id="二、切换与过程"><a href="#二、切换与过程" class="headerlink" title="二、切换与过程"></a>二、切换与过程</h3><h4 id="1、”狭义的调度“与“切换”的区别"><a href="#1、”狭义的调度“与“切换”的区别" class="headerlink" title="1、”狭义的调度“与“切换”的区别"></a>1、”狭义的调度“与“切换”的区别</h4><ul>
+<li>狭义的进程调度是<strong>从就绪队列中选中一个要运行的进程</strong>（这个进程可以是<strong>刚刚被暂停执行的</strong>，也可以是<strong>另一个进程</strong>，后面一种就需要<strong>进程切换</strong>）</li>
+<li><strong>进程切换是指一个进程让出处理机，然后由另外一个进程使用处理机</strong></li>
+<li><strong>广度的进程调度</strong>包括<strong>选择一个进程和进程切换</strong>两个步骤</li>
+</ul>
+<h4 id="2、进程切换的过程需要什么"><a href="#2、进程切换的过程需要什么" class="headerlink" title="2、进程切换的过程需要什么"></a>2、进程切换的过程需要什么</h4><ul>
+<li>对原来运行进程的数据进行保存</li>
+<li>对新进程的数据进行恢复</li>
+</ul>
+<h4 id="3、注意点"><a href="#3、注意点" class="headerlink" title="3、注意点"></a>3、注意点</h4><ul>
+<li><strong>进程切换是有代价的</strong>，因此如果<strong>过于频繁的</strong>进行<strong>进程调度，切换</strong>。必然会使<strong>整个系统的效率降低</strong>，使系统大部分时间都花在进程切换上，而真正执行进程的时间变短</li>
+</ul>
+<h3 id="三、方式"><a href="#三、方式" class="headerlink" title="三、方式"></a>三、方式</h3><h4 id="1、非剥夺调度方式（非抢占式）"><a href="#1、非剥夺调度方式（非抢占式）" class="headerlink" title="1、非剥夺调度方式（非抢占式）"></a>1、非剥夺调度方式（非抢占式）</h4><ul>
+<li><strong>非剥夺调度方式</strong>，又称<strong>非抢占式</strong>。即，只允许进程主动放弃处理机。在运行状态期间即便又更加紧急的任务到达，当前进程依旧会继续使用处理机，直到该进程终止或者主动要求进入阻塞态。</li>
+<li>优缺点<ul>
+<li>优点<ul>
+<li>实现简单</li>
+<li>系统开销小</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>无法处理紧急任务</li>
+<li>只适合早期批处理系统</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、剥夺调度方式（抢占式）"><a href="#2、剥夺调度方式（抢占式）" class="headerlink" title="2、剥夺调度方式（抢占式）"></a>2、剥夺调度方式（抢占式）</h4><ul>
+<li><strong>剥夺调度方式</strong>，又称<strong>抢占式</strong>。当一个进程正在处理机上执行时，如果有一个更重要或者紧急的进程需要使用处理机时，则立刻停止正在执行的进程，将处理机分配给更紧急重要的进程。</li>
+<li>优缺点<ul>
+<li>优点<ul>
+<li>可以优先处理更紧急的进程</li>
+<li>实现让各进程按时间片轮转执行的功能（通过时钟中断）</li>
+<li>适合于分时操作系统、实时操作系统</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p><img src="https://i.loli.net/2020/12/26/VaJfO2i4bG8rCtH.png" alt="image-20201226111643433"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程通信</title>
+    <url>/posts/53ad465c/</url>
+    <content><![CDATA[<h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><ul>
+<li>进程通信就是<strong>进程之间的消息传递</strong></li>
+<li>进程是分配系统资源的基本单位，因此各进程拥有的<strong>内存地址空间是相互独立的</strong></li>
+<li>为了保存安全，<strong>一个进程不能直接访问另外一个进程地址空间</strong></li>
+<li>进程通信的<strong>三种方法</strong><ul>
+<li>共享存储</li>
+<li>消息传递</li>
+<li>管道通信</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、共享存储"><a href="#二、共享存储" class="headerlink" title="二、共享存储"></a>二、共享存储</h3><p><img src="https://i.loli.net/2020/12/24/y1KZ8WzR6FCYm2n.png" alt="image-20201224100458183"></p>
+<h3 id="三、消息传递"><a href="#三、消息传递" class="headerlink" title="三、消息传递"></a>三、消息传递</h3><p><img src="https://i.loli.net/2020/12/24/EqkdhtyYgBus3AI.png" alt="image-20201224101158127"></p>
+<h3 id="四、管道通信"><a href="#四、管道通信" class="headerlink" title="四、管道通信"></a>四、管道通信</h3><p><img src="https://i.loli.net/2020/12/24/Tag7bNRrhxMcY1P.png" alt="image-20201224100913574"></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/24/V2ovCkfQgOZ48Nq.png" alt="image-20201224101327317"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
 </search>

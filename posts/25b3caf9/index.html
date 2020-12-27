@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"postsocial","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="先来先服务（FCFS），短作业优先（SJF）、高响应比优先（HRRN）三种算法的优缺点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="调度算法(FCFS,SJF,HRRN)">
+<meta property="og:url" content="http://yoursite.com/posts/25b3caf9/index.html">
+<meta property="og:site_name" content="小丁的小屋">
+<meta property="og:description" content="先来先服务（FCFS），短作业优先（SJF）、高响应比优先（HRRN）三种算法的优缺点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/12/26/7vdYbnfWrMxwNBD.png">
+<meta property="og:image" content="https://i.loli.net/2020/12/26/C9DEQlL3reqT7XK.png">
+<meta property="og:image" content="https://i.loli.net/2020/12/26/RzsOhuCHkGWjP23.png">
+<meta property="og:image" content="https://i.loli.net/2020/12/26/NKbXQFDMOvhit9p.png">
+<meta property="og:image" content="https://i.loli.net/2020/12/26/NlZCXLD7ArREU8p.png">
+<meta property="og:image" content="https://i.loli.net/2020/12/26/E7jOTMYgaVRzpFJ.png">
+<meta property="article:published_time" content="2020-12-27T02:52:58.283Z">
+<meta property="article:modified_time" content="2020-12-27T03:16:07.041Z">
+<meta property="article:author" content="小丁">
+<meta property="article:tag" content="-笔记 -操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/12/26/7vdYbnfWrMxwNBD.png">
+
+<link rel="canonical" href="http://yoursite.com/posts/25b3caf9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>调度算法(FCFS,SJF,HRRN) | 小丁的小屋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+
+<link rel="alternate" href="/rss2.xml" title="小丁的小屋" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+        <a href="https://your-url" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小丁的小屋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/25b3caf9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="小丁">
+      <meta itemprop="description" content="最美的相遇，不言过往；最好的离别，不问归期。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小丁的小屋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          调度算法(FCFS,SJF,HRRN)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-27 10:52:58 / 修改时间：11:16:07" itemprop="dateCreated datePublished" datetime="2020-12-27T10:52:58+08:00">2020-12-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">先来先服务（FCFS），短作业优先（SJF）、高响应比优先（HRRN）三种算法的优缺点</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、算法的研究思路"><a href="#一、算法的研究思路" class="headerlink" title="一、算法的研究思路"></a>一、算法的研究思路</h3><ul>
+<li>算法思想</li>
+<li>算法规则</li>
+<li>这种调度算法是用于作业调度还是进程调度</li>
+<li>抢占式？非抢占式</li>
+<li>优缺点</li>
+<li>是否导致<strong>饥饿</strong><ul>
+<li>饥饿：某进程/作业长期得不到服务</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、先来先服务（FCFS）"><a href="#二、先来先服务（FCFS）" class="headerlink" title="二、先来先服务（FCFS）"></a>二、先来先服务（FCFS）</h3><p>1、算法思想</p>
+<ul>
+<li>主要从“公平”的角度考虑</li>
+</ul>
+<p>2、算法规则</p>
+<ul>
+<li>按照作业/进程到达的先后顺序就绪服务</li>
+</ul>
+<p>3、用于作业/进程调度</p>
+<ul>
+<li>用于作业调度时，考虑的是哪个作业先到达后备队列当中</li>
+<li>用于进程调度时，考虑的是哪个进程先到达就绪队列中</li>
+</ul>
+<p>4、是否抢占</p>
+<ul>
+<li>非抢占算法</li>
+</ul>
+<p>5、优缺点</p>
+<ul>
+<li>优点<ul>
+<li>公平</li>
+<li>算法实现简单</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>排在长作业（进程）后面的短作业需要等待很长时间，带权周转时间很大，对短作业来说体验感很差</li>
+</ul>
+</li>
+<li>即 FCFS算法<strong>对长作业（进程）有利，对短作业（进程）不利</strong></li>
+</ul>
+<p>6、是否导致饥饿</p>
+<ul>
+<li>不会</li>
+</ul>
+<h3 id="三、短作业优先（SJF）"><a href="#三、短作业优先（SJF）" class="headerlink" title="三、短作业优先（SJF）"></a>三、短作业优先（SJF）</h3><p>1、算法思想</p>
+<ul>
+<li>追求最少的平均等待时间，最少的平均周转时间，最少的平均平均带权周转时间</li>
+</ul>
+<p>2、算法规则</p>
+<ul>
+<li>最短作业/进程优先得到服务（所谓最短是指要求<strong>服务时间最短</strong>）</li>
+</ul>
+<p>3、用于作业/进程调度</p>
+<ul>
+<li>用于作业调度，叫做短作业优先调度算法（SJF）</li>
+<li>用于进程调度，叫做短进程优先调度算法（SPF）</li>
+</ul>
+<p>4、是否抢占</p>
+<ul>
+<li>SJF和SPF是<strong>非抢占式</strong>的算法</li>
+<li><strong>最短剩余时间优先算法（SRTN，shortest Remaing Time Next）</strong></li>
+</ul>
+<p>5、优缺点</p>
+<ul>
+<li>优点<ul>
+<li><strong>“最短的”</strong>平均等待时间，平均周转时间</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>不公平<ul>
+<li>对于“<strong>短作业有利、对长作业不利</strong>”，可能产生<strong>饥饿现象</strong>，</li>
+<li>作业/进程的运行时间是由用户提供的，并不一定真实，不一定能做到真正的短作业优先</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>6、是否导致饥饿</p>
+<ul>
+<li>会导致饥饿，<ul>
+<li>如果由源源不断的短作业/进程到来，可能使得长作业/进程长时间得不到服务，产生<strong>“饥饿”现象</strong>，如果一直得不到服务，则称为<strong>“饿死”</strong></li>
+</ul>
+</li>
+</ul>
+<p>7、注意细节</p>
+<p><img src="https://i.loli.net/2020/12/26/7vdYbnfWrMxwNBD.png" alt="image-20201226173431484"></p>
+<p>8、计算</p>
+<ul>
+<li>非抢占式的短作业优先调度算法</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/C9DEQlL3reqT7XK.png" alt="image-20201226163453336"></p>
+<ul>
+<li>抢占式的短作业优点调度算法</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/RzsOhuCHkGWjP23.png" alt="image-20201226163933556"></p>
+<p><img src="https://i.loli.net/2020/12/26/NKbXQFDMOvhit9p.png" alt="image-20201226164020154"></p>
+<h3 id="四、高响应比优先（HRRN）"><a href="#四、高响应比优先（HRRN）" class="headerlink" title="四、高响应比优先（HRRN）"></a>四、高响应比优先（HRRN）</h3><p>1、算法思想</p>
+<ul>
+<li>综合考虑作业/进程的等待时间和要求服务时间</li>
+</ul>
+<p>2、算法规则</p>
+<ul>
+<li>在每次调度时先计算各个作业/进程的<strong>响应比</strong>，选择<strong>响应比最高的</strong>作业/进程为其服务</li>
+<li>响应比 = (等待时间 + 要求服务时间)  / 要求服务时间</li>
+</ul>
+<p>3、用于作业/进程调度</p>
+<ul>
+<li>可用于作业调度</li>
+<li>可用于进程调度</li>
+</ul>
+<p>4、是否抢占</p>
+<ul>
+<li><strong>非抢占式算法</strong><ul>
+<li>只有当前进程/作业主动放弃处理机，才需要调度，才需要计算响应比</li>
+</ul>
+</li>
+</ul>
+<p>5、优缺点</p>
+<ul>
+<li>优点<ul>
+<li>综合考虑了等待时间和运行时间（要求服务时间）</li>
+<li>等待时间相同时，要求服务时间短的优先（SJF的优点）</li>
+<li>要求服务时间相同时，等待时间长的优先（FCFS的优点）</li>
+<li>对于长作业来说，随着等待时间越来越久，其响应比也会越来越大，从而避免的长作业饥饿的问题</li>
+</ul>
+</li>
+</ul>
+<p>6、是否导致饥饿</p>
+<ul>
+<li>不会导致饥饿</li>
+</ul>
+<p>7、计算</p>
+<p><img src="https://i.loli.net/2020/12/26/NlZCXLD7ArREU8p.png" alt="image-20201226174523153"></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/26/E7jOTMYgaVRzpFJ.png" alt="image-20201226175523961"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> -笔记 -操作系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/ada646f9/" rel="prev" title="进程状态的转换">
+      <i class="fa fa-chevron-left"></i> 进程状态的转换
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/110d173/" rel="next" title="调度算法的评判标准">
+      调度算法的评判标准 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、算法的研究思路"><span class="nav-number">1.</span> <span class="nav-text">一、算法的研究思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、先来先服务（FCFS）"><span class="nav-number">2.</span> <span class="nav-text">二、先来先服务（FCFS）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、短作业优先（SJF）"><span class="nav-number">3.</span> <span class="nav-text">三、短作业优先（SJF）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、高响应比优先（HRRN）"><span class="nav-number">4.</span> <span class="nav-text">四、高响应比优先（HRRN）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、总结"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小丁"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">小丁</p>
+  <div class="site-description" itemprop="description">最美的相遇，不言过往；最好的离别，不问归期。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/iodeer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iodeer" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+            <h3 class="widget-title">Tag Cloud</h3>
+            <div id="myCanvasContainer" class="widget tagcloud">
+                <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-Mybatis/" rel="tag">-笔记 -Mybatis</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-Spring/" rel="tag">-笔记 -Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">-笔记 -操作系统</a><span class="tag-list-count">14</span></li></ul>
+                </canvas>
+            </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div> 
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020-06 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小丁</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <!-- 文件位置：~/theme/next/layout/_layout.swig-->
+  <!--
+  <script type="text/javascript" src="/js/fireworks.js"></script>
+   -->
+
+ <script type="text/javascript" src="/js/clicklove.js"></script>
+ 
+</body>
+</html>
