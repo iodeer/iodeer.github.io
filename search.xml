@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>IOC理论推导</title>
-    <url>/posts/ca68ff0d/</url>
-    <content><![CDATA[<h3 id="1-、原来实现业务流程"><a href="#1-、原来实现业务流程" class="headerlink" title="1 、原来实现业务流程"></a>1 、原来实现业务流程</h3><ol>
-<li>UserDao接口</li>
-<li>UserDaoImpl实现类</li>
-<li>UserService业务接口</li>
-<li>UserServiceImpl业务实现类</li>
-</ol>
-<p>在我们之前的业务中，用户的需求可能会影响我们原来的代码，我们需要根据用户的需求去修改源代码！如果程序的代码量十分大，修改一次的代价十分昂贵！</p>
-<h3 id="2、通过set方法降低耦合"><a href="#2、通过set方法降低耦合" class="headerlink" title="2、通过set方法降低耦合"></a>2、通过set方法降低耦合</h3><p>我们使用一个set接口实现，以及发生了革命性的变化</p>
-<p><img src="https://i.loli.net/2020/07/29/Q2UygLKMIdWhtpX.png" alt="image-20200729222813217"></p>
-<ul>
-<li><strong>之前，程序是主动创建对象，控制权在程序猿手上</strong></li>
-<li><strong>使用了set注入后，程序不再拥有主动性，而是变成了被动的接收对象</strong></li>
+    <title>Spring简介</title>
+    <url>/posts/70bfd15e/</url>
+    <content><![CDATA[<h3 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h3><ul>
+<li>Spring–春天—-&gt;给软件行业带来了春天</li>
+<li>2002，首次推出了Spring框架的雏形，interface21框架</li>
+<li>2004诞生</li>
+<li>Rod Jahnson</li>
+<li><strong>Spring的理念：使现有的技术更加容易使用，本身是一个大杂烩，整合了现有的技术框架</strong></li>
+<li>SSH：Struct2 + Spring +Hibernate</li>
+<li>SSM：SpringMVC + Spring + Mybatis</li>
 </ul>
-<p>这种思想从本质上解决了问题，我们程序猿不用再去管理对象的创建了。</p>
-<p>系统的耦合度大大降低了，可以更加专注的在业务的实现上。<strong>这是IOC的原型</strong></p>
-<p><img src="https://i.loli.net/2020/07/29/d4KUb7tLpmD8RQX.png" alt="image-20200729223906856"></p>
-<h3 id="3-、IOC本质"><a href="#3-、IOC本质" class="headerlink" title="3 、IOC本质"></a>3 、IOC本质</h3><p><strong>控制反转IoC(Inversion of Control)，是一种设计思想，DI(依赖注入)是实现IoC的一种方法，</strong>也有人认为DI只是IoC的另一种说法。没有IoC的程序中 , 我们使用面向对象编程 , 对象的创建与对象间的依赖关系完全硬编码在程序中，对象的创建由程序自己控制，控制反转后将对象的创建转移给第三方，个人认为所谓控制反转就是：获得依赖对象的方式反转了。</p>
-<p>采用XML方式配置Bean的时候，Bean的定义信息是和实现分离的，而采用注解的方式可以把两者合为一体，Bean的定义信息直接以注解的形式定义在实现类中，从而达到了零配置的目的。</p>
-<p><strong>控制反转是一种通过描述（XML或注解）并通过第三方去生产或获取特定对象的方式。在Spring中实现控制反转的是IoC容器，其实现方法是依赖注入（Dependency Injection,DI）。</strong></p>
+<p>官网：<a href="https://docs.spring.io/spring/docs/5.2.8.RELEASE/spring-framework-reference/overview.html#overview" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/5.2.8.RELEASE/spring-framework-reference/overview.html#overview</a></p>
+<p>官方下载地址：<a href="https://repo.spring.io/release/org/springframework/spring/" target="_blank" rel="noopener">https://repo.spring.io/release/org/springframework/spring/</a></p>
+<p>GitHub地址：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.8.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.8.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2、Spring的优点"><a href="#2、Spring的优点" class="headerlink" title="2、Spring的优点"></a>2、Spring的优点</h3><ul>
+<li>Spring是一个开源的免费的框架(容器)</li>
+<li>是一个轻量级的、非入侵式的框架</li>
+<li><strong>控制反转(IOC)、面向切面编程(AOP)</strong></li>
+<li><strong>支持事务的处理</strong>，对框架整合的支持</li>
+</ul>
+<p><strong>==总结：Spring就是一个轻量级的控制反转（IOC）、面向切面编程（AOP）的框架==</strong>1.</p>
+<h3 id="3、Spring的组成"><a href="#3、Spring的组成" class="headerlink" title="3、Spring的组成"></a>3、Spring的组成</h3><p><img src="https://i.loli.net/2020/07/29/HGFUmeQ6NDZvpa9.png" alt="image-20200729215227842"></p>
+<h3 id="4-、Spring拓展"><a href="#4-、Spring拓展" class="headerlink" title="4 、Spring拓展"></a>4 、Spring拓展</h3><p>介绍：现代化的java开发，就是基于Spring的开发</p>
+<p><img src="https://i.loli.net/2020/07/29/ySOud1Tv3foDQgP.png" alt="image-20200729215442631"></p>
+<ul>
+<li>Spring Boot<ul>
+<li>一个快速开发的脚手架。</li>
+<li>基于Spring Boot可以快速开发单个微服务</li>
+<li>约定大于配置！</li>
+</ul>
+</li>
+<li>Spring Cloud<ul>
+<li>基于SpringBoot实现的</li>
+</ul>
+</li>
+</ul>
+<p>因为现在大多数公司都在使用SpringBoot进行快速开发，学习SpringBoot的前提，需要完全掌握Spring和SpringMVC，</p>
+<p>承上启下的作用！</p>
+<h3 id="5、Spring的缺点"><a href="#5、Spring的缺点" class="headerlink" title="5、Spring的缺点"></a>5、Spring的缺点</h3><p><strong>弊端:发展了太久，违背了原来的理念，配置十分繁琐，人称：配置地狱</strong></p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -31,25 +51,14 @@
       </tags>
   </entry>
   <entry>
-    <title>IOC创建对象的方式</title>
-    <url>/posts/f40a03f2/</url>
-    <content><![CDATA[<h3 id="1、使用无参构造创建对象，默认"><a href="#1、使用无参构造创建对象，默认" class="headerlink" title="1、使用无参构造创建对象，默认"></a>1、使用无参构造创建对象，默认</h3><h3 id="2、假设我们要使用有参构造创建对象"><a href="#2、假设我们要使用有参构造创建对象" class="headerlink" title="2、假设我们要使用有参构造创建对象"></a>2、假设我们要使用有参构造创建对象</h3><ul>
-<li>下标赋值</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    第一种,下标赋值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"0"</span> <span class="attr">value</span>=<span class="string">"dddd"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    <title>Spring常用配置</title>
+    <url>/posts/971b5adf/</url>
+    <content><![CDATA[<h3 id="1-、别名"><a href="#1-、别名" class="headerlink" title="1 、别名"></a>1 、别名</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--  别名：如果添加了别名，我们也可以使用别名来获取对象，id一样有可以--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"User"</span> <span class="attr">alias</span>=<span class="string">"userNew"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>类型赋值</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    第二种方式、通过类型创建对象，，不建议使用--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"java"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"xxxx"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、Bean的配置"><a href="#2、Bean的配置" class="headerlink" title="2、Bean的配置"></a>2、Bean的配置</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    id:bean的唯一标识符，也就是相当于我们学的对象名</span></span><br><span class="line"><span class="comment">    class：bean对象所对应的全限定名 ： 包名 + 类型</span></span><br><span class="line"><span class="comment">    name:也是别名，而且name更高级，可以同时取多个别名(通过空格、逗号分隔、分号)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"xxx"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span> <span class="attr">name</span>=<span class="string">"user,user2 uuu"</span> <span class="attr">scope</span>=<span class="string">"singleton"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>参数名</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--第三种方式，直接通过参数名来设置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"Djc"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>总结：在配置文件加载的过程中，容器中管理的对象就已经被初始化了</strong></p>
-<p><img src="https://i.loli.net/2020/07/30/IrKp3Nu5v142HGL.png" alt="image-20200730102652165"></p>
+<h3 id="3、Import"><a href="#3、Import" class="headerlink" title="3、Import"></a>3、Import</h3><p>这个import，一般用于团队开发，它可以将多个配置文件 导入合并为一个。</p>
+<p>假设:现在项目中有多人开发，在三个人负责不同的类开发，不同的类需要注册在不同的bean中，我们可以利用import将所有人的beans.xml合并为一个。使用的时候，直接使用总的就可以了。</p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -118,23 +127,6 @@
 <li><p>其余的request、session、application这些只能在web开发中使用到</p>
 </li>
 </ol>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring常用配置</title>
-    <url>/posts/971b5adf/</url>
-    <content><![CDATA[<h3 id="1-、别名"><a href="#1-、别名" class="headerlink" title="1 、别名"></a>1 、别名</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--  别名：如果添加了别名，我们也可以使用别名来获取对象，id一样有可以--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"User"</span> <span class="attr">alias</span>=<span class="string">"userNew"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2、Bean的配置"><a href="#2、Bean的配置" class="headerlink" title="2、Bean的配置"></a>2、Bean的配置</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    id:bean的唯一标识符，也就是相当于我们学的对象名</span></span><br><span class="line"><span class="comment">    class：bean对象所对应的全限定名 ： 包名 + 类型</span></span><br><span class="line"><span class="comment">    name:也是别名，而且name更高级，可以同时取多个别名(通过空格、逗号分隔、分号)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"xxx"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span> <span class="attr">name</span>=<span class="string">"user,user2 uuu"</span> <span class="attr">scope</span>=<span class="string">"singleton"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3、Import"><a href="#3、Import" class="headerlink" title="3、Import"></a>3、Import</h3><p>这个import，一般用于团队开发，它可以将多个配置文件 导入合并为一个。</p>
-<p>假设:现在项目中有多人开发，在三个人负责不同的类开发，不同的类需要注册在不同的bean中，我们可以利用import将所有人的beans.xml合并为一个。使用的时候，直接使用总的就可以了。</p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -235,53 +227,198 @@
       </tags>
   </entry>
   <entry>
-    <title>Spring简介</title>
-    <url>/posts/70bfd15e/</url>
-    <content><![CDATA[<h3 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h3><ul>
-<li>Spring–春天—-&gt;给软件行业带来了春天</li>
-<li>2002，首次推出了Spring框架的雏形，interface21框架</li>
-<li>2004诞生</li>
-<li>Rod Jahnson</li>
-<li><strong>Spring的理念：使现有的技术更加容易使用，本身是一个大杂烩，整合了现有的技术框架</strong></li>
-<li>SSH：Struct2 + Spring +Hibernate</li>
-<li>SSM：SpringMVC + Spring + Mybatis</li>
+    <title>中断-异常</title>
+    <url>/posts/a76ffb5a/</url>
+    <content><![CDATA[<h3 id="一、中断机制的诞生"><a href="#一、中断机制的诞生" class="headerlink" title="一、中断机制的诞生"></a>一、中断机制的诞生</h3><ul>
+<li><p>在单批道处理阶段，各个程序只能串行处理，系统资利用低，为了解决上诉问题，人们发明了操作系统（作为管理者），引入中断机制，实现了多道程序并发执行</p>
+</li>
+<li><p><strong>本质：发生中断就意味着需要操作系统介入，开展管理工作</strong></p>
+</li>
 </ul>
-<p>官网：<a href="https://docs.spring.io/spring/docs/5.2.8.RELEASE/spring-framework-reference/overview.html#overview" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/5.2.8.RELEASE/spring-framework-reference/overview.html#overview</a></p>
-<p>官方下载地址：<a href="https://repo.spring.io/release/org/springframework/spring/" target="_blank" rel="noopener">https://repo.spring.io/release/org/springframework/spring/</a></p>
-<p>GitHub地址：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.8.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.8.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2、Spring的优点"><a href="#2、Spring的优点" class="headerlink" title="2、Spring的优点"></a>2、Spring的优点</h3><ul>
-<li>Spring是一个开源的免费的框架(容器)</li>
-<li>是一个轻量级的、非入侵式的框架</li>
-<li><strong>控制反转(IOC)、面向切面编程(AOP)</strong></li>
-<li><strong>支持事务的处理</strong>，对框架整合的支持</li>
+<h3 id="二、中断的概念和作业"><a href="#二、中断的概念和作业" class="headerlink" title="二、中断的概念和作业"></a>二、中断的概念和作业</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><ul>
+<li>当中断发生时，CPU立即进入<strong>核心态</strong></li>
+<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理</li>
+<li>对于不同的中断信号，会进行不同的处理</li>
 </ul>
-<p><strong>==总结：Spring就是一个轻量级的控制反转（IOC）、面向切面编程（AOP）的框架==</strong>1.</p>
-<h3 id="3、Spring的组成"><a href="#3、Spring的组成" class="headerlink" title="3、Spring的组成"></a>3、Spring的组成</h3><p><img src="https://i.loli.net/2020/07/29/HGFUmeQ6NDZvpa9.png" alt="image-20200729215227842"></p>
-<h3 id="4-、Spring拓展"><a href="#4-、Spring拓展" class="headerlink" title="4 、Spring拓展"></a>4 、Spring拓展</h3><p>介绍：现代化的java开发，就是基于Spring的开发</p>
-<p><img src="https://i.loli.net/2020/07/29/ySOud1Tv3foDQgP.png" alt="image-20200729215442631"></p>
+<h4 id="2、中断的作用"><a href="#2、中断的作用" class="headerlink" title="2、中断的作用"></a>2、中断的作用</h4><p>​    发生了中断，就意味着需要操作系统介入，发展管理工作。由于操作系统的管理工作（比如进程切换、分配I/O设备等）需要使用特权指令，因此CPU需要从用户态转变成核心态。<strong>中断</strong>可以<strong>使CPU从用户态转变成核心态，使操作系统获得计算机的控制权</strong>.。有了中断，才能实现多道程序并发执行。</p>
+<h4 id="3、用户态、核心态切换的实现"><a href="#3、用户态、核心态切换的实现" class="headerlink" title="3、用户态、核心态切换的实现"></a>3、用户态、核心态切换的实现</h4><ul>
+<li><strong>“用户态—》核心态“</strong>是通过<strong>中断</strong>实现的。并且<strong>中断</strong>是<strong>唯一的</strong>方式</li>
+<li>”核心态—》用户态“的切换是通过<strong>执行一个特权指令</strong>，将程序状态字（PSW）的标志位设置为”用户态“</li>
+</ul>
+<h3 id="三、中断-广义的中断-分类"><a href="#三、中断-广义的中断-分类" class="headerlink" title="三、中断{广义的中断}分类"></a>三、中断{广义的中断}分类</h3><h4 id="1、内中断（异常、例外、陷入）"><a href="#1、内中断（异常、例外、陷入）" class="headerlink" title="1、内中断（异常、例外、陷入）"></a>1、内中断（异常、例外、陷入）</h4><ul>
+<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
+</li>
+<li><p>自愿中断</p>
 <ul>
-<li>Spring Boot<ul>
-<li>一个快速开发的脚手架。</li>
-<li>基于Spring Boot可以快速开发单个微服务</li>
-<li>约定大于配置！</li>
+<li>指令中断</li>
 </ul>
 </li>
-<li>Spring Cloud<ul>
-<li>基于SpringBoot实现的</li>
+<li><p>强迫中断</p>
+<ul>
+<li>硬件故障</li>
+<li>软件中断</li>
 </ul>
 </li>
 </ul>
-<p>因为现在大多数公司都在使用SpringBoot进行快速开发，学习SpringBoot的前提，需要完全掌握Spring和SpringMVC，</p>
-<p>承上启下的作用！</p>
-<h3 id="5、Spring的缺点"><a href="#5、Spring的缺点" class="headerlink" title="5、Spring的缺点"></a>5、Spring的缺点</h3><p><strong>弊端:发展了太久，违背了原来的理念，配置十分繁琐，人称：配置地狱</strong></p>
+<h4 id="2、外中断（中断-狭义的中断-）"><a href="#2、外中断（中断-狭义的中断-）" class="headerlink" title="2、外中断（中断{狭义的中断}）"></a>2、外中断（中断{狭义的中断}）</h4><ul>
+<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
+</li>
+<li><p>外设请求</p>
+</li>
+<li><p>人工干预</p>
+</li>
+</ul>
+<h3 id="四、外中断的处理过程"><a href="#四、外中断的处理过程" class="headerlink" title="四、外中断的处理过程"></a>四、外中断的处理过程</h3><p><img src="https://i.loli.net/2020/12/15/N1OuBLW9Zj7YbAy.png" alt="image-20201215203027037"></p>
+<h3 id="五、回顾"><a href="#五、回顾" class="headerlink" title="五、回顾"></a>五、回顾</h3><p><img src="https://i.loli.net/2020/12/15/OEjrGxoAeT5cUM4.png" alt="image-20201215203338519"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mybatis简介</title>
+    <url>/posts/3f7f462b/</url>
+    <content><![CDATA[<h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><a id="more"></a>
+
+<h3 id="1-1-什么是Mybatis"><a href="#1-1-什么是Mybatis" class="headerlink" title="1.1 什么是Mybatis"></a>1.1 什么是Mybatis</h3><h3 id="1-2-持久化"><a href="#1-2-持久化" class="headerlink" title="1.2 持久化"></a>1.2 持久化</h3><p>数据持久华</p>
+<ul>
+<li>持久化就是讲程序的数据在持久层和瞬时状态转化的过程</li>
+<li>内存：<strong>断电既失</strong></li>
+<li>数据库(jdbc),io文件持久化</li>
+</ul>
+<p><strong>为什么要持久化</strong></p>
+<ul>
+<li>有一些对象，不能让它丢掉</li>
+<li>内存太贵了</li>
+</ul>
+<h3 id="1-3、持久层"><a href="#1-3、持久层" class="headerlink" title="1.3、持久层"></a>1.3、持久层</h3><p>Dao层、Service层、Controller层…</p>
+<ul>
+<li>完成持久化工作的代码块</li>
+<li>层界限十分明显</li>
+</ul>
+<h3 id="1-4-为什么需要Mybatis"><a href="#1-4-为什么需要Mybatis" class="headerlink" title="1.4 为什么需要Mybatis"></a>1.4 为什么需要Mybatis</h3><ul>
+<li>帮助程序员讲数据存入到数据库中</li>
+<li>方便</li>
+<li>传统的JDBC代码很复杂。简化-》框架。自动化</li>
+<li>不用Mybatis也可以，但是使用后，更容易上手。<strong>（技术没有高低之分）</strong></li>
+<li>优点<ul>
+<li>简单易学</li>
+<li>灵活</li>
+<li>sql和代码的分离，提高了可维护性。</li>
+<li>提供映射标签，支持对象与数据库的orm字段关系映射</li>
+<li>提供对象关系映射标签，支持对象关系组建维护</li>
+<li>提供xml标签，支持编写动态sql。</li>
+</ul>
+</li>
+</ul>
+<p><strong>最重要的一点：使用的人多！</strong></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>操作系统的四个特征</title>
+    <url>/posts/d04bd5bc/</url>
+    <content><![CDATA[<h3 id="一、目录"><a href="#一、目录" class="headerlink" title="一、目录"></a>一、目录</h3><p><img src="https://i.loli.net/2020/12/05/qeNlfD3iR8P6wLz.png" alt="image-20201205153539331"></p>
+<h3 id="二、并发"><a href="#二、并发" class="headerlink" title="二、并发"></a>二、并发</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>并发</strong>：指两个或多个事件在同一时间间隔内发生。这些事件<strong>宏观上是同时发生</strong>的，但是<strong>微观上是交替发生</strong>的</p>
+<p><strong>易于混淆</strong>的概念：<strong>并行</strong>：指两个或多个事件<strong>同一时刻</strong>发生</p>
+<h4 id="2、操作系统的并发性"><a href="#2、操作系统的并发性" class="headerlink" title="2、操作系统的并发性"></a>2、操作系统的并发性</h4><p>​    操作系统的并发性：指计算机系统同时存在着多个运行着的程序</p>
+<h3 id="三、共享"><a href="#三、共享" class="headerlink" title="三、共享"></a>三、共享</h3><h4 id="1、概念-1"><a href="#1、概念-1" class="headerlink" title="1、概念"></a>1、概念</h4><p>​    共享：即<strong>资源共享</strong>，是指系统内的资源可供内存中多个并发执行的进程共同使用。</p>
+<p><img src="https://i.loli.net/2020/12/05/PbZ4SJHftFU5Gqp.png" alt="image-20201205155800371"></p>
+<p>​    </p>
+<h3 id="四、虚拟"><a href="#四、虚拟" class="headerlink" title="四、虚拟"></a>四、虚拟</h3><h4 id="1、概念-2"><a href="#1、概念-2" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>虚拟</strong>：指把一个物理上的实体变成若干个逻辑上的对应物，物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的</p>
+<p><img src="https://i.loli.net/2020/12/05/Aj7WMiY1uRqQUt5.png" alt="image-20201205160547807"></p>
+<h4 id="2、注意"><a href="#2、注意" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
+<li><strong><em>没有并发性，就没有虚拟性</em></strong></li>
+</ul>
+<h3 id="五、异步"><a href="#五、异步" class="headerlink" title="五、异步"></a>五、异步</h3><h4 id="1、概念-3"><a href="#1、概念-3" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>异步：</strong>在多道程序环境下，运行多个程序并发执行，但<strong>由于资源有限</strong>，进程的执行不是一贯到底的，而是走走停停的，以不可预知的速度向前推进，这就是进程的异步性。</p>
+<h4 id="2、注意-1"><a href="#2、注意-1" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
+<li><strong><em>只有系统拥有并发性，才有可能导致异步性</em></strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IOC理论推导</title>
+    <url>/posts/ca68ff0d/</url>
+    <content><![CDATA[<h3 id="1-、原来实现业务流程"><a href="#1-、原来实现业务流程" class="headerlink" title="1 、原来实现业务流程"></a>1 、原来实现业务流程</h3><ol>
+<li>UserDao接口</li>
+<li>UserDaoImpl实现类</li>
+<li>UserService业务接口</li>
+<li>UserServiceImpl业务实现类</li>
+</ol>
+<p>在我们之前的业务中，用户的需求可能会影响我们原来的代码，我们需要根据用户的需求去修改源代码！如果程序的代码量十分大，修改一次的代价十分昂贵！</p>
+<h3 id="2、通过set方法降低耦合"><a href="#2、通过set方法降低耦合" class="headerlink" title="2、通过set方法降低耦合"></a>2、通过set方法降低耦合</h3><p>我们使用一个set接口实现，以及发生了革命性的变化</p>
+<p><img src="https://i.loli.net/2020/07/29/Q2UygLKMIdWhtpX.png" alt="image-20200729222813217"></p>
+<ul>
+<li><strong>之前，程序是主动创建对象，控制权在程序猿手上</strong></li>
+<li><strong>使用了set注入后，程序不再拥有主动性，而是变成了被动的接收对象</strong></li>
+</ul>
+<p>这种思想从本质上解决了问题，我们程序猿不用再去管理对象的创建了。</p>
+<p>系统的耦合度大大降低了，可以更加专注的在业务的实现上。<strong>这是IOC的原型</strong></p>
+<p><img src="https://i.loli.net/2020/07/29/d4KUb7tLpmD8RQX.png" alt="image-20200729223906856"></p>
+<h3 id="3-、IOC本质"><a href="#3-、IOC本质" class="headerlink" title="3 、IOC本质"></a>3 、IOC本质</h3><p><strong>控制反转IoC(Inversion of Control)，是一种设计思想，DI(依赖注入)是实现IoC的一种方法，</strong>也有人认为DI只是IoC的另一种说法。没有IoC的程序中 , 我们使用面向对象编程 , 对象的创建与对象间的依赖关系完全硬编码在程序中，对象的创建由程序自己控制，控制反转后将对象的创建转移给第三方，个人认为所谓控制反转就是：获得依赖对象的方式反转了。</p>
+<p>采用XML方式配置Bean的时候，Bean的定义信息是和实现分离的，而采用注解的方式可以把两者合为一体，Bean的定义信息直接以注解的形式定义在实现类中，从而达到了零配置的目的。</p>
+<p><strong>控制反转是一种通过描述（XML或注解）并通过第三方去生产或获取特定对象的方式。在Spring中实现控制反转的是IoC容器，其实现方法是依赖注入（Dependency Injection,DI）。</strong></p>
 ]]></content>
       <categories>
         <category>后端</category>
       </categories>
       <tags>
         <tag>-笔记 -Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>处理机调度、层次概念</title>
+    <url>/posts/c21ce3f9/</url>
+    <content><![CDATA[<h3 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h3><p>处理机调度：从就绪队列中<strong>按照一定的算法选择一个进程</strong>并将<strong>处理机分配给他</strong>运行，以实现进程的并发执行</p>
+<h3 id="二、三个层次"><a href="#二、三个层次" class="headerlink" title="二、三个层次"></a>二、三个层次</h3><h4 id="1、高级调度（作业调度）"><a href="#1、高级调度（作业调度）" class="headerlink" title="1、高级调度（作业调度）"></a>1、高级调度（作业调度）</h4><ul>
+<li>按一定的原则<strong>从外存上</strong>处于后备队列的作业中挑选一个（或多个）作业，将他们分配内存等必要资源，并建立<strong>相应的进程（建立PCB）</strong>，以使<strong>它们获得竞争处理机的权利</strong>.</li>
+<li>高级调度是外存与内存之间的调度，每个作业只调入一次，调出一次。<strong>作业调入时建立PCB，作业调出时才销毁PCB，</strong></li>
+<li>高级调度主要是指<strong>作业调入的问题</strong>，因为只有调入的时机才需要操作系统来确定，但调出的时机必然是作业运行结束后才调出，</li>
+</ul>
+<h4 id="2、中级调度（内存调度）"><a href="#2、中级调度（内存调度）" class="headerlink" title="2、中级调度（内存调度）"></a>2、中级调度（内存调度）</h4><ul>
+<li>引入虚拟存储技术后，可以将暂时不能运行的进程调至到外存等待，等到它重新具备运行条件后且内存又稍有空闲后，再重新调入到内存中，目的是<strong>提高内存效率和系统吞吐量</strong></li>
+<li>暂时调到外存等待的进程的状态为“<strong>挂起状态</strong>”，<ul>
+<li><strong>PCB并不会一起调到外存</strong>，而是会<strong>常驻内存</strong></li>
+<li>被挂起的进程PCB会放到<strong>挂起队列</strong>中</li>
+</ul>
+</li>
+<li><strong>中级调度就是决定将哪一个挂起状态的进程重新调入进程</strong><ul>
+<li>一个进程可能多次被调入调出内存，所以<strong>中级调度</strong>发生的频率要比高级调度要<strong>更高</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="3、低级调度（进程调度）"><a href="#3、低级调度（进程调度）" class="headerlink" title="3、低级调度（进程调度）"></a>3、低级调度（进程调度）</h4><ul>
+<li><strong>低级调度（进程调度）：按照某一种算法和策略从就绪队列中选取一个进程，将处理机分配给它</strong></li>
+<li>进程调度是操作系统中<strong>最基本的一种调度</strong></li>
+<li>进程调度的<strong>频率很高</strong>，一般几十毫秒一次</li>
+</ul>
+<h3 id="三、三层调度的联系对比"><a href="#三、三层调度的联系对比" class="headerlink" title="三、三层调度的联系对比"></a>三、三层调度的联系对比</h3><p><img src="https://i.loli.net/2020/12/26/5UKe1HpBxQyGZAj.png" alt="image-20201226104000403"></p>
+<h3 id="四、补充知识"><a href="#四、补充知识" class="headerlink" title="四、补充知识"></a>四、补充知识</h3><h4 id="1、进程的“挂状态”"><a href="#1、进程的“挂状态”" class="headerlink" title="1、进程的“挂状态”"></a>1、进程的“挂状态”</h4><ul>
+<li>就绪挂起</li>
+<li>堵塞挂起</li>
+</ul>
+<h4 id="2、七状态模型"><a href="#2、七状态模型" class="headerlink" title="2、七状态模型"></a>2、七状态模型</h4><p><img src="https://i.loli.net/2020/12/26/MDmwtQdg3pWeiJA.png" alt="image-20201226103617756"></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/26/eVFG9HcDZ8EWdbM.png" alt="image-20201226104129845"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
       </tags>
   </entry>
   <entry>
@@ -365,186 +502,44 @@
       </tags>
   </entry>
   <entry>
-    <title>Mybatis简介</title>
-    <url>/posts/3f7f462b/</url>
-    <content><![CDATA[<h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><a id="more"></a>
-
-<h3 id="1-1-什么是Mybatis"><a href="#1-1-什么是Mybatis" class="headerlink" title="1.1 什么是Mybatis"></a>1.1 什么是Mybatis</h3><h3 id="1-2-持久化"><a href="#1-2-持久化" class="headerlink" title="1.2 持久化"></a>1.2 持久化</h3><p>数据持久华</p>
+    <title>线程概念与多线程模型</title>
+    <url>/posts/3971d124/</url>
+    <content><![CDATA[<h3 id="一、什么是线程，为什么要引入线程"><a href="#一、什么是线程，为什么要引入线程" class="headerlink" title="一、什么是线程，为什么要引入线程"></a>一、什么是线程，为什么要引入线程</h3><p><img src="https://i.loli.net/2020/12/24/o7UagnA9ZLlehpB.png" alt="image-20201224103051529"></p>
 <ul>
-<li>持久化就是讲程序的数据在持久层和瞬时状态转化的过程</li>
-<li>内存：<strong>断电既失</strong></li>
-<li>数据库(jdbc),io文件持久化</li>
+<li>线程是<strong>一个基本的CPU执行单元</strong>，也是<strong>程序执行流的最小单位</strong>。</li>
+<li></li>
 </ul>
-<p><strong>为什么要持久化</strong></p>
-<ul>
-<li>有一些对象，不能让它丢掉</li>
-<li>内存太贵了</li>
-</ul>
-<h3 id="1-3、持久层"><a href="#1-3、持久层" class="headerlink" title="1.3、持久层"></a>1.3、持久层</h3><p>Dao层、Service层、Controller层…</p>
-<ul>
-<li>完成持久化工作的代码块</li>
-<li>层界限十分明显</li>
-</ul>
-<h3 id="1-4-为什么需要Mybatis"><a href="#1-4-为什么需要Mybatis" class="headerlink" title="1.4 为什么需要Mybatis"></a>1.4 为什么需要Mybatis</h3><ul>
-<li>帮助程序员讲数据存入到数据库中</li>
-<li>方便</li>
-<li>传统的JDBC代码很复杂。简化-》框架。自动化</li>
-<li>不用Mybatis也可以，但是使用后，更容易上手。<strong>（技术没有高低之分）</strong></li>
-<li>优点<ul>
-<li>简单易学</li>
-<li>灵活</li>
-<li>sql和代码的分离，提高了可维护性。</li>
-<li>提供映射标签，支持对象与数据库的orm字段关系映射</li>
-<li>提供对象关系映射标签，支持对象关系组建维护</li>
-<li>提供xml标签，支持编写动态sql。</li>
-</ul>
+<h3 id="二、引入线程机制后，有什么变化"><a href="#二、引入线程机制后，有什么变化" class="headerlink" title="二、引入线程机制后，有什么变化"></a>二、引入线程机制后，有什么变化</h3><p><img src="https://i.loli.net/2020/12/24/W5mpHxk6glcXnrP.png" alt="image-20201224103311213"></p>
+<h3 id="三、线程的重要属性"><a href="#三、线程的重要属性" class="headerlink" title="三、线程的重要属性"></a>三、线程的重要属性</h3><p><img src="https://i.loli.net/2020/12/24/t4VSpF7yecUiY2g.png" alt="image-20201224104737922"></p>
+<h3 id="四、实现方式"><a href="#四、实现方式" class="headerlink" title="四、实现方式"></a>四、实现方式</h3><h4 id="1、用户级线程"><a href="#1、用户级线程" class="headerlink" title="1、用户级线程"></a>1、用户级线程</h4><ul>
+<li><p>用户级线程由应用程序通过线程库来实现的</p>
+</li>
+<li><p>所有的<strong>线程管理工作</strong>都由<strong>应用程序</strong>负责（包括线程切换）</p>
+</li>
+<li><p>用户级线程，<strong>线程切换</strong>可以在<strong>用户态下即可完成</strong>，无需操作系统的干预</p>
+</li>
+<li><p>用户级线程对用户不透明，对操作系统透明</p>
+</li>
+<li><p>用户级线程，就是“从用户视角看到的线程”</p>
+<p><img src="https://i.loli.net/2020/12/24/g86KlfCz3BxHPhM.png" alt="image-20201224110917123"></p>
 </li>
 </ul>
-<p><strong>最重要的一点：使用的人多！</strong></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>处理机调度、层次概念</title>
-    <url>/posts/c21ce3f9/</url>
-    <content><![CDATA[<h3 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h3><p>处理机调度：从就绪队列中<strong>按照一定的算法选择一个进程</strong>并将<strong>处理机分配给他</strong>运行，以实现进程的并发执行</p>
-<h3 id="二、三个层次"><a href="#二、三个层次" class="headerlink" title="二、三个层次"></a>二、三个层次</h3><h4 id="1、高级调度（作业调度）"><a href="#1、高级调度（作业调度）" class="headerlink" title="1、高级调度（作业调度）"></a>1、高级调度（作业调度）</h4><ul>
-<li>按一定的原则<strong>从外存上</strong>处于后备队列的作业中挑选一个（或多个）作业，将他们分配内存等必要资源，并建立<strong>相应的进程（建立PCB）</strong>，以使<strong>它们获得竞争处理机的权利</strong>.</li>
-<li>高级调度是外存与内存之间的调度，每个作业只调入一次，调出一次。<strong>作业调入时建立PCB，作业调出时才销毁PCB，</strong></li>
-<li>高级调度主要是指<strong>作业调入的问题</strong>，因为只有调入的时机才需要操作系统来确定，但调出的时机必然是作业运行结束后才调出，</li>
+<h4 id="2、内核级线程"><a href="#2、内核级线程" class="headerlink" title="2、内核级线程"></a>2、内核级线程</h4><ul>
+<li><strong>内核级线程管理工作</strong>由<strong>操作系统内核</strong>完成。</li>
+<li>线程调度、切换等工作都由内核完成，因此<strong>内核级线程的切换</strong>必然需要在<strong>核心态</strong>下才能完成</li>
+<li>”内核级线程“就是”从操作系统内核视角才能看到的线程“</li>
 </ul>
-<h4 id="2、中级调度（内存调度）"><a href="#2、中级调度（内存调度）" class="headerlink" title="2、中级调度（内存调度）"></a>2、中级调度（内存调度）</h4><ul>
-<li>引入虚拟存储技术后，可以将暂时不能运行的进程调至到外存等待，等到它重新具备运行条件后且内存又稍有空闲后，再重新调入到内存中，目的是<strong>提高内存效率和系统吞吐量</strong></li>
-<li>暂时调到外存等待的进程的状态为“<strong>挂起状态</strong>”，<ul>
-<li><strong>PCB并不会一起调到外存</strong>，而是会<strong>常驻内存</strong></li>
-<li>被挂起的进程PCB会放到<strong>挂起队列</strong>中</li>
+<p><img src="https://i.loli.net/2020/12/24/UyoGcdegKJFWku7.png" alt="image-20201224111539618"></p>
+<h4 id="3、组合模式"><a href="#3、组合模式" class="headerlink" title="3、组合模式"></a>3、组合模式</h4><ul>
+<li>同时支持用户级线程和内核级线程，将n个用户级线程映射到m个内核级线程上（n&gt;=m）;</li>
+<li><strong>内核级线程才是处理机分配的单位</strong></li>
+<li><img src="https://i.loli.net/2020/12/24/jaX4oh6FTmctWRy.png" alt="image-20201224111727851"></li>
+<li></li>
 </ul>
-</li>
-<li><strong>中级调度就是决定将哪一个挂起状态的进程重新调入进程</strong><ul>
-<li>一个进程可能多次被调入调出内存，所以<strong>中级调度</strong>发生的频率要比高级调度要<strong>更高</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="3、低级调度（进程调度）"><a href="#3、低级调度（进程调度）" class="headerlink" title="3、低级调度（进程调度）"></a>3、低级调度（进程调度）</h4><ul>
-<li><strong>低级调度（进程调度）：按照某一种算法和策略从就绪队列中选取一个进程，将处理机分配给它</strong></li>
-<li>进程调度是操作系统中<strong>最基本的一种调度</strong></li>
-<li>进程调度的<strong>频率很高</strong>，一般几十毫秒一次</li>
-</ul>
-<h3 id="三、三层调度的联系对比"><a href="#三、三层调度的联系对比" class="headerlink" title="三、三层调度的联系对比"></a>三、三层调度的联系对比</h3><p><img src="https://i.loli.net/2020/12/26/5UKe1HpBxQyGZAj.png" alt="image-20201226104000403"></p>
-<h3 id="四、补充知识"><a href="#四、补充知识" class="headerlink" title="四、补充知识"></a>四、补充知识</h3><h4 id="1、进程的“挂状态”"><a href="#1、进程的“挂状态”" class="headerlink" title="1、进程的“挂状态”"></a>1、进程的“挂状态”</h4><ul>
-<li>就绪挂起</li>
-<li>堵塞挂起</li>
-</ul>
-<h4 id="2、七状态模型"><a href="#2、七状态模型" class="headerlink" title="2、七状态模型"></a>2、七状态模型</h4><p><img src="https://i.loli.net/2020/12/26/MDmwtQdg3pWeiJA.png" alt="image-20201226103617756"></p>
-<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/26/eVFG9HcDZ8EWdbM.png" alt="image-20201226104129845"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>中断-异常</title>
-    <url>/posts/a76ffb5a/</url>
-    <content><![CDATA[<h3 id="一、中断机制的诞生"><a href="#一、中断机制的诞生" class="headerlink" title="一、中断机制的诞生"></a>一、中断机制的诞生</h3><ul>
-<li><p>在单批道处理阶段，各个程序只能串行处理，系统资利用低，为了解决上诉问题，人们发明了操作系统（作为管理者），引入中断机制，实现了多道程序并发执行</p>
-</li>
-<li><p><strong>本质：发生中断就意味着需要操作系统介入，开展管理工作</strong></p>
-</li>
-</ul>
-<h3 id="二、中断的概念和作业"><a href="#二、中断的概念和作业" class="headerlink" title="二、中断的概念和作业"></a>二、中断的概念和作业</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><ul>
-<li>当中断发生时，CPU立即进入<strong>核心态</strong></li>
-<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理</li>
-<li>对于不同的中断信号，会进行不同的处理</li>
-</ul>
-<h4 id="2、中断的作用"><a href="#2、中断的作用" class="headerlink" title="2、中断的作用"></a>2、中断的作用</h4><p>​    发生了中断，就意味着需要操作系统介入，发展管理工作。由于操作系统的管理工作（比如进程切换、分配I/O设备等）需要使用特权指令，因此CPU需要从用户态转变成核心态。<strong>中断</strong>可以<strong>使CPU从用户态转变成核心态，使操作系统获得计算机的控制权</strong>.。有了中断，才能实现多道程序并发执行。</p>
-<h4 id="3、用户态、核心态切换的实现"><a href="#3、用户态、核心态切换的实现" class="headerlink" title="3、用户态、核心态切换的实现"></a>3、用户态、核心态切换的实现</h4><ul>
-<li><strong>“用户态—》核心态“</strong>是通过<strong>中断</strong>实现的。并且<strong>中断</strong>是<strong>唯一的</strong>方式</li>
-<li>”核心态—》用户态“的切换是通过<strong>执行一个特权指令</strong>，将程序状态字（PSW）的标志位设置为”用户态“</li>
-</ul>
-<h3 id="三、中断-广义的中断-分类"><a href="#三、中断-广义的中断-分类" class="headerlink" title="三、中断{广义的中断}分类"></a>三、中断{广义的中断}分类</h3><h4 id="1、内中断（异常、例外、陷入）"><a href="#1、内中断（异常、例外、陷入）" class="headerlink" title="1、内中断（异常、例外、陷入）"></a>1、内中断（异常、例外、陷入）</h4><ul>
-<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
-</li>
-<li><p>自愿中断</p>
-<ul>
-<li>指令中断</li>
-</ul>
-</li>
-<li><p>强迫中断</p>
-<ul>
-<li>硬件故障</li>
-<li>软件中断</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、外中断（中断-狭义的中断-）"><a href="#2、外中断（中断-狭义的中断-）" class="headerlink" title="2、外中断（中断{狭义的中断}）"></a>2、外中断（中断{狭义的中断}）</h4><ul>
-<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
-</li>
-<li><p>外设请求</p>
-</li>
-<li><p>人工干预</p>
-</li>
-</ul>
-<h3 id="四、外中断的处理过程"><a href="#四、外中断的处理过程" class="headerlink" title="四、外中断的处理过程"></a>四、外中断的处理过程</h3><p><img src="https://i.loli.net/2020/12/15/N1OuBLW9Zj7YbAy.png" alt="image-20201215203027037"></p>
-<h3 id="五、回顾"><a href="#五、回顾" class="headerlink" title="五、回顾"></a>五、回顾</h3><p><img src="https://i.loli.net/2020/12/15/OEjrGxoAeT5cUM4.png" alt="image-20201215203338519"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统发展和分类</title>
-    <url>/posts/2ce96af5/</url>
-    <content><![CDATA[<h3 id="一、手工操作阶段"><a href="#一、手工操作阶段" class="headerlink" title="一、手工操作阶段"></a>一、手工操作阶段</h3><h3 id="二、批处理阶段"><a href="#二、批处理阶段" class="headerlink" title="二、批处理阶段"></a>二、批处理阶段</h3><h4 id="1、单道批处理阶段"><a href="#1、单道批处理阶段" class="headerlink" title="1、单道批处理阶段"></a>1、单道批处理阶段</h4><p>引入<strong>脱机输入/输出技术</strong>（用磁带完成），并<strong>监督程序</strong>负责控制作业的输入、输出。</p>
-<p><strong>优点</strong>：缓解了一定程序的人机速度矛盾，资源利用率有所提高</p>
-<p><strong>缺点</strong>：<strong>内存中仅能由一道程序运行</strong>，只有该程序运行结束后才能调入下一道程序，<strong>CPU有大量的时间是空闲等待I/O完成</strong>，资源利用依然低。</p>
-<h4 id="2、多批道处理系统"><a href="#2、多批道处理系统" class="headerlink" title="2、多批道处理系统"></a>2、多批道处理系统</h4><p><strong>操作系统正式诞生</strong>，并引入了<strong>中断技术</strong>，由操作系统负责管理这些程序的执行，各个程序并发执行。</p>
-<p><strong>优点</strong>：多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源，<strong>资源利用率大幅度提升</strong>，CPU和其他资源保持“忙碌”状态，系统吞吐量增大</p>
-<p><strong>缺点</strong>：用户响应时间长，<strong>没有人机交互功能</strong>（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p>
-<h3 id="三、分时操作系统"><a href="#三、分时操作系统" class="headerlink" title="三、分时操作系统"></a>三、分时操作系统</h3><p>：计算机以<strong>时间片</strong>为单位轮转为<strong>各个用户/作业服务</strong>，各个用户可通过终端与计算机进行交互</p>
-<p><strong>优点</strong>：用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</p>
-<p><strong>缺点</strong>：<strong>不能优先处理一些紧急任务</strong>。操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</p>
-<h3 id="四、实时操作系统"><a href="#四、实时操作系统" class="headerlink" title="四、实时操作系统"></a>四、实时操作系统</h3><p><strong>优点</strong>：<strong>能够优先响应一些紧急任务</strong>，某些紧急任务不需要时间片排队。</p>
-<p>在实时操作系统的控制下，计算机系统接受到外部信号后及时进行处理，并且要<strong>在严格的时限内处理完事件。</strong></p>
-<p>实时操作系统的主要特点是<strong>及时性和可靠性</strong></p>
-<h3 id="五、思维导图"><a href="#五、思维导图" class="headerlink" title="五、思维导图"></a>五、思维导图</h3><p><img src="https://i.loli.net/2020/12/05/EnZ5Vka3DG7pzgN.png" alt="image-20201205204558085"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统的四个特征</title>
-    <url>/posts/d04bd5bc/</url>
-    <content><![CDATA[<h3 id="一、目录"><a href="#一、目录" class="headerlink" title="一、目录"></a>一、目录</h3><p><img src="https://i.loli.net/2020/12/05/qeNlfD3iR8P6wLz.png" alt="image-20201205153539331"></p>
-<h3 id="二、并发"><a href="#二、并发" class="headerlink" title="二、并发"></a>二、并发</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>并发</strong>：指两个或多个事件在同一时间间隔内发生。这些事件<strong>宏观上是同时发生</strong>的，但是<strong>微观上是交替发生</strong>的</p>
-<p><strong>易于混淆</strong>的概念：<strong>并行</strong>：指两个或多个事件<strong>同一时刻</strong>发生</p>
-<h4 id="2、操作系统的并发性"><a href="#2、操作系统的并发性" class="headerlink" title="2、操作系统的并发性"></a>2、操作系统的并发性</h4><p>​    操作系统的并发性：指计算机系统同时存在着多个运行着的程序</p>
-<h3 id="三、共享"><a href="#三、共享" class="headerlink" title="三、共享"></a>三、共享</h3><h4 id="1、概念-1"><a href="#1、概念-1" class="headerlink" title="1、概念"></a>1、概念</h4><p>​    共享：即<strong>资源共享</strong>，是指系统内的资源可供内存中多个并发执行的进程共同使用。</p>
-<p><img src="https://i.loli.net/2020/12/05/PbZ4SJHftFU5Gqp.png" alt="image-20201205155800371"></p>
-<p>​    </p>
-<h3 id="四、虚拟"><a href="#四、虚拟" class="headerlink" title="四、虚拟"></a>四、虚拟</h3><h4 id="1、概念-2"><a href="#1、概念-2" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>虚拟</strong>：指把一个物理上的实体变成若干个逻辑上的对应物，物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的</p>
-<p><img src="https://i.loli.net/2020/12/05/Aj7WMiY1uRqQUt5.png" alt="image-20201205160547807"></p>
-<h4 id="2、注意"><a href="#2、注意" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
-<li><strong><em>没有并发性，就没有虚拟性</em></strong></li>
-</ul>
-<h3 id="五、异步"><a href="#五、异步" class="headerlink" title="五、异步"></a>五、异步</h3><h4 id="1、概念-3"><a href="#1、概念-3" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>异步：</strong>在多道程序环境下，运行多个程序并发执行，但<strong>由于资源有限</strong>，进程的执行不是一贯到底的，而是走走停停的，以不可预知的速度向前推进，这就是进程的异步性。</p>
-<h4 id="2、注意-1"><a href="#2、注意-1" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
-<li><strong><em>只有系统拥有并发性，才有可能导致异步性</em></strong></li>
-</ul>
+<h3 id="五、多线程模型"><a href="#五、多线程模型" class="headerlink" title="五、多线程模型"></a>五、多线程模型</h3><h4 id="1、多对一模型"><a href="#1、多对一模型" class="headerlink" title="1、多对一模型"></a>1、多对一模型</h4><p><img src="https://i.loli.net/2020/12/24/QD4V3I7ajKLbvEn.png" alt="image-20201224112057178"></p>
+<h4 id="2、一对一模型"><a href="#2、一对一模型" class="headerlink" title="2、一对一模型"></a>2、一对一模型</h4><p><img src="https://i.loli.net/2020/12/24/XpCsl7TmuntqGEA.png" alt="image-20201224112328130"></p>
+<h4 id="3、多对多模型"><a href="#3、多对多模型" class="headerlink" title="3、多对多模型"></a>3、多对多模型</h4><p><img src="https://i.loli.net/2020/12/24/nZIym2Fghwp9u65.png" alt="image-20201224112443274"></p>
+<h3 id="六、总"><a href="#六、总" class="headerlink" title="六、总"></a>六、总</h3><p><img src="https://i.loli.net/2020/12/24/SJustWoQIp1lE2f.png" alt="image-20201224112624565"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -593,105 +588,21 @@
       </tags>
   </entry>
   <entry>
-    <title>线程概念与多线程模型</title>
-    <url>/posts/3971d124/</url>
-    <content><![CDATA[<h3 id="一、什么是线程，为什么要引入线程"><a href="#一、什么是线程，为什么要引入线程" class="headerlink" title="一、什么是线程，为什么要引入线程"></a>一、什么是线程，为什么要引入线程</h3><p><img src="https://i.loli.net/2020/12/24/o7UagnA9ZLlehpB.png" alt="image-20201224103051529"></p>
-<ul>
-<li>线程是<strong>一个基本的CPU执行单元</strong>，也是<strong>程序执行流的最小单位</strong>。</li>
-<li></li>
-</ul>
-<h3 id="二、引入线程机制后，有什么变化"><a href="#二、引入线程机制后，有什么变化" class="headerlink" title="二、引入线程机制后，有什么变化"></a>二、引入线程机制后，有什么变化</h3><p><img src="https://i.loli.net/2020/12/24/W5mpHxk6glcXnrP.png" alt="image-20201224103311213"></p>
-<h3 id="三、线程的重要属性"><a href="#三、线程的重要属性" class="headerlink" title="三、线程的重要属性"></a>三、线程的重要属性</h3><p><img src="https://i.loli.net/2020/12/24/t4VSpF7yecUiY2g.png" alt="image-20201224104737922"></p>
-<h3 id="四、实现方式"><a href="#四、实现方式" class="headerlink" title="四、实现方式"></a>四、实现方式</h3><h4 id="1、用户级线程"><a href="#1、用户级线程" class="headerlink" title="1、用户级线程"></a>1、用户级线程</h4><ul>
-<li><p>用户级线程由应用程序通过线程库来实现的</p>
-</li>
-<li><p>所有的<strong>线程管理工作</strong>都由<strong>应用程序</strong>负责（包括线程切换）</p>
-</li>
-<li><p>用户级线程，<strong>线程切换</strong>可以在<strong>用户态下即可完成</strong>，无需操作系统的干预</p>
-</li>
-<li><p>用户级线程对用户不透明，对操作系统透明</p>
-</li>
-<li><p>用户级线程，就是“从用户视角看到的线程”</p>
-<p><img src="https://i.loli.net/2020/12/24/g86KlfCz3BxHPhM.png" alt="image-20201224110917123"></p>
-</li>
-</ul>
-<h4 id="2、内核级线程"><a href="#2、内核级线程" class="headerlink" title="2、内核级线程"></a>2、内核级线程</h4><ul>
-<li><strong>内核级线程管理工作</strong>由<strong>操作系统内核</strong>完成。</li>
-<li>线程调度、切换等工作都由内核完成，因此<strong>内核级线程的切换</strong>必然需要在<strong>核心态</strong>下才能完成</li>
-<li>”内核级线程“就是”从操作系统内核视角才能看到的线程“</li>
-</ul>
-<p><img src="https://i.loli.net/2020/12/24/UyoGcdegKJFWku7.png" alt="image-20201224111539618"></p>
-<h4 id="3、组合模式"><a href="#3、组合模式" class="headerlink" title="3、组合模式"></a>3、组合模式</h4><ul>
-<li>同时支持用户级线程和内核级线程，将n个用户级线程映射到m个内核级线程上（n&gt;=m）;</li>
-<li><strong>内核级线程才是处理机分配的单位</strong></li>
-<li><img src="https://i.loli.net/2020/12/24/jaX4oh6FTmctWRy.png" alt="image-20201224111727851"></li>
-<li></li>
-</ul>
-<h3 id="五、多线程模型"><a href="#五、多线程模型" class="headerlink" title="五、多线程模型"></a>五、多线程模型</h3><h4 id="1、多对一模型"><a href="#1、多对一模型" class="headerlink" title="1、多对一模型"></a>1、多对一模型</h4><p><img src="https://i.loli.net/2020/12/24/QD4V3I7ajKLbvEn.png" alt="image-20201224112057178"></p>
-<h4 id="2、一对一模型"><a href="#2、一对一模型" class="headerlink" title="2、一对一模型"></a>2、一对一模型</h4><p><img src="https://i.loli.net/2020/12/24/XpCsl7TmuntqGEA.png" alt="image-20201224112328130"></p>
-<h4 id="3、多对多模型"><a href="#3、多对多模型" class="headerlink" title="3、多对多模型"></a>3、多对多模型</h4><p><img src="https://i.loli.net/2020/12/24/nZIym2Fghwp9u65.png" alt="image-20201224112443274"></p>
-<h3 id="六、总"><a href="#六、总" class="headerlink" title="六、总"></a>六、总</h3><p><img src="https://i.loli.net/2020/12/24/SJustWoQIp1lE2f.png" alt="image-20201224112624565"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>调度算法的评判标准</title>
-    <url>/posts/110d173/</url>
-    <content><![CDATA[<h3 id="一、CPU利用率"><a href="#一、CPU利用率" class="headerlink" title="一、CPU利用率"></a>一、CPU利用率</h3><ul>
-<li>CPU“忙碌”的时间占总时间的比例</li>
-<li>利用率 = 忙碌的时间 / 总时间</li>
-</ul>
-<p><img src="https://i.loli.net/2020/12/26/Dzav7BIkj8Z3Spe.png" alt="image-20201226112636011"></p>
-<h3 id="二、系统吞吐量"><a href="#二、系统吞吐量" class="headerlink" title="二、系统吞吐量"></a>二、系统吞吐量</h3><ul>
-<li><strong>系统吞吐量</strong>：单位时间内完成作业的数量</li>
-<li><strong>系统吞吐量</strong> = 总共完成了多少作业 / 总共花了多少时间</li>
-</ul>
-<p><img src="https://i.loli.net/2020/12/26/G7SYZwVAfk28DJF.png" alt="image-20201226112952425"></p>
-<h3 id="三、周转时间"><a href="#三、周转时间" class="headerlink" title="三、周转时间"></a>三、周转时间</h3><ul>
-<li>周转时间：指作业<strong>被提交到系统开始</strong>，到<strong>作业完成为止</strong>的这段时间间隔</li>
-<li>包括四个部分<ul>
-<li>作业在外存。后备队列上等待作业调度（高级调度）的时间</li>
-<li>进程在就绪队列上等待进程调度（低级调度）的时间</li>
-<li>进程在CPU上执行的时间</li>
-<li>进程等待I/O操作完成的时间</li>
-</ul>
-</li>
-<li><strong>后三个部分在一个作业上在整个处理过程中，可能发生多次。</strong></li>
-</ul>
-<h4 id="1、周转时间、平均周转时间"><a href="#1、周转时间、平均周转时间" class="headerlink" title="1、周转时间、平均周转时间"></a>1、周转时间、平均周转时间</h4><ul>
-<li>（作业）周转时间 = 作业完成时间 — 作业提交时间<ul>
-<li>对于用户来说，更关心自己的单个作业的周转时间</li>
-</ul>
-</li>
-<li>平均周转时间 = 各个作业时间之和 / 作业数<ul>
-<li>对于操作系统来说，更关心系统的整体表现，因此更关心所有作业的周转时间的平均值</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、带权周转时间、平均带权周转时间"><a href="#2、带权周转时间、平均带权周转时间" class="headerlink" title="2、带权周转时间、平均带权周转时间"></a>2、带权周转时间、平均带权周转时间</h4><ul>
-<li>带权周转时间 = 作业周转时间 / 作业实际运行的时间 = （作业完成时间-作业提交的时间） / 作业实际运行的时间<ul>
-<li>带权周转时间越低，用户满意度更高</li>
-<li>带权周转时间必然 &gt;= 1</li>
-<li>带权周转时间与周转时间都是越小越好</li>
-</ul>
-</li>
-<li>平均带权周转时间 = 各个作业带权周转时间之和 / 作业数</li>
-</ul>
-<h3 id="四、等待时间"><a href="#四、等待时间" class="headerlink" title="四、等待时间"></a>四、等待时间</h3><ul>
-<li><strong>等待时间</strong>：指<strong>进程/作业处于等待处理机状态时间之和</strong>，等待时间越长，用户满意度越低</li>
-<li>对于<strong>进程</strong>来说,，等待时间就是指进程建立后<strong>等待被服务的时间之和</strong>，在等待I/O完成的期间其实进程也是在被服务的，所有不计入的等待时间</li>
-<li>对于<strong>作业</strong>来说，不仅要考虑<strong>建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间</strong></li>
-</ul>
-<h3 id="五、响应时间"><a href="#五、响应时间" class="headerlink" title="五、响应时间"></a>五、响应时间</h3><ul>
-<li>响应时间：指从用户<strong>提交请求</strong>到<strong>首次产生响应</strong>所用的时间</li>
-</ul>
-<h3 id="六、计算"><a href="#六、计算" class="headerlink" title="六、计算"></a>六、计算</h3><p><img src="https://i.loli.net/2020/12/26/Fv4Sdg6MkT7InNA.png" alt="image-20201226162238234"></p>
-<h3 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h3><p><img src="https://i.loli.net/2020/12/26/RO7BiEb5LnhSKpq.png" alt="image-20201226160424754"></p>
+    <title>操作系统发展和分类</title>
+    <url>/posts/2ce96af5/</url>
+    <content><![CDATA[<h3 id="一、手工操作阶段"><a href="#一、手工操作阶段" class="headerlink" title="一、手工操作阶段"></a>一、手工操作阶段</h3><h3 id="二、批处理阶段"><a href="#二、批处理阶段" class="headerlink" title="二、批处理阶段"></a>二、批处理阶段</h3><h4 id="1、单道批处理阶段"><a href="#1、单道批处理阶段" class="headerlink" title="1、单道批处理阶段"></a>1、单道批处理阶段</h4><p>引入<strong>脱机输入/输出技术</strong>（用磁带完成），并<strong>监督程序</strong>负责控制作业的输入、输出。</p>
+<p><strong>优点</strong>：缓解了一定程序的人机速度矛盾，资源利用率有所提高</p>
+<p><strong>缺点</strong>：<strong>内存中仅能由一道程序运行</strong>，只有该程序运行结束后才能调入下一道程序，<strong>CPU有大量的时间是空闲等待I/O完成</strong>，资源利用依然低。</p>
+<h4 id="2、多批道处理系统"><a href="#2、多批道处理系统" class="headerlink" title="2、多批道处理系统"></a>2、多批道处理系统</h4><p><strong>操作系统正式诞生</strong>，并引入了<strong>中断技术</strong>，由操作系统负责管理这些程序的执行，各个程序并发执行。</p>
+<p><strong>优点</strong>：多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源，<strong>资源利用率大幅度提升</strong>，CPU和其他资源保持“忙碌”状态，系统吞吐量增大</p>
+<p><strong>缺点</strong>：用户响应时间长，<strong>没有人机交互功能</strong>（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p>
+<h3 id="三、分时操作系统"><a href="#三、分时操作系统" class="headerlink" title="三、分时操作系统"></a>三、分时操作系统</h3><p>：计算机以<strong>时间片</strong>为单位轮转为<strong>各个用户/作业服务</strong>，各个用户可通过终端与计算机进行交互</p>
+<p><strong>优点</strong>：用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</p>
+<p><strong>缺点</strong>：<strong>不能优先处理一些紧急任务</strong>。操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</p>
+<h3 id="四、实时操作系统"><a href="#四、实时操作系统" class="headerlink" title="四、实时操作系统"></a>四、实时操作系统</h3><p><strong>优点</strong>：<strong>能够优先响应一些紧急任务</strong>，某些紧急任务不需要时间片排队。</p>
+<p>在实时操作系统的控制下，计算机系统接受到外部信号后及时进行处理，并且要<strong>在严格的时限内处理完事件。</strong></p>
+<p>实时操作系统的主要特点是<strong>及时性和可靠性</strong></p>
+<h3 id="五、思维导图"><a href="#五、思维导图" class="headerlink" title="五、思维导图"></a>五、思维导图</h3><p><img src="https://i.loli.net/2020/12/05/EnZ5Vka3DG7pzgN.png" alt="image-20201205204558085"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -847,53 +758,133 @@
       </tags>
   </entry>
   <entry>
-    <title>运行机制-体系结构</title>
-    <url>/posts/31685368/</url>
-    <content><![CDATA[<h3 id="一、运行机制"><a href="#一、运行机制" class="headerlink" title="一、运行机制"></a>一、运行机制</h3><h4 id="1、指令"><a href="#1、指令" class="headerlink" title="1、指令"></a>1、指令</h4><p>1.概念：处理器（CPU）能识别、执行的最基本命令</p>
-<p>2.分类：</p>
-<ul>
-<li>特权指令：不允许用户程序使用</li>
-<li>非特权指令</li>
+    <title>调度算法的评判标准</title>
+    <url>/posts/110d173/</url>
+    <content><![CDATA[<h3 id="一、CPU利用率"><a href="#一、CPU利用率" class="headerlink" title="一、CPU利用率"></a>一、CPU利用率</h3><ul>
+<li>CPU“忙碌”的时间占总时间的比例</li>
+<li>利用率 = 忙碌的时间 / 总时间</li>
 </ul>
-<h4 id="2、处理器状态"><a href="#2、处理器状态" class="headerlink" title="2、处理器状态"></a>2、处理器状态</h4><p>1.分类</p>
-<ul>
-<li>用户态（目态）：次时CPU只能执行非特权指令</li>
-<li>核心态（管态）：特权指令、非特权指令都能执行</li>
+<p><img src="https://i.loli.net/2020/12/26/Dzav7BIkj8Z3Spe.png" alt="image-20201226112636011"></p>
+<h3 id="二、系统吞吐量"><a href="#二、系统吞吐量" class="headerlink" title="二、系统吞吐量"></a>二、系统吞吐量</h3><ul>
+<li><strong>系统吞吐量</strong>：单位时间内完成作业的数量</li>
+<li><strong>系统吞吐量</strong> = 总共完成了多少作业 / 总共花了多少时间</li>
 </ul>
-<p>2、怎么判断状态</p>
-<p>用程序状态字寄存器（PSW）中的某标志位来标识当前处理器处于什么状态。如 0为用户态，1为核心态。</p>
-<h4 id="3、两种程序"><a href="#3、两种程序" class="headerlink" title="3、两种程序"></a>3、两种程序</h4><p>1.分类</p>
-<ul>
-<li>内核程序：操作系统的内核程序是系统的管理者。既可以执行特权指令，也可以执行非特权指令，运行在核心态。</li>
-<li>应用程序：为了保证系统的安全运行，普通应用程序只能执行非特权指令，运行在用户态。</li>
+<p><img src="https://i.loli.net/2020/12/26/G7SYZwVAfk28DJF.png" alt="image-20201226112952425"></p>
+<h3 id="三、周转时间"><a href="#三、周转时间" class="headerlink" title="三、周转时间"></a>三、周转时间</h3><ul>
+<li>周转时间：指作业<strong>被提交到系统开始</strong>，到<strong>作业完成为止</strong>的这段时间间隔</li>
+<li>包括四个部分<ul>
+<li>作业在外存。后备队列上等待作业调度（高级调度）的时间</li>
+<li>进程在就绪队列上等待进程调度（低级调度）的时间</li>
+<li>进程在CPU上执行的时间</li>
+<li>进程等待I/O操作完成的时间</li>
 </ul>
-<h3 id="二、内核"><a href="#二、内核" class="headerlink" title="二、内核"></a>二、内核</h3><h4 id="1、图解"><a href="#1、图解" class="headerlink" title="1、图解"></a>1、图解</h4><p><img src="https://i.loli.net/2020/12/05/FZJ1NXgrkG6aMKi.png" alt="image-20201205211540841"></p>
-<h4 id="2、概念"><a href="#2、概念" class="headerlink" title="2、概念"></a>2、概念</h4><ul>
-<li><p>内核是计算机上配置的<strong>底层软件</strong>，是操作系统最基本、最核心的部分。</p>
 </li>
-<li><p>实现操作系统内核功能的哪些程序就是内核程序</p>
-<p><img src="https://i.loli.net/2020/12/15/94Az5WIhvfPgsyn.png" alt="image-20201215193609256"></p>
-</li>
+<li><strong>后三个部分在一个作业上在整个处理过程中，可能发生多次。</strong></li>
 </ul>
-<h4 id="3、内核分类"><a href="#3、内核分类" class="headerlink" title="3、内核分类"></a>3、内核分类</h4><ul>
-<li>大内核、微内核</li>
+<h4 id="1、周转时间、平均周转时间"><a href="#1、周转时间、平均周转时间" class="headerlink" title="1、周转时间、平均周转时间"></a>1、周转时间、平均周转时间</h4><ul>
+<li>（作业）周转时间 = 作业完成时间 — 作业提交时间<ul>
+<li>对于用户来说，更关心自己的单个作业的周转时间</li>
 </ul>
-<p><img src="https://i.loli.net/2020/12/15/SxdQ7uCcHRInYqZ.png" alt="image-20201215193804729"></p>
-<ul>
-<li><p>大内核、微内核的优缺点</p>
-<p><img src="https://i.loli.net/2020/12/15/9tDKGPLcXmofMbw.png" alt="image-20201215194114688"></p>
 </li>
-<li><p>类比</p>
-<p><img src="https://i.loli.net/2020/12/15/hcy6SJYFe7Q9ZDo.png" alt="image-20201215194403334"></p>
+<li>平均周转时间 = 各个作业时间之和 / 作业数<ul>
+<li>对于操作系统来说，更关心系统的整体表现，因此更关心所有作业的周转时间的平均值</li>
+</ul>
 </li>
 </ul>
-<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p><img src="https://i.loli.net/2020/12/15/dDoiBXmfkvrjlQx.png" alt="image-20201215194829134"></p>
+<h4 id="2、带权周转时间、平均带权周转时间"><a href="#2、带权周转时间、平均带权周转时间" class="headerlink" title="2、带权周转时间、平均带权周转时间"></a>2、带权周转时间、平均带权周转时间</h4><ul>
+<li>带权周转时间 = 作业周转时间 / 作业实际运行的时间 = （作业完成时间-作业提交的时间） / 作业实际运行的时间<ul>
+<li>带权周转时间越低，用户满意度更高</li>
+<li>带权周转时间必然 &gt;= 1</li>
+<li>带权周转时间与周转时间都是越小越好</li>
+</ul>
+</li>
+<li>平均带权周转时间 = 各个作业带权周转时间之和 / 作业数</li>
+</ul>
+<h3 id="四、等待时间"><a href="#四、等待时间" class="headerlink" title="四、等待时间"></a>四、等待时间</h3><ul>
+<li><strong>等待时间</strong>：指<strong>进程/作业处于等待处理机状态时间之和</strong>，等待时间越长，用户满意度越低</li>
+<li>对于<strong>进程</strong>来说,，等待时间就是指进程建立后<strong>等待被服务的时间之和</strong>，在等待I/O完成的期间其实进程也是在被服务的，所有不计入的等待时间</li>
+<li>对于<strong>作业</strong>来说，不仅要考虑<strong>建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间</strong></li>
+</ul>
+<h3 id="五、响应时间"><a href="#五、响应时间" class="headerlink" title="五、响应时间"></a>五、响应时间</h3><ul>
+<li>响应时间：指从用户<strong>提交请求</strong>到<strong>首次产生响应</strong>所用的时间</li>
+</ul>
+<h3 id="六、计算"><a href="#六、计算" class="headerlink" title="六、计算"></a>六、计算</h3><p><img src="https://i.loli.net/2020/12/26/Fv4Sdg6MkT7InNA.png" alt="image-20201226162238234"></p>
+<h3 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h3><p><img src="https://i.loli.net/2020/12/26/RO7BiEb5LnhSKpq.png" alt="image-20201226160424754"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
       </categories>
       <tags>
         <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程状态的转换</title>
+    <url>/posts/ada646f9/</url>
+    <content><![CDATA[<h3 id="一、概括"><a href="#一、概括" class="headerlink" title="一、概括"></a>一、概括</h3><p><img src="https://i.loli.net/2020/12/22/EOQtlMj316C72vV.png" alt="image-20201222200250316"></p>
+<h3 id="二、进程的状态"><a href="#二、进程的状态" class="headerlink" title="二、进程的状态"></a>二、进程的状态</h3><h4 id="1、三种基本状态"><a href="#1、三种基本状态" class="headerlink" title="1、三种基本状态"></a>1、三种基本状态</h4><ul>
+<li>运行态<ul>
+<li>占用CPU，并在CPU上运行</li>
+<li>在单核处理机环境下，每一个时刻最多只由一个进程处于运行态（双核环境下由两个进程处于运行态）</li>
+</ul>
+</li>
+<li>就绪态<ul>
+<li>依据具备运行条件，但由于没有空闲的CPU，而暂时不能运行。</li>
+<li>进程已经拥有了除处理机之外的所有需要的资源，一旦获取处理机，就可以立刻进入运行态开始运行</li>
+</ul>
+</li>
+<li>阻塞态<ul>
+<li>因等待一事件而暂时不能运行</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、另外两种状态"><a href="#2、另外两种状态" class="headerlink" title="2、另外两种状态"></a>2、另外两种状态</h4><ul>
+<li>创建状态<ul>
+<li>操作系统需要完成创建进程，操作系统为该进程分配所需要的内存空间等资源，并为其初始化PCB</li>
+</ul>
+</li>
+<li>终止状态<ul>
+<li>进程运行结束，需要撤销进程</li>
+<li>操作系统需要完成撤销进程相关的工作，完成将分配给进程的资源回收，撤销进程PCB等工作</li>
+</ul>
+</li>
+</ul>
+<h3 id="三-进程的转换"><a href="#三-进程的转换" class="headerlink" title="三 进程的转换"></a>三 进程的转换</h3><p><img src="https://i.loli.net/2020/12/22/CFziGAK976WSVQf.png" alt="image-20201222202632115"></p>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四 总结"></a>四 总结</h3><p><img src="https://i.loli.net/2020/12/22/mo21wSXtpCODsYr.png" alt="image-20201222202732624"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IOC创建对象的方式</title>
+    <url>/posts/f40a03f2/</url>
+    <content><![CDATA[<h3 id="1、使用无参构造创建对象，默认"><a href="#1、使用无参构造创建对象，默认" class="headerlink" title="1、使用无参构造创建对象，默认"></a>1、使用无参构造创建对象，默认</h3><h3 id="2、假设我们要使用有参构造创建对象"><a href="#2、假设我们要使用有参构造创建对象" class="headerlink" title="2、假设我们要使用有参构造创建对象"></a>2、假设我们要使用有参构造创建对象</h3><ul>
+<li>下标赋值</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    第一种,下标赋值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"0"</span> <span class="attr">value</span>=<span class="string">"dddd"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>类型赋值</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    第二种方式、通过类型创建对象，，不建议使用--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"java"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"xxxx"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数名</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--第三种方式，直接通过参数名来设置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"Djc"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：在配置文件加载的过程中，容器中管理的对象就已经被初始化了</strong></p>
+<p><img src="https://i.loli.net/2020/07/30/IrKp3Nu5v142HGL.png" alt="image-20200730102652165"></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -Mybatis</tag>
       </tags>
   </entry>
   <entry>
@@ -997,38 +988,47 @@
       </tags>
   </entry>
   <entry>
-    <title>进程状态的转换</title>
-    <url>/posts/ada646f9/</url>
-    <content><![CDATA[<h3 id="一、概括"><a href="#一、概括" class="headerlink" title="一、概括"></a>一、概括</h3><p><img src="https://i.loli.net/2020/12/22/EOQtlMj316C72vV.png" alt="image-20201222200250316"></p>
-<h3 id="二、进程的状态"><a href="#二、进程的状态" class="headerlink" title="二、进程的状态"></a>二、进程的状态</h3><h4 id="1、三种基本状态"><a href="#1、三种基本状态" class="headerlink" title="1、三种基本状态"></a>1、三种基本状态</h4><ul>
-<li>运行态<ul>
-<li>占用CPU，并在CPU上运行</li>
-<li>在单核处理机环境下，每一个时刻最多只由一个进程处于运行态（双核环境下由两个进程处于运行态）</li>
+    <title>运行机制-体系结构</title>
+    <url>/posts/31685368/</url>
+    <content><![CDATA[<h3 id="一、运行机制"><a href="#一、运行机制" class="headerlink" title="一、运行机制"></a>一、运行机制</h3><h4 id="1、指令"><a href="#1、指令" class="headerlink" title="1、指令"></a>1、指令</h4><p>1.概念：处理器（CPU）能识别、执行的最基本命令</p>
+<p>2.分类：</p>
+<ul>
+<li>特权指令：不允许用户程序使用</li>
+<li>非特权指令</li>
 </ul>
+<h4 id="2、处理器状态"><a href="#2、处理器状态" class="headerlink" title="2、处理器状态"></a>2、处理器状态</h4><p>1.分类</p>
+<ul>
+<li>用户态（目态）：次时CPU只能执行非特权指令</li>
+<li>核心态（管态）：特权指令、非特权指令都能执行</li>
+</ul>
+<p>2、怎么判断状态</p>
+<p>用程序状态字寄存器（PSW）中的某标志位来标识当前处理器处于什么状态。如 0为用户态，1为核心态。</p>
+<h4 id="3、两种程序"><a href="#3、两种程序" class="headerlink" title="3、两种程序"></a>3、两种程序</h4><p>1.分类</p>
+<ul>
+<li>内核程序：操作系统的内核程序是系统的管理者。既可以执行特权指令，也可以执行非特权指令，运行在核心态。</li>
+<li>应用程序：为了保证系统的安全运行，普通应用程序只能执行非特权指令，运行在用户态。</li>
+</ul>
+<h3 id="二、内核"><a href="#二、内核" class="headerlink" title="二、内核"></a>二、内核</h3><h4 id="1、图解"><a href="#1、图解" class="headerlink" title="1、图解"></a>1、图解</h4><p><img src="https://i.loli.net/2020/12/05/FZJ1NXgrkG6aMKi.png" alt="image-20201205211540841"></p>
+<h4 id="2、概念"><a href="#2、概念" class="headerlink" title="2、概念"></a>2、概念</h4><ul>
+<li><p>内核是计算机上配置的<strong>底层软件</strong>，是操作系统最基本、最核心的部分。</p>
 </li>
-<li>就绪态<ul>
-<li>依据具备运行条件，但由于没有空闲的CPU，而暂时不能运行。</li>
-<li>进程已经拥有了除处理机之外的所有需要的资源，一旦获取处理机，就可以立刻进入运行态开始运行</li>
-</ul>
-</li>
-<li>阻塞态<ul>
-<li>因等待一事件而暂时不能运行</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、另外两种状态"><a href="#2、另外两种状态" class="headerlink" title="2、另外两种状态"></a>2、另外两种状态</h4><ul>
-<li>创建状态<ul>
-<li>操作系统需要完成创建进程，操作系统为该进程分配所需要的内存空间等资源，并为其初始化PCB</li>
-</ul>
-</li>
-<li>终止状态<ul>
-<li>进程运行结束，需要撤销进程</li>
-<li>操作系统需要完成撤销进程相关的工作，完成将分配给进程的资源回收，撤销进程PCB等工作</li>
-</ul>
+<li><p>实现操作系统内核功能的哪些程序就是内核程序</p>
+<p><img src="https://i.loli.net/2020/12/15/94Az5WIhvfPgsyn.png" alt="image-20201215193609256"></p>
 </li>
 </ul>
-<h3 id="三-进程的转换"><a href="#三-进程的转换" class="headerlink" title="三 进程的转换"></a>三 进程的转换</h3><p><img src="https://i.loli.net/2020/12/22/CFziGAK976WSVQf.png" alt="image-20201222202632115"></p>
-<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四 总结"></a>四 总结</h3><p><img src="https://i.loli.net/2020/12/22/mo21wSXtpCODsYr.png" alt="image-20201222202732624"></p>
+<h4 id="3、内核分类"><a href="#3、内核分类" class="headerlink" title="3、内核分类"></a>3、内核分类</h4><ul>
+<li>大内核、微内核</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/15/SxdQ7uCcHRInYqZ.png" alt="image-20201215193804729"></p>
+<ul>
+<li><p>大内核、微内核的优缺点</p>
+<p><img src="https://i.loli.net/2020/12/15/9tDKGPLcXmofMbw.png" alt="image-20201215194114688"></p>
+</li>
+<li><p>类比</p>
+<p><img src="https://i.loli.net/2020/12/15/hcy6SJYFe7Q9ZDo.png" alt="image-20201215194403334"></p>
+</li>
+</ul>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p><img src="https://i.loli.net/2020/12/15/dDoiBXmfkvrjlQx.png" alt="image-20201215194829134"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -1061,6 +1061,32 @@
 <h4 id="2、进程的终止"><a href="#2、进程的终止" class="headerlink" title="2、进程的终止"></a>2、进程的终止</h4><p><img src="https://i.loli.net/2020/12/22/2SA34PLszkRBeKG.png" alt="image-20201222205844888"></p>
 <h4 id="3、进程的阻塞、唤醒"><a href="#3、进程的阻塞、唤醒" class="headerlink" title="3、进程的阻塞、唤醒"></a>3、进程的阻塞、唤醒</h4><p><img src="https://i.loli.net/2020/12/22/E7rFRDTq3fBviCK.png" alt="image-20201222210009333"></p>
 <h4 id="4、进程的切换"><a href="#4、进程的切换" class="headerlink" title="4、进程的切换"></a>4、进程的切换</h4><p><img src="https://i.loli.net/2020/12/22/QaUOc8WrXDRjJAs.png" alt="image-20201222210112018"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程通信</title>
+    <url>/posts/53ad465c/</url>
+    <content><![CDATA[<h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><ul>
+<li>进程通信就是<strong>进程之间的消息传递</strong></li>
+<li>进程是分配系统资源的基本单位，因此各进程拥有的<strong>内存地址空间是相互独立的</strong></li>
+<li>为了保存安全，<strong>一个进程不能直接访问另外一个进程地址空间</strong></li>
+<li>进程通信的<strong>三种方法</strong><ul>
+<li>共享存储</li>
+<li>消息传递</li>
+<li>管道通信</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、共享存储"><a href="#二、共享存储" class="headerlink" title="二、共享存储"></a>二、共享存储</h3><p><img src="https://i.loli.net/2020/12/24/y1KZ8WzR6FCYm2n.png" alt="image-20201224100458183"></p>
+<h3 id="三、消息传递"><a href="#三、消息传递" class="headerlink" title="三、消息传递"></a>三、消息传递</h3><p><img src="https://i.loli.net/2020/12/24/EqkdhtyYgBus3AI.png" alt="image-20201224101158127"></p>
+<h3 id="四、管道通信"><a href="#四、管道通信" class="headerlink" title="四、管道通信"></a>四、管道通信</h3><p><img src="https://i.loli.net/2020/12/24/Tag7bNRrhxMcY1P.png" alt="image-20201224100913574"></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/24/V2ovCkfQgOZ48Nq.png" alt="image-20201224101327317"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -1133,32 +1159,6 @@
 </li>
 </ul>
 <h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p><img src="https://i.loli.net/2020/12/26/VaJfO2i4bG8rCtH.png" alt="image-20201226111643433"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>进程通信</title>
-    <url>/posts/53ad465c/</url>
-    <content><![CDATA[<h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><ul>
-<li>进程通信就是<strong>进程之间的消息传递</strong></li>
-<li>进程是分配系统资源的基本单位，因此各进程拥有的<strong>内存地址空间是相互独立的</strong></li>
-<li>为了保存安全，<strong>一个进程不能直接访问另外一个进程地址空间</strong></li>
-<li>进程通信的<strong>三种方法</strong><ul>
-<li>共享存储</li>
-<li>消息传递</li>
-<li>管道通信</li>
-</ul>
-</li>
-</ul>
-<h3 id="二、共享存储"><a href="#二、共享存储" class="headerlink" title="二、共享存储"></a>二、共享存储</h3><p><img src="https://i.loli.net/2020/12/24/y1KZ8WzR6FCYm2n.png" alt="image-20201224100458183"></p>
-<h3 id="三、消息传递"><a href="#三、消息传递" class="headerlink" title="三、消息传递"></a>三、消息传递</h3><p><img src="https://i.loli.net/2020/12/24/EqkdhtyYgBus3AI.png" alt="image-20201224101158127"></p>
-<h3 id="四、管道通信"><a href="#四、管道通信" class="headerlink" title="四、管道通信"></a>四、管道通信</h3><p><img src="https://i.loli.net/2020/12/24/Tag7bNRrhxMcY1P.png" alt="image-20201224100913574"></p>
-<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/24/V2ovCkfQgOZ48Nq.png" alt="image-20201224101327317"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
