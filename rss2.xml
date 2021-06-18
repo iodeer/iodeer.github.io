@@ -9,8 +9,25 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>最美的相遇，不言过往；最好的离别，不问归期。</description>
-    <pubDate>Sun, 27 Dec 2020 03:15:51 GMT</pubDate>
+    <pubDate>Fri, 18 Jun 2021 01:44:27 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>数据结构概念</title>
+      <link>http://yoursite.com/posts/9aeff161/</link>
+      <guid>http://yoursite.com/posts/9aeff161/</guid>
+      <pubDate>Fri, 18 Jun 2021 01:26:06 GMT</pubDate>
+      <description>
+      
+        xxx
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="数据结构学什么"><a href="#数据结构学什么" class="headerlink" title="数据结构学什么"></a>数据结构学什么</h2><ul><li>如何利用程序代码把现实世界的问题<strong>信息化</strong></li><li>如何用计算机高效地处理这些信息从而创造价值</li></ul><blockquote><p><strong>“唯一可以确定的是，明天会使我们所有人大吃一惊”</strong></p></blockquote><h2 id="数据结构基本概念"><a href="#数据结构基本概念" class="headerlink" title="数据结构基本概念"></a>数据结构基本概念</h2><h3 id="数据等基本概念"><a href="#数据等基本概念" class="headerlink" title="数据等基本概念"></a>数据等基本概念</h3><p><strong>数据</strong>： 是<font color='red'>信息的载体</font>,是描述客观事物的数、字符以及所有能输入到计算机中并<font color='red'>被计算机程序识别和处理</font>的符号的集合。数据是计算机程序加工的原料。</p><p>现代计算机— 经常处理<font color='red'>非数值型</font>问题</p><p>对于非数值型问题</p><ul><li>我们关心每个个体的具体信息</li><li>我们还关心个体之间的关系</li></ul><p><strong>数据元素</strong>：描述一个个体的具体信息，是<font color='red'>数据的基本单位</font>，通常作为一个整体进行考虑和处理，一个数据元素可由锘若干<font color='red'>数据项</font>组成</p><p><strong>数据项</strong>：构成数据元素的<font color='red'>不可分割的最小单位</font>。 </p><p><strong>数据对象</strong>：是具有<font color='red'>相同性质</font>的数据元素的集合，是数据的一个子集。</p><p><strong>数据结构</strong>：是相互之间存在一种或多种特定<font color='red'>关系</font>的数据元素的集合。</p><ul><li><strong>同一个数据对象里的数据元素，可以根据关系的不同，组成不同的数据结构</strong></li><li><strong>不同的数据元素，可以组成相同的数据结构</strong></li></ul><h3 id="数据结构的三要素"><a href="#数据结构的三要素" class="headerlink" title="数据结构的三要素"></a>数据结构的三要素</h3><h4 id="逻辑关系"><a href="#逻辑关系" class="headerlink" title="逻辑关系"></a>逻辑关系</h4><p><strong>集合结构</strong></p><p><strong>线性结构（一对一）</strong></p><ul><li>数据元素之间都是一对一的关系</li><li>除了第一个元素，所有元素都有唯一的前驱</li><li>除了最后一个元素，所有的元素都有唯一的后继</li></ul><p><strong>树形结构（一对多）</strong></p><p><strong>图壮结构（多对多）</strong></p><h4 id="数据的运算"><a href="#数据的运算" class="headerlink" title="数据的运算"></a>数据的运算</h4><ul><li>针对某种逻辑结构，结合实际需求，定义<font color='red'>基本运算</font>。</li></ul><p><strong>逻辑关系和数据的运算<font color='red'>定义</font>了一种数据结构</strong></p><h4 id="物理结构（存储结构）"><a href="#物理结构（存储结构）" class="headerlink" title="物理结构（存储结构）"></a>物理结构（存储结构）</h4><p><strong>如何用计算机实现数据结构</strong></p><ul><li>顺序存储<ul><li><font color='red'>把逻辑上相邻的元素存储在物理位置上也相邻的存储单位中</font>，元素之间的关系由存储单元的邻接关系来体现。</li></ul></li><li>链式存储<ul><li><font color='red'>逻辑上相邻的元素在物理位置上可以不相邻</font>，借助指示元素存储地址的指针来表示元素之间的逻辑关系。</li></ul></li><li>索引存储<ul><li>在存储元素信息的同时，还建立附加的<strong>索引表</strong>。索引表中的每项称为索引项，索引项的一般形式是（<strong>关键字，地址</strong>）。</li></ul></li><li>散列存储<ul><li>根据元素的<strong>关键字</strong>直接计算出该元素的存储地址，又称为<font color='red'>哈希（Hash）存储</font>。</li></ul></li></ul><blockquote><p>1、若采用<font color='red'>顺序存储</font>，则各个数据元素在物理上必须是<font color='red'>连续的</font>；<br>     若采用<font color='red'>非顺序存储</font>，则各个数据元素在物理上可以是<font color='red'>离散的</font>；</p><p>2、数据的<font color='red'>存储结构</font>会<font color='red'>影响存储空间分配的方便程度</font>。</p><p>3、数据的<font color='red'>存储结构</font>会<font color='red'>影响对数据运算的速度</font>。</p></blockquote><blockquote><p>1、<font color='red'>运算的定义</font>是针对逻辑结构的，指出运算的功能；</p><p>2、<font color='red'>运算的实现</font>是<font color='red'>针对存储结构</font>的，指出运算的具体操作步骤</p></blockquote><h4 id="数据类型、抽象数据类型"><a href="#数据类型、抽象数据类型" class="headerlink" title="数据类型、抽象数据类型"></a>数据类型、抽象数据类型</h4><p><strong>数据类型</strong>：是一个值的集合和定义在此集合上的一组操作的总称</p><ul><li>原子类型：其值不可再分的数据结构。（例如：基本类型，如int、bool）</li><li>结构类型：其值可以在分解为若干分量（成分）的数据类型。（例如：结构体）</li></ul><p><strong>抽象数据类型</strong>：是抽象数据组织以及与之相关的操作</p><h2 id="算法的基本概念"><a href="#算法的基本概念" class="headerlink" title="算法的基本概念"></a>算法的基本概念</h2><h3 id="什么是算法"><a href="#什么是算法" class="headerlink" title="什么是算法"></a>什么是算法</h3><h3 id="算法的五个特征"><a href="#算法的五个特征" class="headerlink" title="算法的五个特征"></a>算法的五个特征</h3><h3 id="“好”算法的特质"><a href="#“好”算法的特质" class="headerlink" title="“好”算法的特质"></a>“好”算法的特质</h3>]]></content:encoded>
+      
+      <comments>http://yoursite.com/posts/9aeff161/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>中断-异常</title>
@@ -132,23 +149,6 @@
     </item>
     
     <item>
-      <title>进程调度的时机、切换与过程、调度方式</title>
-      <link>http://yoursite.com/posts/7f586123/</link>
-      <guid>http://yoursite.com/posts/7f586123/</guid>
-      <pubDate>Sun, 27 Dec 2020 02:52:58 GMT</pubDate>
-      <description>
-      
-        进程在什么时候进行调度、进程切换的注意点、抢占式和非抢占式两种调度方式。
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h3 id="一、时机"><a href="#一、时机" class="headerlink" title="一、时机"></a>一、时机</h3><h4 id="1、什么时候需要进程调度"><a href="#1、什么时候需要进程调度" class="headerlink" title="1、什么时候需要进程调度"></a>1、什么时候需要进程调度</h4><ul><li>当前运行的进程<strong>主动放弃</strong>处理机(<strong>在有的系统中只允许进程主动放弃处理机</strong>)<ul><li>进程正常终止</li><li>进程发生异常而终止</li></ul></li><li>当前运行的进程<strong>被动放弃</strong>处理机<ul><li>分给进程的时间片用完了</li><li>有更高优先级的进程进入就绪队列</li></ul></li></ul><h4 id="2、什么时候不能进行进程调度"><a href="#2、什么时候不能进行进程调度" class="headerlink" title="2、什么时候不能进行进程调度"></a>2、什么时候不能进行进程调度</h4><ul><li>在<strong>处理中断</strong>的过程中。</li><li>进程在<strong>操作系统内核程序临界区</strong>中<ul><li>进程<strong>是可以在</strong>普通临界区中是可以进行调度与切换的</li></ul></li><li>在<strong>原子操作过程中（原语）</strong>。</li></ul><h3 id="二、切换与过程"><a href="#二、切换与过程" class="headerlink" title="二、切换与过程"></a>二、切换与过程</h3><h4 id="1、”狭义的调度“与“切换”的区别"><a href="#1、”狭义的调度“与“切换”的区别" class="headerlink" title="1、”狭义的调度“与“切换”的区别"></a>1、”狭义的调度“与“切换”的区别</h4><ul><li>狭义的进程调度是<strong>从就绪队列中选中一个要运行的进程</strong>（这个进程可以是<strong>刚刚被暂停执行的</strong>，也可以是<strong>另一个进程</strong>，后面一种就需要<strong>进程切换</strong>）</li><li><strong>进程切换是指一个进程让出处理机，然后由另外一个进程使用处理机</strong></li><li><strong>广度的进程调度</strong>包括<strong>选择一个进程和进程切换</strong>两个步骤</li></ul><h4 id="2、进程切换的过程需要什么"><a href="#2、进程切换的过程需要什么" class="headerlink" title="2、进程切换的过程需要什么"></a>2、进程切换的过程需要什么</h4><ul><li>对原来运行进程的数据进行保存</li><li>对新进程的数据进行恢复</li></ul><h4 id="3、注意点"><a href="#3、注意点" class="headerlink" title="3、注意点"></a>3、注意点</h4><ul><li><strong>进程切换是有代价的</strong>，因此如果<strong>过于频繁的</strong>进行<strong>进程调度，切换</strong>。必然会使<strong>整个系统的效率降低</strong>，使系统大部分时间都花在进程切换上，而真正执行进程的时间变短</li></ul><h3 id="三、方式"><a href="#三、方式" class="headerlink" title="三、方式"></a>三、方式</h3><h4 id="1、非剥夺调度方式（非抢占式）"><a href="#1、非剥夺调度方式（非抢占式）" class="headerlink" title="1、非剥夺调度方式（非抢占式）"></a>1、非剥夺调度方式（非抢占式）</h4><ul><li><strong>非剥夺调度方式</strong>，又称<strong>非抢占式</strong>。即，只允许进程主动放弃处理机。在运行状态期间即便又更加紧急的任务到达，当前进程依旧会继续使用处理机，直到该进程终止或者主动要求进入阻塞态。</li><li>优缺点<ul><li>优点<ul><li>实现简单</li><li>系统开销小</li></ul></li><li>缺点<ul><li>无法处理紧急任务</li><li>只适合早期批处理系统</li></ul></li></ul></li></ul><h4 id="2、剥夺调度方式（抢占式）"><a href="#2、剥夺调度方式（抢占式）" class="headerlink" title="2、剥夺调度方式（抢占式）"></a>2、剥夺调度方式（抢占式）</h4><ul><li><strong>剥夺调度方式</strong>，又称<strong>抢占式</strong>。当一个进程正在处理机上执行时，如果有一个更重要或者紧急的进程需要使用处理机时，则立刻停止正在执行的进程，将处理机分配给更紧急重要的进程。</li><li>优缺点<ul><li>优点<ul><li>可以优先处理更紧急的进程</li><li>实现让各进程按时间片轮转执行的功能（通过时钟中断）</li><li>适合于分时操作系统、实时操作系统</li></ul></li></ul></li></ul><h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p><img src="https://i.loli.net/2020/12/26/VaJfO2i4bG8rCtH.png" alt="image-20201226111643433"></p>]]></content:encoded>
-      
-      <comments>http://yoursite.com/posts/7f586123/#disqus_thread</comments>
-    </item>
-    
-    <item>
       <title>进程通信</title>
       <link>http://yoursite.com/posts/53ad465c/</link>
       <guid>http://yoursite.com/posts/53ad465c/</guid>
@@ -166,20 +166,20 @@
     </item>
     
     <item>
-      <title>进程控制</title>
-      <link>http://yoursite.com/posts/d9c2550/</link>
-      <guid>http://yoursite.com/posts/d9c2550/</guid>
+      <title>进程调度的时机、切换与过程、调度方式</title>
+      <link>http://yoursite.com/posts/7f586123/</link>
+      <guid>http://yoursite.com/posts/7f586123/</guid>
       <pubDate>Sun, 27 Dec 2020 02:52:58 GMT</pubDate>
       <description>
       
-        进程的创建、阻塞、唤醒、切换、终止。
+        进程在什么时候进行调度、进程切换的注意点、抢占式和非抢占式两种调度方式。
       
       </description>
       
       
-      <content:encoded><![CDATA[<h3 id="一-基本概念"><a href="#一-基本概念" class="headerlink" title="一 基本概念"></a>一 基本概念</h3><h4 id="1、什么是进程控制"><a href="#1、什么是进程控制" class="headerlink" title="1、什么是进程控制"></a>1、什么是进程控制</h4><p>​    进程控制的主要功能就是对系统中的所有进程进行有效的管理，它具有创建新进程、撤销已有进程、实现进程转换等功能</p><h4 id="2、如何实现进程控制"><a href="#2、如何实现进程控制" class="headerlink" title="2、如何实现进程控制"></a>2、如何实现进程控制</h4><p>​    <img src="https://i.loli.net/2020/12/22/xw6di8GcAoj9zN7.png" alt="image-20201222203441542"></p><ul><li><strong>为了避免PCB内的标志位与PCB所处的队列不一致，</strong>使用<strong>原语来实现基础控制</strong>，原语的特点是<strong>执行期间不允许中断</strong>，只能一气呵成。这种不可被中断的操作即<strong>原子操作</strong></li><li>原语采用“<strong>关中断</strong>指令”和“<strong>开中断</strong>操作”实现。<strong>关/开中断指令</strong>的权限非常大，所以只允许在<strong>核心态</strong>下执行的<strong>特权指令</strong></li><li>原语的目的<ul><li>更新PCB中的信息<ul><li>所有的进程控制原语一定都会修改进程状态标志</li><li>剥夺当前允许进程的CPU使用权必然需要保存其运行环境</li><li>某进程开始运行前必然要恢复运行状态</li></ul></li><li>将PCB插入到合适的队列中</li><li>分配/回收资源</li></ul></li></ul><h3 id="二-进程控制相关的原语"><a href="#二-进程控制相关的原语" class="headerlink" title="二 进程控制相关的原语"></a>二 进程控制相关的原语</h3><h4 id="1、进程的创建"><a href="#1、进程的创建" class="headerlink" title="1、进程的创建"></a>1、进程的创建</h4><p><img src="https://i.loli.net/2020/12/22/yoM1Fb96GhBfqOQ.png" alt="image-20201222205630647"></p><h4 id="2、进程的终止"><a href="#2、进程的终止" class="headerlink" title="2、进程的终止"></a>2、进程的终止</h4><p><img src="https://i.loli.net/2020/12/22/2SA34PLszkRBeKG.png" alt="image-20201222205844888"></p><h4 id="3、进程的阻塞、唤醒"><a href="#3、进程的阻塞、唤醒" class="headerlink" title="3、进程的阻塞、唤醒"></a>3、进程的阻塞、唤醒</h4><p><img src="https://i.loli.net/2020/12/22/E7rFRDTq3fBviCK.png" alt="image-20201222210009333"></p><h4 id="4、进程的切换"><a href="#4、进程的切换" class="headerlink" title="4、进程的切换"></a>4、进程的切换</h4><p><img src="https://i.loli.net/2020/12/22/QaUOc8WrXDRjJAs.png" alt="image-20201222210112018"></p>]]></content:encoded>
+      <content:encoded><![CDATA[<h3 id="一、时机"><a href="#一、时机" class="headerlink" title="一、时机"></a>一、时机</h3><h4 id="1、什么时候需要进程调度"><a href="#1、什么时候需要进程调度" class="headerlink" title="1、什么时候需要进程调度"></a>1、什么时候需要进程调度</h4><ul><li>当前运行的进程<strong>主动放弃</strong>处理机(<strong>在有的系统中只允许进程主动放弃处理机</strong>)<ul><li>进程正常终止</li><li>进程发生异常而终止</li></ul></li><li>当前运行的进程<strong>被动放弃</strong>处理机<ul><li>分给进程的时间片用完了</li><li>有更高优先级的进程进入就绪队列</li></ul></li></ul><h4 id="2、什么时候不能进行进程调度"><a href="#2、什么时候不能进行进程调度" class="headerlink" title="2、什么时候不能进行进程调度"></a>2、什么时候不能进行进程调度</h4><ul><li>在<strong>处理中断</strong>的过程中。</li><li>进程在<strong>操作系统内核程序临界区</strong>中<ul><li>进程<strong>是可以在</strong>普通临界区中是可以进行调度与切换的</li></ul></li><li>在<strong>原子操作过程中（原语）</strong>。</li></ul><h3 id="二、切换与过程"><a href="#二、切换与过程" class="headerlink" title="二、切换与过程"></a>二、切换与过程</h3><h4 id="1、”狭义的调度“与“切换”的区别"><a href="#1、”狭义的调度“与“切换”的区别" class="headerlink" title="1、”狭义的调度“与“切换”的区别"></a>1、”狭义的调度“与“切换”的区别</h4><ul><li>狭义的进程调度是<strong>从就绪队列中选中一个要运行的进程</strong>（这个进程可以是<strong>刚刚被暂停执行的</strong>，也可以是<strong>另一个进程</strong>，后面一种就需要<strong>进程切换</strong>）</li><li><strong>进程切换是指一个进程让出处理机，然后由另外一个进程使用处理机</strong></li><li><strong>广度的进程调度</strong>包括<strong>选择一个进程和进程切换</strong>两个步骤</li></ul><h4 id="2、进程切换的过程需要什么"><a href="#2、进程切换的过程需要什么" class="headerlink" title="2、进程切换的过程需要什么"></a>2、进程切换的过程需要什么</h4><ul><li>对原来运行进程的数据进行保存</li><li>对新进程的数据进行恢复</li></ul><h4 id="3、注意点"><a href="#3、注意点" class="headerlink" title="3、注意点"></a>3、注意点</h4><ul><li><strong>进程切换是有代价的</strong>，因此如果<strong>过于频繁的</strong>进行<strong>进程调度，切换</strong>。必然会使<strong>整个系统的效率降低</strong>，使系统大部分时间都花在进程切换上，而真正执行进程的时间变短</li></ul><h3 id="三、方式"><a href="#三、方式" class="headerlink" title="三、方式"></a>三、方式</h3><h4 id="1、非剥夺调度方式（非抢占式）"><a href="#1、非剥夺调度方式（非抢占式）" class="headerlink" title="1、非剥夺调度方式（非抢占式）"></a>1、非剥夺调度方式（非抢占式）</h4><ul><li><strong>非剥夺调度方式</strong>，又称<strong>非抢占式</strong>。即，只允许进程主动放弃处理机。在运行状态期间即便又更加紧急的任务到达，当前进程依旧会继续使用处理机，直到该进程终止或者主动要求进入阻塞态。</li><li>优缺点<ul><li>优点<ul><li>实现简单</li><li>系统开销小</li></ul></li><li>缺点<ul><li>无法处理紧急任务</li><li>只适合早期批处理系统</li></ul></li></ul></li></ul><h4 id="2、剥夺调度方式（抢占式）"><a href="#2、剥夺调度方式（抢占式）" class="headerlink" title="2、剥夺调度方式（抢占式）"></a>2、剥夺调度方式（抢占式）</h4><ul><li><strong>剥夺调度方式</strong>，又称<strong>抢占式</strong>。当一个进程正在处理机上执行时，如果有一个更重要或者紧急的进程需要使用处理机时，则立刻停止正在执行的进程，将处理机分配给更紧急重要的进程。</li><li>优缺点<ul><li>优点<ul><li>可以优先处理更紧急的进程</li><li>实现让各进程按时间片轮转执行的功能（通过时钟中断）</li><li>适合于分时操作系统、实时操作系统</li></ul></li></ul></li></ul><h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p><img src="https://i.loli.net/2020/12/26/VaJfO2i4bG8rCtH.png" alt="image-20201226111643433"></p>]]></content:encoded>
       
-      <comments>http://yoursite.com/posts/d9c2550/#disqus_thread</comments>
+      <comments>http://yoursite.com/posts/7f586123/#disqus_thread</comments>
     </item>
     
   </channel>
