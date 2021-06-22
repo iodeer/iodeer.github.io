@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>IOC理论推导</title>
-    <url>/posts/ca68ff0d/</url>
-    <content><![CDATA[<h3 id="1-、原来实现业务流程"><a href="#1-、原来实现业务流程" class="headerlink" title="1 、原来实现业务流程"></a>1 、原来实现业务流程</h3><ol>
-<li>UserDao接口</li>
-<li>UserDaoImpl实现类</li>
-<li>UserService业务接口</li>
-<li>UserServiceImpl业务实现类</li>
-</ol>
-<p>在我们之前的业务中，用户的需求可能会影响我们原来的代码，我们需要根据用户的需求去修改源代码！如果程序的代码量十分大，修改一次的代价十分昂贵！</p>
-<h3 id="2、通过set方法降低耦合"><a href="#2、通过set方法降低耦合" class="headerlink" title="2、通过set方法降低耦合"></a>2、通过set方法降低耦合</h3><p>我们使用一个set接口实现，以及发生了革命性的变化</p>
-<p><img src="https://i.loli.net/2020/07/29/Q2UygLKMIdWhtpX.png" alt="image-20200729222813217"></p>
-<ul>
-<li><strong>之前，程序是主动创建对象，控制权在程序猿手上</strong></li>
-<li><strong>使用了set注入后，程序不再拥有主动性，而是变成了被动的接收对象</strong></li>
-</ul>
-<p>这种思想从本质上解决了问题，我们程序猿不用再去管理对象的创建了。</p>
-<p>系统的耦合度大大降低了，可以更加专注的在业务的实现上。<strong>这是IOC的原型</strong></p>
-<p><img src="https://i.loli.net/2020/07/29/d4KUb7tLpmD8RQX.png" alt="image-20200729223906856"></p>
-<h3 id="3-、IOC本质"><a href="#3-、IOC本质" class="headerlink" title="3 、IOC本质"></a>3 、IOC本质</h3><p><strong>控制反转IoC(Inversion of Control)，是一种设计思想，DI(依赖注入)是实现IoC的一种方法，</strong>也有人认为DI只是IoC的另一种说法。没有IoC的程序中 , 我们使用面向对象编程 , 对象的创建与对象间的依赖关系完全硬编码在程序中，对象的创建由程序自己控制，控制反转后将对象的创建转移给第三方，个人认为所谓控制反转就是：获得依赖对象的方式反转了。</p>
-<p>采用XML方式配置Bean的时候，Bean的定义信息是和实现分离的，而采用注解的方式可以把两者合为一体，Bean的定义信息直接以注解的形式定义在实现类中，从而达到了零配置的目的。</p>
-<p><strong>控制反转是一种通过描述（XML或注解）并通过第三方去生产或获取特定对象的方式。在Spring中实现控制反转的是IoC容器，其实现方法是依赖注入（Dependency Injection,DI）。</strong></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -Spring</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构概念</title>
     <url>/posts/9aeff161/</url>
     <content><![CDATA[<h2 id="数据结构学什么"><a href="#数据结构学什么" class="headerlink" title="数据结构学什么"></a>数据结构学什么</h2><ul>
@@ -133,6 +103,36 @@
       </tags>
   </entry>
   <entry>
+    <title>IOC理论推导</title>
+    <url>/posts/ca68ff0d/</url>
+    <content><![CDATA[<h3 id="1-、原来实现业务流程"><a href="#1-、原来实现业务流程" class="headerlink" title="1 、原来实现业务流程"></a>1 、原来实现业务流程</h3><ol>
+<li>UserDao接口</li>
+<li>UserDaoImpl实现类</li>
+<li>UserService业务接口</li>
+<li>UserServiceImpl业务实现类</li>
+</ol>
+<p>在我们之前的业务中，用户的需求可能会影响我们原来的代码，我们需要根据用户的需求去修改源代码！如果程序的代码量十分大，修改一次的代价十分昂贵！</p>
+<h3 id="2、通过set方法降低耦合"><a href="#2、通过set方法降低耦合" class="headerlink" title="2、通过set方法降低耦合"></a>2、通过set方法降低耦合</h3><p>我们使用一个set接口实现，以及发生了革命性的变化</p>
+<p><img src="https://i.loli.net/2020/07/29/Q2UygLKMIdWhtpX.png" alt="image-20200729222813217"></p>
+<ul>
+<li><strong>之前，程序是主动创建对象，控制权在程序猿手上</strong></li>
+<li><strong>使用了set注入后，程序不再拥有主动性，而是变成了被动的接收对象</strong></li>
+</ul>
+<p>这种思想从本质上解决了问题，我们程序猿不用再去管理对象的创建了。</p>
+<p>系统的耦合度大大降低了，可以更加专注的在业务的实现上。<strong>这是IOC的原型</strong></p>
+<p><img src="https://i.loli.net/2020/07/29/d4KUb7tLpmD8RQX.png" alt="image-20200729223906856"></p>
+<h3 id="3-、IOC本质"><a href="#3-、IOC本质" class="headerlink" title="3 、IOC本质"></a>3 、IOC本质</h3><p><strong>控制反转IoC(Inversion of Control)，是一种设计思想，DI(依赖注入)是实现IoC的一种方法，</strong>也有人认为DI只是IoC的另一种说法。没有IoC的程序中 , 我们使用面向对象编程 , 对象的创建与对象间的依赖关系完全硬编码在程序中，对象的创建由程序自己控制，控制反转后将对象的创建转移给第三方，个人认为所谓控制反转就是：获得依赖对象的方式反转了。</p>
+<p>采用XML方式配置Bean的时候，Bean的定义信息是和实现分离的，而采用注解的方式可以把两者合为一体，Bean的定义信息直接以注解的形式定义在实现类中，从而达到了零配置的目的。</p>
+<p><strong>控制反转是一种通过描述（XML或注解）并通过第三方去生产或获取特定对象的方式。在Spring中实现控制反转的是IoC容器，其实现方法是依赖注入（Dependency Injection,DI）。</strong></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring简介</title>
     <url>/posts/70bfd15e/</url>
     <content><![CDATA[<h3 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h3><ul>
@@ -183,23 +183,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Spring常用配置</title>
-    <url>/posts/971b5adf/</url>
-    <content><![CDATA[<h3 id="1-、别名"><a href="#1-、别名" class="headerlink" title="1 、别名"></a>1 、别名</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--  别名：如果添加了别名，我们也可以使用别名来获取对象，id一样有可以--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"User"</span> <span class="attr">alias</span>=<span class="string">"userNew"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2、Bean的配置"><a href="#2、Bean的配置" class="headerlink" title="2、Bean的配置"></a>2、Bean的配置</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    id:bean的唯一标识符，也就是相当于我们学的对象名</span></span><br><span class="line"><span class="comment">    class：bean对象所对应的全限定名 ： 包名 + 类型</span></span><br><span class="line"><span class="comment">    name:也是别名，而且name更高级，可以同时取多个别名(通过空格、逗号分隔、分号)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"xxx"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span> <span class="attr">name</span>=<span class="string">"user,user2 uuu"</span> <span class="attr">scope</span>=<span class="string">"singleton"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3、Import"><a href="#3、Import" class="headerlink" title="3、Import"></a>3、Import</h3><p>这个import，一般用于团队开发，它可以将多个配置文件 导入合并为一个。</p>
-<p>假设:现在项目中有多人开发，在三个人负责不同的类开发，不同的类需要注册在不同的bean中，我们可以利用import将所有人的beans.xml合并为一个。使用的时候，直接使用总的就可以了。</p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IOC创建对象的方式</title>
     <url>/posts/f40a03f2/</url>
     <content><![CDATA[<h3 id="1、使用无参构造创建对象，默认"><a href="#1、使用无参构造创建对象，默认" class="headerlink" title="1、使用无参构造创建对象，默认"></a>1、使用无参构造创建对象，默认</h3><h3 id="2、假设我们要使用有参构造创建对象"><a href="#2、假设我们要使用有参构造创建对象" class="headerlink" title="2、假设我们要使用有参构造创建对象"></a>2、假设我们要使用有参构造创建对象</h3><ul>
@@ -225,6 +208,75 @@
       </categories>
       <tags>
         <tag>-笔记 -Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring常用配置</title>
+    <url>/posts/971b5adf/</url>
+    <content><![CDATA[<h3 id="1-、别名"><a href="#1-、别名" class="headerlink" title="1 、别名"></a>1 、别名</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--  别名：如果添加了别名，我们也可以使用别名来获取对象，id一样有可以--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"User"</span> <span class="attr">alias</span>=<span class="string">"userNew"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2、Bean的配置"><a href="#2、Bean的配置" class="headerlink" title="2、Bean的配置"></a>2、Bean的配置</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    id:bean的唯一标识符，也就是相当于我们学的对象名</span></span><br><span class="line"><span class="comment">    class：bean对象所对应的全限定名 ： 包名 + 类型</span></span><br><span class="line"><span class="comment">    name:也是别名，而且name更高级，可以同时取多个别名(通过空格、逗号分隔、分号)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"xxx"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span> <span class="attr">name</span>=<span class="string">"user,user2 uuu"</span> <span class="attr">scope</span>=<span class="string">"singleton"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、Import"><a href="#3、Import" class="headerlink" title="3、Import"></a>3、Import</h3><p>这个import，一般用于团队开发，它可以将多个配置文件 导入合并为一个。</p>
+<p>假设:现在项目中有多人开发，在三个人负责不同的类开发，不同的类需要注册在不同的bean中，我们可以利用import将所有人的beans.xml合并为一个。使用的时候，直接使用总的就可以了。</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>中断-异常</title>
+    <url>/posts/a76ffb5a/</url>
+    <content><![CDATA[<h3 id="一、中断机制的诞生"><a href="#一、中断机制的诞生" class="headerlink" title="一、中断机制的诞生"></a>一、中断机制的诞生</h3><ul>
+<li><p>在单批道处理阶段，各个程序只能串行处理，系统资利用低，为了解决上诉问题，人们发明了操作系统（作为管理者），引入中断机制，实现了多道程序并发执行</p>
+</li>
+<li><p><strong>本质：发生中断就意味着需要操作系统介入，开展管理工作</strong></p>
+</li>
+</ul>
+<h3 id="二、中断的概念和作业"><a href="#二、中断的概念和作业" class="headerlink" title="二、中断的概念和作业"></a>二、中断的概念和作业</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><ul>
+<li>当中断发生时，CPU立即进入<strong>核心态</strong></li>
+<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理</li>
+<li>对于不同的中断信号，会进行不同的处理</li>
+</ul>
+<h4 id="2、中断的作用"><a href="#2、中断的作用" class="headerlink" title="2、中断的作用"></a>2、中断的作用</h4><p>​    发生了中断，就意味着需要操作系统介入，发展管理工作。由于操作系统的管理工作（比如进程切换、分配I/O设备等）需要使用特权指令，因此CPU需要从用户态转变成核心态。<strong>中断</strong>可以<strong>使CPU从用户态转变成核心态，使操作系统获得计算机的控制权</strong>.。有了中断，才能实现多道程序并发执行。</p>
+<h4 id="3、用户态、核心态切换的实现"><a href="#3、用户态、核心态切换的实现" class="headerlink" title="3、用户态、核心态切换的实现"></a>3、用户态、核心态切换的实现</h4><ul>
+<li><strong>“用户态—》核心态“</strong>是通过<strong>中断</strong>实现的。并且<strong>中断</strong>是<strong>唯一的</strong>方式</li>
+<li>”核心态—》用户态“的切换是通过<strong>执行一个特权指令</strong>，将程序状态字（PSW）的标志位设置为”用户态“</li>
+</ul>
+<h3 id="三、中断-广义的中断-分类"><a href="#三、中断-广义的中断-分类" class="headerlink" title="三、中断{广义的中断}分类"></a>三、中断{广义的中断}分类</h3><h4 id="1、内中断（异常、例外、陷入）"><a href="#1、内中断（异常、例外、陷入）" class="headerlink" title="1、内中断（异常、例外、陷入）"></a>1、内中断（异常、例外、陷入）</h4><ul>
+<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
+</li>
+<li><p>自愿中断</p>
+<ul>
+<li>指令中断</li>
+</ul>
+</li>
+<li><p>强迫中断</p>
+<ul>
+<li>硬件故障</li>
+<li>软件中断</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、外中断（中断-狭义的中断-）"><a href="#2、外中断（中断-狭义的中断-）" class="headerlink" title="2、外中断（中断{狭义的中断}）"></a>2、外中断（中断{狭义的中断}）</h4><ul>
+<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
+</li>
+<li><p>外设请求</p>
+</li>
+<li><p>人工干预</p>
+</li>
+</ul>
+<h3 id="四、外中断的处理过程"><a href="#四、外中断的处理过程" class="headerlink" title="四、外中断的处理过程"></a>四、外中断的处理过程</h3><p><img src="https://i.loli.net/2020/12/15/N1OuBLW9Zj7YbAy.png" alt="image-20201215203027037"></p>
+<h3 id="五、回顾"><a href="#五、回顾" class="headerlink" title="五、回顾"></a>五、回顾</h3><p><img src="https://i.loli.net/2020/12/15/OEjrGxoAeT5cUM4.png" alt="image-20201215203338519"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
       </tags>
   </entry>
   <entry>
@@ -316,6 +368,105 @@
       </categories>
       <tags>
         <tag>-笔记 -Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二分</title>
+    <url>/posts/9947c71c/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>单调性的题目一定可以二分，可以的二分的题目不一定由单调性</strong></p>
+<p>二分一定是有解的，如果出现无解的情况，一定是题目的问题，而不是模板的问题</p>
+</blockquote>
+<h3 id="整数二分"><a href="#整数二分" class="headerlink" title="整数二分"></a>整数二分</h3><p>思想：整个区间可以一分为二，一边区间都满足某一条件，另一区间都不满足某一条件，而新边界的选择</p>
+<ul>
+<li><font color='red'>新的边界可以设置为不满足条件区间的最大值（1）</font></li>
+<li><font color='cornflowerblue'>新的边界设置设置为满足条件区间的最小值（2）</font></li>
+</ul>
+<p>两种情况对应两种不同的模板。</p>
+<p><strong>模板的选择主要看check函数中ture&amp;false区间的划分，如果l=mid，就选择第一个模板，如果r=mid，就选择第二个模板</strong></p>
+<h4 id="第一种模拟模板"><a href="#第一种模拟模板" class="headerlink" title="第一种模拟模板"></a><font color='red'>第一种模拟模板</font></h4><h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><ol>
+<li>mid = （l+r<strong>+1</strong>）/2</li>
+<li>if(check(mid))<ol>
+<li>true —&gt;[mid,r]</li>
+<li>false –&gt;[l,mid-1]</li>
+</ol>
+</li>
+</ol>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这里为什么要mid算式中要加一</span><br><span class="line">例子：</span><br><span class="line">如果 </span><br><span class="line">	l&#x3D;r-1</span><br><span class="line">	初始化区间[l,r]</span><br><span class="line">	mid &#x3D; l</span><br><span class="line">	check(mid) ---&gt;true ---&gt; [l.r] ---&gt;死循环！！！</span><br></pre></td></tr></table></figure>
+
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="comment">/* ... */</span>&#125; <span class="comment">// 检查x是否满足某种性质</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 区间[l, r]被划分成[l, mid - 1]和[mid, r]时使用：</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch_2</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = l + r + <span class="number">1</span> &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid)) l = mid;</span><br><span class="line">        <span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="第二种模拟模板"><a href="#第二种模拟模板" class="headerlink" title="第二种模拟模板"></a><strong><font color='cornflowerblue'>第二种模拟模板</font></strong></h4><h5 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a><strong>步骤</strong></h5><ol>
+<li>mid = （l+r）/2</li>
+<li>if(check(mid))<ol>
+<li>true —&gt;[l,mid]</li>
+<li>false –&gt;[mid+1,r]</li>
+</ol>
+</li>
+</ol>
+<h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="comment">/* ... */</span>&#125; <span class="comment">// 检查x是否满足某种性质</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 区间[l, r]被划分成[l, mid]和[mid + 1, r]时使用：</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch_1</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid)) r = mid;    <span class="comment">// check()判断mid是否满足性质</span></span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><h5 id="数的范围"><a href="#数的范围" class="headerlink" title="数的范围"></a><strong>数的范围</strong></h5><blockquote>
+<p>给定一个按照升序排列的长度为 nn 的整数数组，以及 qq 个查询。</p>
+<p>对于每个查询，返回一个元素 kk 的起始位置和终止位置（位置从 00 开始计数）。</p>
+<p>如果数组中不存在该元素，则返回 <code>-1 -1</code>。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含整数 nn 和 qq，表示数组长度和询问个数。</p>
+<p>第二行包含 nn 个整数（均在 1∼100001∼10000 范围内），表示完整数组。</p>
+<p>接下来 qq 行，每行包含一个整数 kk，表示一个询问元素。</p>
+<p><strong>输出格式</strong></p>
+<p>共 qq 行，每行包含两个整数，表示所求元素的起始位置和终止位置。</p>
+<p>如果数组中不存在该元素，则返回 <code>-1 -1</code>。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤n≤1000001≤n≤100000<br>1≤q≤100001≤q≤10000<br>1≤k≤100001≤k≤10000</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;6 3</span><br><span class="line">&gt;1 2 2 3 3 4</span><br><span class="line">&gt;3</span><br><span class="line">&gt;4</span><br><span class="line">&gt;5</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;3 4</span><br><span class="line">&gt;5 5</span><br><span class="line">&gt;-1 -1</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><strong>答案</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100010</span>;</span><br><span class="line"><span class="keyword">int</span> q[N];</span><br><span class="line"><span class="keyword">int</span> n,m,num;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l,r,mid;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n ; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;q[i]);</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line">        l = <span class="number">0</span>,r = n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            mid = l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(q[mid] &gt;= num) r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q[l] != num) </span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"-1 -1\n"</span>);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d "</span>,l);</span><br><span class="line">            l = mid,r = n<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">                mid = l+r+<span class="number">1</span>&gt;&gt;<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(q[mid] &lt;= num) l = mid;</span><br><span class="line">                <span class="keyword">else</span> r = mid<span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d \n"</span>,l);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="浮点数二分"><a href="#浮点数二分" class="headerlink" title="浮点数二分"></a>浮点数二分</h3><p>由于浮点数二分不存在边界问题，所以代码实现简单</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123;<span class="comment">/* ... */</span>&#125; <span class="comment">// 检查x是否满足某种性质</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">bsearch_3</span><span class="params">(<span class="keyword">double</span> l, <span class="keyword">double</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-6</span>;   <span class="comment">// eps 表示精度，取决于题目对精度的要求</span></span><br><span class="line">    <span class="keyword">while</span> (r - l &gt; eps)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">double</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid)) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><h5 id="数的三次方根"><a href="#数的三次方根" class="headerlink" title="数的三次方根"></a>数的三次方根</h5><blockquote>
+<p>给定一个浮点数 nn，求它的三次方根。</p>
+<p><strong>输入格式</strong></p>
+<p>共一行，包含一个浮点数 nn。</p>
+<p><strong>输出格式</strong></p>
+<p>共一行，包含一个浮点数，表示问题的解。</p>
+<p>注意，结果保留 66 位小数。</p>
+<p><strong>数据范围</strong></p>
+<p>−10000≤n≤10000−10000≤n≤10000</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;1000.00</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;10.000000</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><strong>答案</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">cube_root</span><span class="params">(<span class="keyword">double</span> num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> l,r;</span><br><span class="line">    <span class="keyword">if</span>(num &gt;= <span class="number">1</span>)</span><br><span class="line">        l = <span class="number">0</span>,r = num;</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">//当num&lt;1时，我们要的答案就在num~1之间，而不是0~num</span></span><br><span class="line">        l = num,r = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>( r-l &gt; <span class="number">1e-8</span>)&#123;</span><br><span class="line">        <span class="keyword">double</span> mid = (l+r)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>( mid*mid*mid &gt; num) r =mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> num,result;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;num);</span><br><span class="line">    <span class="comment">//保证进入到cube_root的值非负数</span></span><br><span class="line">    <span class="keyword">if</span>(num &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        result = cube_root(num);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lf"</span>,result);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(num &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        result = cube_root(num * <span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lf"</span>,result*<span class="number">-1</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -算法</tag>
       </tags>
   </entry>
   <entry>
@@ -429,109 +580,6 @@
       </categories>
       <tags>
         <tag>-笔记 -Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>中断-异常</title>
-    <url>/posts/a76ffb5a/</url>
-    <content><![CDATA[<h3 id="一、中断机制的诞生"><a href="#一、中断机制的诞生" class="headerlink" title="一、中断机制的诞生"></a>一、中断机制的诞生</h3><ul>
-<li><p>在单批道处理阶段，各个程序只能串行处理，系统资利用低，为了解决上诉问题，人们发明了操作系统（作为管理者），引入中断机制，实现了多道程序并发执行</p>
-</li>
-<li><p><strong>本质：发生中断就意味着需要操作系统介入，开展管理工作</strong></p>
-</li>
-</ul>
-<h3 id="二、中断的概念和作业"><a href="#二、中断的概念和作业" class="headerlink" title="二、中断的概念和作业"></a>二、中断的概念和作业</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><ul>
-<li>当中断发生时，CPU立即进入<strong>核心态</strong></li>
-<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理</li>
-<li>对于不同的中断信号，会进行不同的处理</li>
-</ul>
-<h4 id="2、中断的作用"><a href="#2、中断的作用" class="headerlink" title="2、中断的作用"></a>2、中断的作用</h4><p>​    发生了中断，就意味着需要操作系统介入，发展管理工作。由于操作系统的管理工作（比如进程切换、分配I/O设备等）需要使用特权指令，因此CPU需要从用户态转变成核心态。<strong>中断</strong>可以<strong>使CPU从用户态转变成核心态，使操作系统获得计算机的控制权</strong>.。有了中断，才能实现多道程序并发执行。</p>
-<h4 id="3、用户态、核心态切换的实现"><a href="#3、用户态、核心态切换的实现" class="headerlink" title="3、用户态、核心态切换的实现"></a>3、用户态、核心态切换的实现</h4><ul>
-<li><strong>“用户态—》核心态“</strong>是通过<strong>中断</strong>实现的。并且<strong>中断</strong>是<strong>唯一的</strong>方式</li>
-<li>”核心态—》用户态“的切换是通过<strong>执行一个特权指令</strong>，将程序状态字（PSW）的标志位设置为”用户态“</li>
-</ul>
-<h3 id="三、中断-广义的中断-分类"><a href="#三、中断-广义的中断-分类" class="headerlink" title="三、中断{广义的中断}分类"></a>三、中断{广义的中断}分类</h3><h4 id="1、内中断（异常、例外、陷入）"><a href="#1、内中断（异常、例外、陷入）" class="headerlink" title="1、内中断（异常、例外、陷入）"></a>1、内中断（异常、例外、陷入）</h4><ul>
-<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
-</li>
-<li><p>自愿中断</p>
-<ul>
-<li>指令中断</li>
-</ul>
-</li>
-<li><p>强迫中断</p>
-<ul>
-<li>硬件故障</li>
-<li>软件中断</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、外中断（中断-狭义的中断-）"><a href="#2、外中断（中断-狭义的中断-）" class="headerlink" title="2、外中断（中断{狭义的中断}）"></a>2、外中断（中断{狭义的中断}）</h4><ul>
-<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
-</li>
-<li><p>外设请求</p>
-</li>
-<li><p>人工干预</p>
-</li>
-</ul>
-<h3 id="四、外中断的处理过程"><a href="#四、外中断的处理过程" class="headerlink" title="四、外中断的处理过程"></a>四、外中断的处理过程</h3><p><img src="https://i.loli.net/2020/12/15/N1OuBLW9Zj7YbAy.png" alt="image-20201215203027037"></p>
-<h3 id="五、回顾"><a href="#五、回顾" class="headerlink" title="五、回顾"></a>五、回顾</h3><p><img src="https://i.loli.net/2020/12/15/OEjrGxoAeT5cUM4.png" alt="image-20201215203338519"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统发展和分类</title>
-    <url>/posts/2ce96af5/</url>
-    <content><![CDATA[<h3 id="一、手工操作阶段"><a href="#一、手工操作阶段" class="headerlink" title="一、手工操作阶段"></a>一、手工操作阶段</h3><h3 id="二、批处理阶段"><a href="#二、批处理阶段" class="headerlink" title="二、批处理阶段"></a>二、批处理阶段</h3><h4 id="1、单道批处理阶段"><a href="#1、单道批处理阶段" class="headerlink" title="1、单道批处理阶段"></a>1、单道批处理阶段</h4><p>引入<strong>脱机输入/输出技术</strong>（用磁带完成），并<strong>监督程序</strong>负责控制作业的输入、输出。</p>
-<p><strong>优点</strong>：缓解了一定程序的人机速度矛盾，资源利用率有所提高</p>
-<p><strong>缺点</strong>：<strong>内存中仅能由一道程序运行</strong>，只有该程序运行结束后才能调入下一道程序，<strong>CPU有大量的时间是空闲等待I/O完成</strong>，资源利用依然低。</p>
-<h4 id="2、多批道处理系统"><a href="#2、多批道处理系统" class="headerlink" title="2、多批道处理系统"></a>2、多批道处理系统</h4><p><strong>操作系统正式诞生</strong>，并引入了<strong>中断技术</strong>，由操作系统负责管理这些程序的执行，各个程序并发执行。</p>
-<p><strong>优点</strong>：多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源，<strong>资源利用率大幅度提升</strong>，CPU和其他资源保持“忙碌”状态，系统吞吐量增大</p>
-<p><strong>缺点</strong>：用户响应时间长，<strong>没有人机交互功能</strong>（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p>
-<h3 id="三、分时操作系统"><a href="#三、分时操作系统" class="headerlink" title="三、分时操作系统"></a>三、分时操作系统</h3><p>：计算机以<strong>时间片</strong>为单位轮转为<strong>各个用户/作业服务</strong>，各个用户可通过终端与计算机进行交互</p>
-<p><strong>优点</strong>：用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</p>
-<p><strong>缺点</strong>：<strong>不能优先处理一些紧急任务</strong>。操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</p>
-<h3 id="四、实时操作系统"><a href="#四、实时操作系统" class="headerlink" title="四、实时操作系统"></a>四、实时操作系统</h3><p><strong>优点</strong>：<strong>能够优先响应一些紧急任务</strong>，某些紧急任务不需要时间片排队。</p>
-<p>在实时操作系统的控制下，计算机系统接受到外部信号后及时进行处理，并且要<strong>在严格的时限内处理完事件。</strong></p>
-<p>实时操作系统的主要特点是<strong>及时性和可靠性</strong></p>
-<h3 id="五、思维导图"><a href="#五、思维导图" class="headerlink" title="五、思维导图"></a>五、思维导图</h3><p><img src="https://i.loli.net/2020/12/05/EnZ5Vka3DG7pzgN.png" alt="image-20201205204558085"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统的四个特征</title>
-    <url>/posts/d04bd5bc/</url>
-    <content><![CDATA[<h3 id="一、目录"><a href="#一、目录" class="headerlink" title="一、目录"></a>一、目录</h3><p><img src="https://i.loli.net/2020/12/05/qeNlfD3iR8P6wLz.png" alt="image-20201205153539331"></p>
-<h3 id="二、并发"><a href="#二、并发" class="headerlink" title="二、并发"></a>二、并发</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>并发</strong>：指两个或多个事件在同一时间间隔内发生。这些事件<strong>宏观上是同时发生</strong>的，但是<strong>微观上是交替发生</strong>的</p>
-<p><strong>易于混淆</strong>的概念：<strong>并行</strong>：指两个或多个事件<strong>同一时刻</strong>发生</p>
-<h4 id="2、操作系统的并发性"><a href="#2、操作系统的并发性" class="headerlink" title="2、操作系统的并发性"></a>2、操作系统的并发性</h4><p>​    操作系统的并发性：指计算机系统同时存在着多个运行着的程序</p>
-<h3 id="三、共享"><a href="#三、共享" class="headerlink" title="三、共享"></a>三、共享</h3><h4 id="1、概念-1"><a href="#1、概念-1" class="headerlink" title="1、概念"></a>1、概念</h4><p>​    共享：即<strong>资源共享</strong>，是指系统内的资源可供内存中多个并发执行的进程共同使用。</p>
-<p><img src="https://i.loli.net/2020/12/05/PbZ4SJHftFU5Gqp.png" alt="image-20201205155800371"></p>
-<p>​    </p>
-<h3 id="四、虚拟"><a href="#四、虚拟" class="headerlink" title="四、虚拟"></a>四、虚拟</h3><h4 id="1、概念-2"><a href="#1、概念-2" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>虚拟</strong>：指把一个物理上的实体变成若干个逻辑上的对应物，物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的</p>
-<p><img src="https://i.loli.net/2020/12/05/Aj7WMiY1uRqQUt5.png" alt="image-20201205160547807"></p>
-<h4 id="2、注意"><a href="#2、注意" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
-<li><strong><em>没有并发性，就没有虚拟性</em></strong></li>
-</ul>
-<h3 id="五、异步"><a href="#五、异步" class="headerlink" title="五、异步"></a>五、异步</h3><h4 id="1、概念-3"><a href="#1、概念-3" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>异步：</strong>在多道程序环境下，运行多个程序并发执行，但<strong>由于资源有限</strong>，进程的执行不是一贯到底的，而是走走停停的，以不可预知的速度向前推进，这就是进程的异步性。</p>
-<h4 id="2、注意-1"><a href="#2、注意-1" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
-<li><strong><em>只有系统拥有并发性，才有可能导致异步性</em></strong></li>
-</ul>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
       </tags>
   </entry>
   <entry>
@@ -677,102 +725,27 @@
       </tags>
   </entry>
   <entry>
-    <title>二分</title>
-    <url>/posts/9947c71c/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>单调性的题目一定可以二分，可以的二分的题目不一定由单调性</strong></p>
-<p>二分一定是有解的，如果出现无解的情况，一定是题目的问题，而不是模板的问题</p>
-</blockquote>
-<h3 id="整数二分"><a href="#整数二分" class="headerlink" title="整数二分"></a>整数二分</h3><p>思想：整个区间可以一分为二，一边区间都满足某一条件，另一区间都不满足某一条件，而新边界的选择</p>
-<ul>
-<li><font color='red'>新的边界可以设置为不满足条件区间的最大值（1）</font></li>
-<li><font color='cornflowerblue'>新的边界设置设置为满足条件区间的最小值（2）</font></li>
-</ul>
-<p>两种情况对应两种不同的模板。</p>
-<p><strong>模板的选择主要看check函数中ture&amp;false区间的划分，如果l=mid，就选择第一个模板，如果r=mid，就选择第二个模板</strong></p>
-<h4 id="第一种模拟模板"><a href="#第一种模拟模板" class="headerlink" title="第一种模拟模板"></a><font color='red'>第一种模拟模板</font></h4><h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><ol>
-<li>mid = （l+r<strong>+1</strong>）/2</li>
-<li>if(check(mid))<ol>
-<li>true —&gt;[mid,r]</li>
-<li>false –&gt;[l,mid-1]</li>
-</ol>
-</li>
-</ol>
-<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这里为什么要mid算式中要加一</span><br><span class="line">例子：</span><br><span class="line">如果 </span><br><span class="line">	l&#x3D;r-1</span><br><span class="line">	初始化区间[l,r]</span><br><span class="line">	mid &#x3D; l</span><br><span class="line">	check(mid) ---&gt;true ---&gt; [l.r] ---&gt;死循环！！！</span><br></pre></td></tr></table></figure>
-
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="comment">/* ... */</span>&#125; <span class="comment">// 检查x是否满足某种性质</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 区间[l, r]被划分成[l, mid - 1]和[mid, r]时使用：</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch_2</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = l + r + <span class="number">1</span> &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid)) l = mid;</span><br><span class="line">        <span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="第二种模拟模板"><a href="#第二种模拟模板" class="headerlink" title="第二种模拟模板"></a><strong><font color='cornflowerblue'>第二种模拟模板</font></strong></h4><h5 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a><strong>步骤</strong></h5><ol>
-<li>mid = （l+r）/2</li>
-<li>if(check(mid))<ol>
-<li>true —&gt;[l,mid]</li>
-<li>false –&gt;[mid+1,r]</li>
-</ol>
-</li>
-</ol>
-<h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="comment">/* ... */</span>&#125; <span class="comment">// 检查x是否满足某种性质</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 区间[l, r]被划分成[l, mid]和[mid + 1, r]时使用：</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch_1</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid)) r = mid;    <span class="comment">// check()判断mid是否满足性质</span></span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><h5 id="数的范围"><a href="#数的范围" class="headerlink" title="数的范围"></a><strong>数的范围</strong></h5><blockquote>
-<p>给定一个按照升序排列的长度为 nn 的整数数组，以及 qq 个查询。</p>
-<p>对于每个查询，返回一个元素 kk 的起始位置和终止位置（位置从 00 开始计数）。</p>
-<p>如果数组中不存在该元素，则返回 <code>-1 -1</code>。</p>
-<p><strong>输入格式</strong></p>
-<p>第一行包含整数 nn 和 qq，表示数组长度和询问个数。</p>
-<p>第二行包含 nn 个整数（均在 1∼100001∼10000 范围内），表示完整数组。</p>
-<p>接下来 qq 行，每行包含一个整数 kk，表示一个询问元素。</p>
-<p><strong>输出格式</strong></p>
-<p>共 qq 行，每行包含两个整数，表示所求元素的起始位置和终止位置。</p>
-<p>如果数组中不存在该元素，则返回 <code>-1 -1</code>。</p>
-<p><strong>数据范围</strong></p>
-<p>1≤n≤1000001≤n≤100000<br>1≤q≤100001≤q≤10000<br>1≤k≤100001≤k≤10000</p>
-<p><strong>输入样例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;6 3</span><br><span class="line">&gt;1 2 2 3 3 4</span><br><span class="line">&gt;3</span><br><span class="line">&gt;4</span><br><span class="line">&gt;5</span><br></pre></td></tr></table></figure>
-
-<p><strong>输出样例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;3 4</span><br><span class="line">&gt;5 5</span><br><span class="line">&gt;-1 -1</span><br></pre></td></tr></table></figure>
-
-
-</blockquote>
-<p><strong>答案</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100010</span>;</span><br><span class="line"><span class="keyword">int</span> q[N];</span><br><span class="line"><span class="keyword">int</span> n,m,num;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l,r,mid;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n ; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;q[i]);</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line">        l = <span class="number">0</span>,r = n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            mid = l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(q[mid] &gt;= num) r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q[l] != num) </span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"-1 -1\n"</span>);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d "</span>,l);</span><br><span class="line">            l = mid,r = n<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">                mid = l+r+<span class="number">1</span>&gt;&gt;<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(q[mid] &lt;= num) l = mid;</span><br><span class="line">                <span class="keyword">else</span> r = mid<span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d \n"</span>,l);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="浮点数二分"><a href="#浮点数二分" class="headerlink" title="浮点数二分"></a>浮点数二分</h3><p>由于浮点数二分不存在边界问题，所以代码实现简单</p>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123;<span class="comment">/* ... */</span>&#125; <span class="comment">// 检查x是否满足某种性质</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">bsearch_3</span><span class="params">(<span class="keyword">double</span> l, <span class="keyword">double</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-6</span>;   <span class="comment">// eps 表示精度，取决于题目对精度的要求</span></span><br><span class="line">    <span class="keyword">while</span> (r - l &gt; eps)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">double</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid)) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><h5 id="数的三次方根"><a href="#数的三次方根" class="headerlink" title="数的三次方根"></a>数的三次方根</h5><blockquote>
-<p>给定一个浮点数 nn，求它的三次方根。</p>
-<p><strong>输入格式</strong></p>
-<p>共一行，包含一个浮点数 nn。</p>
-<p><strong>输出格式</strong></p>
-<p>共一行，包含一个浮点数，表示问题的解。</p>
-<p>注意，结果保留 66 位小数。</p>
-<p><strong>数据范围</strong></p>
-<p>−10000≤n≤10000−10000≤n≤10000</p>
-<p><strong>输入样例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;1000.00</span><br></pre></td></tr></table></figure>
-
-<p><strong>输出样例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;10.000000</span><br></pre></td></tr></table></figure>
-
-
-</blockquote>
-<p><strong>答案</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">cube_root</span><span class="params">(<span class="keyword">double</span> num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> l,r;</span><br><span class="line">    <span class="keyword">if</span>(num &gt;= <span class="number">1</span>)</span><br><span class="line">        l = <span class="number">0</span>,r = num;</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">//当num&lt;1时，我们要的答案就在num~1之间，而不是0~num</span></span><br><span class="line">        l = num,r = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>( r-l &gt; <span class="number">1e-8</span>)&#123;</span><br><span class="line">        <span class="keyword">double</span> mid = (l+r)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>( mid*mid*mid &gt; num) r =mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> num,result;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;num);</span><br><span class="line">    <span class="comment">//保证进入到cube_root的值非负数</span></span><br><span class="line">    <span class="keyword">if</span>(num &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        result = cube_root(num);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lf"</span>,result);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(num &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        result = cube_root(num * <span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lf"</span>,result*<span class="number">-1</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+    <title>操作系统发展和分类</title>
+    <url>/posts/2ce96af5/</url>
+    <content><![CDATA[<h3 id="一、手工操作阶段"><a href="#一、手工操作阶段" class="headerlink" title="一、手工操作阶段"></a>一、手工操作阶段</h3><h3 id="二、批处理阶段"><a href="#二、批处理阶段" class="headerlink" title="二、批处理阶段"></a>二、批处理阶段</h3><h4 id="1、单道批处理阶段"><a href="#1、单道批处理阶段" class="headerlink" title="1、单道批处理阶段"></a>1、单道批处理阶段</h4><p>引入<strong>脱机输入/输出技术</strong>（用磁带完成），并<strong>监督程序</strong>负责控制作业的输入、输出。</p>
+<p><strong>优点</strong>：缓解了一定程序的人机速度矛盾，资源利用率有所提高</p>
+<p><strong>缺点</strong>：<strong>内存中仅能由一道程序运行</strong>，只有该程序运行结束后才能调入下一道程序，<strong>CPU有大量的时间是空闲等待I/O完成</strong>，资源利用依然低。</p>
+<h4 id="2、多批道处理系统"><a href="#2、多批道处理系统" class="headerlink" title="2、多批道处理系统"></a>2、多批道处理系统</h4><p><strong>操作系统正式诞生</strong>，并引入了<strong>中断技术</strong>，由操作系统负责管理这些程序的执行，各个程序并发执行。</p>
+<p><strong>优点</strong>：多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源，<strong>资源利用率大幅度提升</strong>，CPU和其他资源保持“忙碌”状态，系统吞吐量增大</p>
+<p><strong>缺点</strong>：用户响应时间长，<strong>没有人机交互功能</strong>（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p>
+<h3 id="三、分时操作系统"><a href="#三、分时操作系统" class="headerlink" title="三、分时操作系统"></a>三、分时操作系统</h3><p>：计算机以<strong>时间片</strong>为单位轮转为<strong>各个用户/作业服务</strong>，各个用户可通过终端与计算机进行交互</p>
+<p><strong>优点</strong>：用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</p>
+<p><strong>缺点</strong>：<strong>不能优先处理一些紧急任务</strong>。操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</p>
+<h3 id="四、实时操作系统"><a href="#四、实时操作系统" class="headerlink" title="四、实时操作系统"></a>四、实时操作系统</h3><p><strong>优点</strong>：<strong>能够优先响应一些紧急任务</strong>，某些紧急任务不需要时间片排队。</p>
+<p>在实时操作系统的控制下，计算机系统接受到外部信号后及时进行处理，并且要<strong>在严格的时限内处理完事件。</strong></p>
+<p>实时操作系统的主要特点是<strong>及时性和可靠性</strong></p>
+<h3 id="五、思维导图"><a href="#五、思维导图" class="headerlink" title="五、思维导图"></a>五、思维导图</h3><p><img src="https://i.loli.net/2020/12/05/EnZ5Vka3DG7pzgN.png" alt="image-20201205204558085"></p>
 ]]></content>
       <categories>
-        <category>算法</category>
+        <category>操作系统</category>
       </categories>
       <tags>
-        <tag>-笔记 -算法</tag>
+        <tag>-笔记 -操作系统</tag>
       </tags>
   </entry>
   <entry>
@@ -886,146 +859,6 @@
 <h3 id="二-系统调用和函数库的区别"><a href="#二-系统调用和函数库的区别" class="headerlink" title="二 系统调用和函数库的区别"></a>二 系统调用和函数库的区别</h3><p><img src="https://i.loli.net/2020/12/18/ujoQrK3UiRtsWcw.png" alt="image-20201218111839800"></p>
 <h3 id="三-系统调用背后的过程"><a href="#三-系统调用背后的过程" class="headerlink" title="三 系统调用背后的过程"></a>三 系统调用背后的过程</h3><p><img src="https://i.loli.net/2020/12/18/a563MetRrPnzjZh.png" alt="image-20201218112528140"></p>
 <h3 id="四-知识回顾"><a href="#四-知识回顾" class="headerlink" title="四 知识回顾"></a>四 知识回顾</h3><p><img src="https://i.loli.net/2020/12/18/62QAHhde1g8Gpzf.png" alt="image-20201218112743161"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线程概念与多线程模型</title>
-    <url>/posts/3971d124/</url>
-    <content><![CDATA[<h3 id="一、什么是线程，为什么要引入线程"><a href="#一、什么是线程，为什么要引入线程" class="headerlink" title="一、什么是线程，为什么要引入线程"></a>一、什么是线程，为什么要引入线程</h3><p><img src="https://i.loli.net/2020/12/24/o7UagnA9ZLlehpB.png" alt="image-20201224103051529"></p>
-<ul>
-<li>线程是<strong>一个基本的CPU执行单元</strong>，也是<strong>程序执行流的最小单位</strong>。</li>
-<li></li>
-</ul>
-<h3 id="二、引入线程机制后，有什么变化"><a href="#二、引入线程机制后，有什么变化" class="headerlink" title="二、引入线程机制后，有什么变化"></a>二、引入线程机制后，有什么变化</h3><p><img src="https://i.loli.net/2020/12/24/W5mpHxk6glcXnrP.png" alt="image-20201224103311213"></p>
-<h3 id="三、线程的重要属性"><a href="#三、线程的重要属性" class="headerlink" title="三、线程的重要属性"></a>三、线程的重要属性</h3><p><img src="https://i.loli.net/2020/12/24/t4VSpF7yecUiY2g.png" alt="image-20201224104737922"></p>
-<h3 id="四、实现方式"><a href="#四、实现方式" class="headerlink" title="四、实现方式"></a>四、实现方式</h3><h4 id="1、用户级线程"><a href="#1、用户级线程" class="headerlink" title="1、用户级线程"></a>1、用户级线程</h4><ul>
-<li><p>用户级线程由应用程序通过线程库来实现的</p>
-</li>
-<li><p>所有的<strong>线程管理工作</strong>都由<strong>应用程序</strong>负责（包括线程切换）</p>
-</li>
-<li><p>用户级线程，<strong>线程切换</strong>可以在<strong>用户态下即可完成</strong>，无需操作系统的干预</p>
-</li>
-<li><p>用户级线程对用户不透明，对操作系统透明</p>
-</li>
-<li><p>用户级线程，就是“从用户视角看到的线程”</p>
-<p><img src="https://i.loli.net/2020/12/24/g86KlfCz3BxHPhM.png" alt="image-20201224110917123"></p>
-</li>
-</ul>
-<h4 id="2、内核级线程"><a href="#2、内核级线程" class="headerlink" title="2、内核级线程"></a>2、内核级线程</h4><ul>
-<li><strong>内核级线程管理工作</strong>由<strong>操作系统内核</strong>完成。</li>
-<li>线程调度、切换等工作都由内核完成，因此<strong>内核级线程的切换</strong>必然需要在<strong>核心态</strong>下才能完成</li>
-<li>”内核级线程“就是”从操作系统内核视角才能看到的线程“</li>
-</ul>
-<p><img src="https://i.loli.net/2020/12/24/UyoGcdegKJFWku7.png" alt="image-20201224111539618"></p>
-<h4 id="3、组合模式"><a href="#3、组合模式" class="headerlink" title="3、组合模式"></a>3、组合模式</h4><ul>
-<li>同时支持用户级线程和内核级线程，将n个用户级线程映射到m个内核级线程上（n&gt;=m）;</li>
-<li><strong>内核级线程才是处理机分配的单位</strong></li>
-<li><img src="https://i.loli.net/2020/12/24/jaX4oh6FTmctWRy.png" alt="image-20201224111727851"></li>
-<li></li>
-</ul>
-<h3 id="五、多线程模型"><a href="#五、多线程模型" class="headerlink" title="五、多线程模型"></a>五、多线程模型</h3><h4 id="1、多对一模型"><a href="#1、多对一模型" class="headerlink" title="1、多对一模型"></a>1、多对一模型</h4><p><img src="https://i.loli.net/2020/12/24/QD4V3I7ajKLbvEn.png" alt="image-20201224112057178"></p>
-<h4 id="2、一对一模型"><a href="#2、一对一模型" class="headerlink" title="2、一对一模型"></a>2、一对一模型</h4><p><img src="https://i.loli.net/2020/12/24/XpCsl7TmuntqGEA.png" alt="image-20201224112328130"></p>
-<h4 id="3、多对多模型"><a href="#3、多对多模型" class="headerlink" title="3、多对多模型"></a>3、多对多模型</h4><p><img src="https://i.loli.net/2020/12/24/nZIym2Fghwp9u65.png" alt="image-20201224112443274"></p>
-<h3 id="六、总"><a href="#六、总" class="headerlink" title="六、总"></a>六、总</h3><p><img src="https://i.loli.net/2020/12/24/SJustWoQIp1lE2f.png" alt="image-20201224112624565"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>调度算法的评判标准</title>
-    <url>/posts/110d173/</url>
-    <content><![CDATA[<h3 id="一、CPU利用率"><a href="#一、CPU利用率" class="headerlink" title="一、CPU利用率"></a>一、CPU利用率</h3><ul>
-<li>CPU“忙碌”的时间占总时间的比例</li>
-<li>利用率 = 忙碌的时间 / 总时间</li>
-</ul>
-<p><img src="https://i.loli.net/2020/12/26/Dzav7BIkj8Z3Spe.png" alt="image-20201226112636011"></p>
-<h3 id="二、系统吞吐量"><a href="#二、系统吞吐量" class="headerlink" title="二、系统吞吐量"></a>二、系统吞吐量</h3><ul>
-<li><strong>系统吞吐量</strong>：单位时间内完成作业的数量</li>
-<li><strong>系统吞吐量</strong> = 总共完成了多少作业 / 总共花了多少时间</li>
-</ul>
-<p><img src="https://i.loli.net/2020/12/26/G7SYZwVAfk28DJF.png" alt="image-20201226112952425"></p>
-<h3 id="三、周转时间"><a href="#三、周转时间" class="headerlink" title="三、周转时间"></a>三、周转时间</h3><ul>
-<li>周转时间：指作业<strong>被提交到系统开始</strong>，到<strong>作业完成为止</strong>的这段时间间隔</li>
-<li>包括四个部分<ul>
-<li>作业在外存。后备队列上等待作业调度（高级调度）的时间</li>
-<li>进程在就绪队列上等待进程调度（低级调度）的时间</li>
-<li>进程在CPU上执行的时间</li>
-<li>进程等待I/O操作完成的时间</li>
-</ul>
-</li>
-<li><strong>后三个部分在一个作业上在整个处理过程中，可能发生多次。</strong></li>
-</ul>
-<h4 id="1、周转时间、平均周转时间"><a href="#1、周转时间、平均周转时间" class="headerlink" title="1、周转时间、平均周转时间"></a>1、周转时间、平均周转时间</h4><ul>
-<li>（作业）周转时间 = 作业完成时间 — 作业提交时间<ul>
-<li>对于用户来说，更关心自己的单个作业的周转时间</li>
-</ul>
-</li>
-<li>平均周转时间 = 各个作业时间之和 / 作业数<ul>
-<li>对于操作系统来说，更关心系统的整体表现，因此更关心所有作业的周转时间的平均值</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、带权周转时间、平均带权周转时间"><a href="#2、带权周转时间、平均带权周转时间" class="headerlink" title="2、带权周转时间、平均带权周转时间"></a>2、带权周转时间、平均带权周转时间</h4><ul>
-<li>带权周转时间 = 作业周转时间 / 作业实际运行的时间 = （作业完成时间-作业提交的时间） / 作业实际运行的时间<ul>
-<li>带权周转时间越低，用户满意度更高</li>
-<li>带权周转时间必然 &gt;= 1</li>
-<li>带权周转时间与周转时间都是越小越好</li>
-</ul>
-</li>
-<li>平均带权周转时间 = 各个作业带权周转时间之和 / 作业数</li>
-</ul>
-<h3 id="四、等待时间"><a href="#四、等待时间" class="headerlink" title="四、等待时间"></a>四、等待时间</h3><ul>
-<li><strong>等待时间</strong>：指<strong>进程/作业处于等待处理机状态时间之和</strong>，等待时间越长，用户满意度越低</li>
-<li>对于<strong>进程</strong>来说,，等待时间就是指进程建立后<strong>等待被服务的时间之和</strong>，在等待I/O完成的期间其实进程也是在被服务的，所有不计入的等待时间</li>
-<li>对于<strong>作业</strong>来说，不仅要考虑<strong>建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间</strong></li>
-</ul>
-<h3 id="五、响应时间"><a href="#五、响应时间" class="headerlink" title="五、响应时间"></a>五、响应时间</h3><ul>
-<li>响应时间：指从用户<strong>提交请求</strong>到<strong>首次产生响应</strong>所用的时间</li>
-</ul>
-<h3 id="六、计算"><a href="#六、计算" class="headerlink" title="六、计算"></a>六、计算</h3><p><img src="https://i.loli.net/2020/12/26/Fv4Sdg6MkT7InNA.png" alt="image-20201226162238234"></p>
-<h3 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h3><p><img src="https://i.loli.net/2020/12/26/RO7BiEb5LnhSKpq.png" alt="image-20201226160424754"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>进程控制</title>
-    <url>/posts/d9c2550/</url>
-    <content><![CDATA[<h3 id="一-基本概念"><a href="#一-基本概念" class="headerlink" title="一 基本概念"></a>一 基本概念</h3><h4 id="1、什么是进程控制"><a href="#1、什么是进程控制" class="headerlink" title="1、什么是进程控制"></a>1、什么是进程控制</h4><p>​    进程控制的主要功能就是对系统中的所有进程进行有效的管理，它具有创建新进程、撤销已有进程、实现进程转换等功能</p>
-<h4 id="2、如何实现进程控制"><a href="#2、如何实现进程控制" class="headerlink" title="2、如何实现进程控制"></a>2、如何实现进程控制</h4><p>​    <img src="https://i.loli.net/2020/12/22/xw6di8GcAoj9zN7.png" alt="image-20201222203441542"></p>
-<ul>
-<li><strong>为了避免PCB内的标志位与PCB所处的队列不一致，</strong>使用<strong>原语来实现基础控制</strong>，原语的特点是<strong>执行期间不允许中断</strong>，只能一气呵成。这种不可被中断的操作即<strong>原子操作</strong></li>
-<li>原语采用“<strong>关中断</strong>指令”和“<strong>开中断</strong>操作”实现。<strong>关/开中断指令</strong>的权限非常大，所以只允许在<strong>核心态</strong>下执行的<strong>特权指令</strong></li>
-<li>原语的目的<ul>
-<li>更新PCB中的信息<ul>
-<li>所有的进程控制原语一定都会修改进程状态标志</li>
-<li>剥夺当前允许进程的CPU使用权必然需要保存其运行环境</li>
-<li>某进程开始运行前必然要恢复运行状态</li>
-</ul>
-</li>
-<li>将PCB插入到合适的队列中</li>
-<li>分配/回收资源</li>
-</ul>
-</li>
-</ul>
-<h3 id="二-进程控制相关的原语"><a href="#二-进程控制相关的原语" class="headerlink" title="二 进程控制相关的原语"></a>二 进程控制相关的原语</h3><h4 id="1、进程的创建"><a href="#1、进程的创建" class="headerlink" title="1、进程的创建"></a>1、进程的创建</h4><p><img src="https://i.loli.net/2020/12/22/yoM1Fb96GhBfqOQ.png" alt="image-20201222205630647"></p>
-<h4 id="2、进程的终止"><a href="#2、进程的终止" class="headerlink" title="2、进程的终止"></a>2、进程的终止</h4><p><img src="https://i.loli.net/2020/12/22/2SA34PLszkRBeKG.png" alt="image-20201222205844888"></p>
-<h4 id="3、进程的阻塞、唤醒"><a href="#3、进程的阻塞、唤醒" class="headerlink" title="3、进程的阻塞、唤醒"></a>3、进程的阻塞、唤醒</h4><p><img src="https://i.loli.net/2020/12/22/E7rFRDTq3fBviCK.png" alt="image-20201222210009333"></p>
-<h4 id="4、进程的切换"><a href="#4、进程的切换" class="headerlink" title="4、进程的切换"></a>4、进程的切换</h4><p><img src="https://i.loli.net/2020/12/22/QaUOc8WrXDRjJAs.png" alt="image-20201222210112018"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -1181,6 +1014,141 @@
       </tags>
   </entry>
   <entry>
+    <title>调度算法的评判标准</title>
+    <url>/posts/110d173/</url>
+    <content><![CDATA[<h3 id="一、CPU利用率"><a href="#一、CPU利用率" class="headerlink" title="一、CPU利用率"></a>一、CPU利用率</h3><ul>
+<li>CPU“忙碌”的时间占总时间的比例</li>
+<li>利用率 = 忙碌的时间 / 总时间</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/Dzav7BIkj8Z3Spe.png" alt="image-20201226112636011"></p>
+<h3 id="二、系统吞吐量"><a href="#二、系统吞吐量" class="headerlink" title="二、系统吞吐量"></a>二、系统吞吐量</h3><ul>
+<li><strong>系统吞吐量</strong>：单位时间内完成作业的数量</li>
+<li><strong>系统吞吐量</strong> = 总共完成了多少作业 / 总共花了多少时间</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/G7SYZwVAfk28DJF.png" alt="image-20201226112952425"></p>
+<h3 id="三、周转时间"><a href="#三、周转时间" class="headerlink" title="三、周转时间"></a>三、周转时间</h3><ul>
+<li>周转时间：指作业<strong>被提交到系统开始</strong>，到<strong>作业完成为止</strong>的这段时间间隔</li>
+<li>包括四个部分<ul>
+<li>作业在外存。后备队列上等待作业调度（高级调度）的时间</li>
+<li>进程在就绪队列上等待进程调度（低级调度）的时间</li>
+<li>进程在CPU上执行的时间</li>
+<li>进程等待I/O操作完成的时间</li>
+</ul>
+</li>
+<li><strong>后三个部分在一个作业上在整个处理过程中，可能发生多次。</strong></li>
+</ul>
+<h4 id="1、周转时间、平均周转时间"><a href="#1、周转时间、平均周转时间" class="headerlink" title="1、周转时间、平均周转时间"></a>1、周转时间、平均周转时间</h4><ul>
+<li>（作业）周转时间 = 作业完成时间 — 作业提交时间<ul>
+<li>对于用户来说，更关心自己的单个作业的周转时间</li>
+</ul>
+</li>
+<li>平均周转时间 = 各个作业时间之和 / 作业数<ul>
+<li>对于操作系统来说，更关心系统的整体表现，因此更关心所有作业的周转时间的平均值</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、带权周转时间、平均带权周转时间"><a href="#2、带权周转时间、平均带权周转时间" class="headerlink" title="2、带权周转时间、平均带权周转时间"></a>2、带权周转时间、平均带权周转时间</h4><ul>
+<li>带权周转时间 = 作业周转时间 / 作业实际运行的时间 = （作业完成时间-作业提交的时间） / 作业实际运行的时间<ul>
+<li>带权周转时间越低，用户满意度更高</li>
+<li>带权周转时间必然 &gt;= 1</li>
+<li>带权周转时间与周转时间都是越小越好</li>
+</ul>
+</li>
+<li>平均带权周转时间 = 各个作业带权周转时间之和 / 作业数</li>
+</ul>
+<h3 id="四、等待时间"><a href="#四、等待时间" class="headerlink" title="四、等待时间"></a>四、等待时间</h3><ul>
+<li><strong>等待时间</strong>：指<strong>进程/作业处于等待处理机状态时间之和</strong>，等待时间越长，用户满意度越低</li>
+<li>对于<strong>进程</strong>来说,，等待时间就是指进程建立后<strong>等待被服务的时间之和</strong>，在等待I/O完成的期间其实进程也是在被服务的，所有不计入的等待时间</li>
+<li>对于<strong>作业</strong>来说，不仅要考虑<strong>建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间</strong></li>
+</ul>
+<h3 id="五、响应时间"><a href="#五、响应时间" class="headerlink" title="五、响应时间"></a>五、响应时间</h3><ul>
+<li>响应时间：指从用户<strong>提交请求</strong>到<strong>首次产生响应</strong>所用的时间</li>
+</ul>
+<h3 id="六、计算"><a href="#六、计算" class="headerlink" title="六、计算"></a>六、计算</h3><p><img src="https://i.loli.net/2020/12/26/Fv4Sdg6MkT7InNA.png" alt="image-20201226162238234"></p>
+<h3 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h3><p><img src="https://i.loli.net/2020/12/26/RO7BiEb5LnhSKpq.png" alt="image-20201226160424754"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>操作系统的四个特征</title>
+    <url>/posts/d04bd5bc/</url>
+    <content><![CDATA[<h3 id="一、目录"><a href="#一、目录" class="headerlink" title="一、目录"></a>一、目录</h3><p><img src="https://i.loli.net/2020/12/05/qeNlfD3iR8P6wLz.png" alt="image-20201205153539331"></p>
+<h3 id="二、并发"><a href="#二、并发" class="headerlink" title="二、并发"></a>二、并发</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>并发</strong>：指两个或多个事件在同一时间间隔内发生。这些事件<strong>宏观上是同时发生</strong>的，但是<strong>微观上是交替发生</strong>的</p>
+<p><strong>易于混淆</strong>的概念：<strong>并行</strong>：指两个或多个事件<strong>同一时刻</strong>发生</p>
+<h4 id="2、操作系统的并发性"><a href="#2、操作系统的并发性" class="headerlink" title="2、操作系统的并发性"></a>2、操作系统的并发性</h4><p>​    操作系统的并发性：指计算机系统同时存在着多个运行着的程序</p>
+<h3 id="三、共享"><a href="#三、共享" class="headerlink" title="三、共享"></a>三、共享</h3><h4 id="1、概念-1"><a href="#1、概念-1" class="headerlink" title="1、概念"></a>1、概念</h4><p>​    共享：即<strong>资源共享</strong>，是指系统内的资源可供内存中多个并发执行的进程共同使用。</p>
+<p><img src="https://i.loli.net/2020/12/05/PbZ4SJHftFU5Gqp.png" alt="image-20201205155800371"></p>
+<p>​    </p>
+<h3 id="四、虚拟"><a href="#四、虚拟" class="headerlink" title="四、虚拟"></a>四、虚拟</h3><h4 id="1、概念-2"><a href="#1、概念-2" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>虚拟</strong>：指把一个物理上的实体变成若干个逻辑上的对应物，物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的</p>
+<p><img src="https://i.loli.net/2020/12/05/Aj7WMiY1uRqQUt5.png" alt="image-20201205160547807"></p>
+<h4 id="2、注意"><a href="#2、注意" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
+<li><strong><em>没有并发性，就没有虚拟性</em></strong></li>
+</ul>
+<h3 id="五、异步"><a href="#五、异步" class="headerlink" title="五、异步"></a>五、异步</h3><h4 id="1、概念-3"><a href="#1、概念-3" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>异步：</strong>在多道程序环境下，运行多个程序并发执行，但<strong>由于资源有限</strong>，进程的执行不是一贯到底的，而是走走停停的，以不可预知的速度向前推进，这就是进程的异步性。</p>
+<h4 id="2、注意-1"><a href="#2、注意-1" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
+<li><strong><em>只有系统拥有并发性，才有可能导致异步性</em></strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线程概念与多线程模型</title>
+    <url>/posts/3971d124/</url>
+    <content><![CDATA[<h3 id="一、什么是线程，为什么要引入线程"><a href="#一、什么是线程，为什么要引入线程" class="headerlink" title="一、什么是线程，为什么要引入线程"></a>一、什么是线程，为什么要引入线程</h3><p><img src="https://i.loli.net/2020/12/24/o7UagnA9ZLlehpB.png" alt="image-20201224103051529"></p>
+<ul>
+<li>线程是<strong>一个基本的CPU执行单元</strong>，也是<strong>程序执行流的最小单位</strong>。</li>
+<li></li>
+</ul>
+<h3 id="二、引入线程机制后，有什么变化"><a href="#二、引入线程机制后，有什么变化" class="headerlink" title="二、引入线程机制后，有什么变化"></a>二、引入线程机制后，有什么变化</h3><p><img src="https://i.loli.net/2020/12/24/W5mpHxk6glcXnrP.png" alt="image-20201224103311213"></p>
+<h3 id="三、线程的重要属性"><a href="#三、线程的重要属性" class="headerlink" title="三、线程的重要属性"></a>三、线程的重要属性</h3><p><img src="https://i.loli.net/2020/12/24/t4VSpF7yecUiY2g.png" alt="image-20201224104737922"></p>
+<h3 id="四、实现方式"><a href="#四、实现方式" class="headerlink" title="四、实现方式"></a>四、实现方式</h3><h4 id="1、用户级线程"><a href="#1、用户级线程" class="headerlink" title="1、用户级线程"></a>1、用户级线程</h4><ul>
+<li><p>用户级线程由应用程序通过线程库来实现的</p>
+</li>
+<li><p>所有的<strong>线程管理工作</strong>都由<strong>应用程序</strong>负责（包括线程切换）</p>
+</li>
+<li><p>用户级线程，<strong>线程切换</strong>可以在<strong>用户态下即可完成</strong>，无需操作系统的干预</p>
+</li>
+<li><p>用户级线程对用户不透明，对操作系统透明</p>
+</li>
+<li><p>用户级线程，就是“从用户视角看到的线程”</p>
+<p><img src="https://i.loli.net/2020/12/24/g86KlfCz3BxHPhM.png" alt="image-20201224110917123"></p>
+</li>
+</ul>
+<h4 id="2、内核级线程"><a href="#2、内核级线程" class="headerlink" title="2、内核级线程"></a>2、内核级线程</h4><ul>
+<li><strong>内核级线程管理工作</strong>由<strong>操作系统内核</strong>完成。</li>
+<li>线程调度、切换等工作都由内核完成，因此<strong>内核级线程的切换</strong>必然需要在<strong>核心态</strong>下才能完成</li>
+<li>”内核级线程“就是”从操作系统内核视角才能看到的线程“</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/24/UyoGcdegKJFWku7.png" alt="image-20201224111539618"></p>
+<h4 id="3、组合模式"><a href="#3、组合模式" class="headerlink" title="3、组合模式"></a>3、组合模式</h4><ul>
+<li>同时支持用户级线程和内核级线程，将n个用户级线程映射到m个内核级线程上（n&gt;=m）;</li>
+<li><strong>内核级线程才是处理机分配的单位</strong></li>
+<li><img src="https://i.loli.net/2020/12/24/jaX4oh6FTmctWRy.png" alt="image-20201224111727851"></li>
+<li></li>
+</ul>
+<h3 id="五、多线程模型"><a href="#五、多线程模型" class="headerlink" title="五、多线程模型"></a>五、多线程模型</h3><h4 id="1、多对一模型"><a href="#1、多对一模型" class="headerlink" title="1、多对一模型"></a>1、多对一模型</h4><p><img src="https://i.loli.net/2020/12/24/QD4V3I7ajKLbvEn.png" alt="image-20201224112057178"></p>
+<h4 id="2、一对一模型"><a href="#2、一对一模型" class="headerlink" title="2、一对一模型"></a>2、一对一模型</h4><p><img src="https://i.loli.net/2020/12/24/XpCsl7TmuntqGEA.png" alt="image-20201224112328130"></p>
+<h4 id="3、多对多模型"><a href="#3、多对多模型" class="headerlink" title="3、多对多模型"></a>3、多对多模型</h4><p><img src="https://i.loli.net/2020/12/24/nZIym2Fghwp9u65.png" alt="image-20201224112443274"></p>
+<h3 id="六、总"><a href="#六、总" class="headerlink" title="六、总"></a>六、总</h3><p><img src="https://i.loli.net/2020/12/24/SJustWoQIp1lE2f.png" alt="image-20201224112624565"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>运行机制-体系结构</title>
     <url>/posts/31685368/</url>
     <content><![CDATA[<h3 id="一、运行机制"><a href="#一、运行机制" class="headerlink" title="一、运行机制"></a>一、运行机制</h3><h4 id="1、指令"><a href="#1、指令" class="headerlink" title="1、指令"></a>1、指令</h4><p>1.概念：处理器（CPU）能识别、执行的最基本命令</p>
@@ -1222,6 +1190,38 @@
 </li>
 </ul>
 <h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p><img src="https://i.loli.net/2020/12/15/dDoiBXmfkvrjlQx.png" alt="image-20201215194829134"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程控制</title>
+    <url>/posts/d9c2550/</url>
+    <content><![CDATA[<h3 id="一-基本概念"><a href="#一-基本概念" class="headerlink" title="一 基本概念"></a>一 基本概念</h3><h4 id="1、什么是进程控制"><a href="#1、什么是进程控制" class="headerlink" title="1、什么是进程控制"></a>1、什么是进程控制</h4><p>​    进程控制的主要功能就是对系统中的所有进程进行有效的管理，它具有创建新进程、撤销已有进程、实现进程转换等功能</p>
+<h4 id="2、如何实现进程控制"><a href="#2、如何实现进程控制" class="headerlink" title="2、如何实现进程控制"></a>2、如何实现进程控制</h4><p>​    <img src="https://i.loli.net/2020/12/22/xw6di8GcAoj9zN7.png" alt="image-20201222203441542"></p>
+<ul>
+<li><strong>为了避免PCB内的标志位与PCB所处的队列不一致，</strong>使用<strong>原语来实现基础控制</strong>，原语的特点是<strong>执行期间不允许中断</strong>，只能一气呵成。这种不可被中断的操作即<strong>原子操作</strong></li>
+<li>原语采用“<strong>关中断</strong>指令”和“<strong>开中断</strong>操作”实现。<strong>关/开中断指令</strong>的权限非常大，所以只允许在<strong>核心态</strong>下执行的<strong>特权指令</strong></li>
+<li>原语的目的<ul>
+<li>更新PCB中的信息<ul>
+<li>所有的进程控制原语一定都会修改进程状态标志</li>
+<li>剥夺当前允许进程的CPU使用权必然需要保存其运行环境</li>
+<li>某进程开始运行前必然要恢复运行状态</li>
+</ul>
+</li>
+<li>将PCB插入到合适的队列中</li>
+<li>分配/回收资源</li>
+</ul>
+</li>
+</ul>
+<h3 id="二-进程控制相关的原语"><a href="#二-进程控制相关的原语" class="headerlink" title="二 进程控制相关的原语"></a>二 进程控制相关的原语</h3><h4 id="1、进程的创建"><a href="#1、进程的创建" class="headerlink" title="1、进程的创建"></a>1、进程的创建</h4><p><img src="https://i.loli.net/2020/12/22/yoM1Fb96GhBfqOQ.png" alt="image-20201222205630647"></p>
+<h4 id="2、进程的终止"><a href="#2、进程的终止" class="headerlink" title="2、进程的终止"></a>2、进程的终止</h4><p><img src="https://i.loli.net/2020/12/22/2SA34PLszkRBeKG.png" alt="image-20201222205844888"></p>
+<h4 id="3、进程的阻塞、唤醒"><a href="#3、进程的阻塞、唤醒" class="headerlink" title="3、进程的阻塞、唤醒"></a>3、进程的阻塞、唤醒</h4><p><img src="https://i.loli.net/2020/12/22/E7rFRDTq3fBviCK.png" alt="image-20201222210009333"></p>
+<h4 id="4、进程的切换"><a href="#4、进程的切换" class="headerlink" title="4、进程的切换"></a>4、进程的切换</h4><p><img src="https://i.loli.net/2020/12/22/QaUOc8WrXDRjJAs.png" alt="image-20201222210112018"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -1372,32 +1372,6 @@
       </tags>
   </entry>
   <entry>
-    <title>进程通信</title>
-    <url>/posts/53ad465c/</url>
-    <content><![CDATA[<h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><ul>
-<li>进程通信就是<strong>进程之间的消息传递</strong></li>
-<li>进程是分配系统资源的基本单位，因此各进程拥有的<strong>内存地址空间是相互独立的</strong></li>
-<li>为了保存安全，<strong>一个进程不能直接访问另外一个进程地址空间</strong></li>
-<li>进程通信的<strong>三种方法</strong><ul>
-<li>共享存储</li>
-<li>消息传递</li>
-<li>管道通信</li>
-</ul>
-</li>
-</ul>
-<h3 id="二、共享存储"><a href="#二、共享存储" class="headerlink" title="二、共享存储"></a>二、共享存储</h3><p><img src="https://i.loli.net/2020/12/24/y1KZ8WzR6FCYm2n.png" alt="image-20201224100458183"></p>
-<h3 id="三、消息传递"><a href="#三、消息传递" class="headerlink" title="三、消息传递"></a>三、消息传递</h3><p><img src="https://i.loli.net/2020/12/24/EqkdhtyYgBus3AI.png" alt="image-20201224101158127"></p>
-<h3 id="四、管道通信"><a href="#四、管道通信" class="headerlink" title="四、管道通信"></a>四、管道通信</h3><p><img src="https://i.loli.net/2020/12/24/Tag7bNRrhxMcY1P.png" alt="image-20201224100913574"></p>
-<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/24/V2ovCkfQgOZ48Nq.png" alt="image-20201224101327317"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>进程调度的时机、切换与过程、调度方式</title>
     <url>/posts/7f586123/</url>
     <content><![CDATA[<h3 id="一、时机"><a href="#一、时机" class="headerlink" title="一、时机"></a>一、时机</h3><h4 id="1、什么时候需要进程调度"><a href="#1、什么时候需要进程调度" class="headerlink" title="1、什么时候需要进程调度"></a>1、什么时候需要进程调度</h4><ul>
@@ -1461,6 +1435,162 @@
 </li>
 </ul>
 <h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p><img src="https://i.loli.net/2020/12/26/VaJfO2i4bG8rCtH.png" alt="image-20201226111643433"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高精度运算</title>
+    <url>/posts/7de295bc/</url>
+    <content><![CDATA[<h3 id="大整数相加"><a href="#大整数相加" class="headerlink" title="大整数相加"></a>大整数相加</h3><h4 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h4><h5 id="如何存储"><a href="#如何存储" class="headerlink" title="如何存储"></a>如何存储</h5><p>例如存储123456789，我们把每一位都存在数组中,这里我们数组中的第0位存数字9，这是因为两数相加可能会出现进位的现象，倒过来存储方便于加一位。</p>
+<h5 id="运算：模拟人工加法"><a href="#运算：模拟人工加法" class="headerlink" title="运算：模拟人工加法"></a>运算：模拟人工加法</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">      1 2 3</span><br><span class="line">    +   8 9 </span><br><span class="line">    --------</span><br><span class="line">      2 1 2</span><br><span class="line">&#x2F;**</span><br><span class="line">  1、3 + 9 &#x3D; 12 》10.所以进一位</span><br><span class="line">  2、2 + 8 +1 &#x3D; 11 &gt; 10,所以进一位</span><br><span class="line">  3、1 + 1 &#x3D; 2 &lt; 10,所以不进位</span><br><span class="line">**&#x2F;</span><br><span class="line">注意：这里有进位</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// C = A + B, A &gt;= 0, B &gt;= 0</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">add</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;B)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">    <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.<span class="built_in">size</span>() || i &lt; B.<span class="built_in">size</span>() ; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        t += A[i];</span><br><span class="line">        <span class="keyword">if</span> (i &lt; A.<span class="built_in">size</span>()) t += A[i];</span><br><span class="line">        <span class="keyword">if</span> (i &lt; B.<span class="built_in">size</span>()) t += B[i];</span><br><span class="line">        C.push_back(t % <span class="number">10</span>);</span><br><span class="line">        t /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (t) C.push_back(t);</span><br><span class="line">    <span class="keyword">return</span> C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><h5 id="高精度加法"><a href="#高精度加法" class="headerlink" title="高精度加法"></a><strong>高精度加法</strong></h5><blockquote>
+<p>给定两个正整数，计算它们的和。</p>
+<p><strong>输入格式</strong></p>
+<p>共两行，每行包含一个整数。</p>
+<p><strong>输出格式</strong></p>
+<p>共一行，包含所求的和。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤整数长度≤1000001≤整数长度≤100000</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;12</span><br><span class="line">&gt;23</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;35</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><strong>解答代码</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">add</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;B)</span></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">    <span class="comment">//这里用于存储进位</span></span><br><span class="line">    <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.<span class="built_in">size</span>() || i &lt; B.<span class="built_in">size</span>(); i ++)&#123;</span><br><span class="line">        <span class="comment">//每一次计算的结果都是 A[i]+B[i]+t</span></span><br><span class="line">        <span class="keyword">if</span>(i &lt; A.<span class="built_in">size</span>()) t += A[i];</span><br><span class="line">        <span class="keyword">if</span>(i &lt; B.<span class="built_in">size</span>()) t += B[i];</span><br><span class="line">        C.push_back(t%<span class="number">10</span>);</span><br><span class="line">        t /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里全部都算完后，t！=0时，我们还需要把t放入到最前面</span></span><br><span class="line">    <span class="keyword">if</span>(t) C.push_back(t);</span><br><span class="line">    <span class="keyword">return</span> C;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; A,B;</span><br><span class="line">     <span class="comment">//反向存储</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = a.<span class="built_in">size</span>() - <span class="number">1</span> ;i &gt;= <span class="number">0</span>; i --) A.push_back(a[i] -<span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = b.<span class="built_in">size</span>() - <span class="number">1</span> ;i &gt;= <span class="number">0</span>; i --) B.push_back(b[i] - <span class="string">'0'</span>);</span><br><span class="line">     </span><br><span class="line">    <span class="built_in">vector</span> C = add(A,B);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = C.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d"</span>,C[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="大数相减"><a href="#大数相减" class="headerlink" title="大数相减"></a>大数相减</h3><h5 id="运算：模拟人工减法"><a href="#运算：模拟人工减法" class="headerlink" title="运算：模拟人工减法"></a>运算：模拟人工减法</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">      1 2 3</span><br><span class="line">    -   8 9 </span><br><span class="line">    --------</span><br><span class="line">        3 4</span><br><span class="line">&#x2F;**</span><br><span class="line">  1、3&lt;9,所以需要向上借位</span><br><span class="line">  2、2 - 1 &lt; 8,所以需要向上借位</span><br><span class="line">  3、1 - 1 ≥ 0,所以不需要向上借位</span><br><span class="line">**&#x2F;</span><br><span class="line">注意：这里有借位</span><br></pre></td></tr></table></figure>
+
+<h5 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h5><ol>
+<li>为了计算A-B，我们先判断出A，B哪一个数值大，方便计算，并且最高位一定不需要向上借位，这样子就减少了边界情况<ol>
+<li>如果 A &gt; B ，我们就直接A-B</li>
+<li>如果 A &lt; B , 我们就计算 —(A - B);</li>
+</ol>
+</li>
+<li>如果 A[i] - B[i] -t 是否大于等于0<ol>
+<li>大于等于0；就不需要向上借位，直接计算</li>
+<li>小于0，就需要上借位，计算A[i] + 10 - B[i] -t，并且设置 t=0; </li>
+</ol>
+</li>
+</ol>
+<h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C = A - B, 满足A &gt;= B, A &gt;= 0, B &gt;= 0</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">sub</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;B)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, t = <span class="number">0</span>; i &lt; A.<span class="built_in">size</span>(); i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        t = A[i] - t;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; B.<span class="built_in">size</span>()) t -= B[i];</span><br><span class="line">        C.push_back((t + <span class="number">10</span>) % <span class="number">10</span>);</span><br><span class="line">        <span class="keyword">if</span> (t &lt; <span class="number">0</span>) t = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> t = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (C.<span class="built_in">size</span>() &gt; <span class="number">1</span> &amp;&amp; C.back() == <span class="number">0</span>) C.pop_back();</span><br><span class="line">    <span class="keyword">return</span> C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h5><p><strong>高精度减法</strong></p>
+<blockquote>
+<p>给定两个正整数，计算它们的差，计算结果可能为负数。</p>
+<p><strong>输入格式</strong></p>
+<p>共两行，每行包含一个整数。</p>
+<p><strong>输出格式</strong></p>
+<p>共一行，包含所求的差。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤整数长度≤1051≤整数长度≤105</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;32</span><br><span class="line">&gt;11</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;21</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>答案</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//比较 A &gt; B的大小</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">com</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;B)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(A.<span class="built_in">size</span>() != B.<span class="built_in">size</span>()) <span class="keyword">return</span> A.<span class="built_in">size</span>() &gt; B.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = A.<span class="built_in">size</span>()<span class="number">-1</span>; i &gt;= <span class="number">0</span> ;i--)</span><br><span class="line">        <span class="keyword">if</span>(A[i] != B[i])</span><br><span class="line">            <span class="keyword">return</span> A[i] &gt; B[i];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">sub</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;B)</span></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">    <span class="keyword">int</span> len = A.<span class="built_in">size</span>();</span><br><span class="line">    <span class="comment">//t表示是否借位</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>,t = <span class="number">0</span>; i &lt; len;i++)&#123;</span><br><span class="line">        t = A[i] - t;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; B.<span class="built_in">size</span>()) t = t - B[i];</span><br><span class="line">        C.push_back( (t + <span class="number">10</span>) % <span class="number">10</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(t &lt; <span class="number">0</span>) t = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> t = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//除去前导零</span></span><br><span class="line">    <span class="keyword">while</span>( C.<span class="built_in">size</span>() &gt; <span class="number">1</span> &amp;&amp; C.back() == <span class="number">0</span> ) C.pop_back();</span><br><span class="line">    <span class="keyword">return</span> C;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt; a &gt;&gt; b;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; A,B;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = a.<span class="built_in">size</span>()<span class="number">-1</span>;i &gt;= <span class="number">0</span>;i--) A.push_back(a[i] - <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = b.<span class="built_in">size</span>()<span class="number">-1</span>;i &gt;= <span class="number">0</span>;i--) B.push_back(b[i] - <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">bool</span> T = com(A,B);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">    <span class="keyword">if</span>(com(A,B))&#123;</span><br><span class="line">        C = sub(A,B);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        C = sub(B,A);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"-"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = C.<span class="built_in">size</span>()<span class="number">-1</span>;i &gt;= <span class="number">0</span>;i--)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d"</span>,C[i]);</span><br><span class="line">    </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="大数乘以小数"><a href="#大数乘以小数" class="headerlink" title="大数乘以小数"></a>大数乘以小数</h3><h5 id="思想-1"><a href="#思想-1" class="headerlink" title="思想"></a>思想</h5><p>这里我们把小数看成一个整体，而不是一位一位乘，这样就不需要考虑加法的运算</p>
+<h5 id="运算：模拟人工乘法"><a href="#运算：模拟人工乘法" class="headerlink" title="运算：模拟人工乘法"></a>运算：模拟人工乘法</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">      1 2 3</span><br><span class="line">    *   1 2 </span><br><span class="line">    --------</span><br><span class="line">         </span><br><span class="line">&#x2F;**</span><br><span class="line">	1、(3 * 12) % 10 &#x3D; 6</span><br><span class="line">    	t &#x3D; (3 * 12) &#x2F;10 &#x3D; 3</span><br><span class="line">    2、(2 * 12 + t) % 10 &#x3D; 7</span><br><span class="line">    	t &#x3D; (2 * 12 + t) &#x2F; 10 &#x3D; 2</span><br><span class="line">    3、(1 * 12 + t) % 10 &#x3D; 4</span><br><span class="line">    	t &#x3D; (1 * 12 + t) &#x2F; 10 &#x3D; 1</span><br><span class="line">**&#x2F;</span><br><span class="line">注意：这里有进位</span><br></pre></td></tr></table></figure>
+
+<h5 id="实现代码-1"><a href="#实现代码-1" class="headerlink" title="实现代码"></a>实现代码</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C = A * b, A &gt;= 0, b &gt;= 0</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">mul</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.<span class="built_in">size</span>() || t; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; A.<span class="built_in">size</span>()) t += A[i] * b;</span><br><span class="line">        C.push_back(t % <span class="number">10</span>);</span><br><span class="line">        t /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//除去前导0</span></span><br><span class="line">    <span class="keyword">while</span> (C.<span class="built_in">size</span>() &gt; <span class="number">1</span> &amp;&amp; C.back() == <span class="number">0</span>) C.pop_back();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h5><p><strong>高精度乘法</strong></p>
+<blockquote>
+<p>给定两个正整数 AA 和 BB，请你计算 A×BA×B 的值。</p>
+<p><strong>输入格式</strong></p>
+<p>共两行，第一行包含整数 AA，第二行包含整数 BB。</p>
+<p><strong>输出格式</strong></p>
+<p>共一行，包含 A×BA×B 的值。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤A的长度≤1000001≤A的长度≤100000,<br>0≤B≤100000≤B≤10000</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;2</span><br><span class="line">&gt;3</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;6</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>答案</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">mul</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">    <span class="comment">//这里是防止出现前导0，如果b=0，那就答案可能出现0000……，我们需要情况讨论，或者在后面处理以下前导0</span></span><br><span class="line">    <span class="keyword">if</span>(b == <span class="number">0</span>)&#123;</span><br><span class="line">        C.push_back(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> C;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> len = A.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; len;i++)&#123;</span><br><span class="line">        t = A[i] * b + t;</span><br><span class="line">        C.push_back(t%<span class="number">10</span>);</span><br><span class="line">        t = t/<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里不能这样写，如果b = 50，A[i] = 9,那这里的t = 45，如果这样子输入，就只能输入4，而不是全部输入，所以我们需要把t循环输入</span></span><br><span class="line">    <span class="comment">//if(t != 0) C.push_back(t%10);</span></span><br><span class="line">    <span class="keyword">while</span>(t)&#123;</span><br><span class="line">        C.push_back(t%<span class="number">10</span>);</span><br><span class="line">        t = t/<span class="number">10</span>;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> C;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; A;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = a.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i-- ) A.push_back(a[i] - <span class="string">'0'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> C = mul(A,b);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = C.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i-- ) <span class="built_in">printf</span>(<span class="string">"%d"</span>,C[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="大数除以小数"><a href="#大数除以小数" class="headerlink" title="大数除以小数"></a>大数除以小数</h3><h5 id="运算：模拟人工除法"><a href="#运算：模拟人工除法" class="headerlink" title="运算：模拟人工除法"></a>运算：模拟人工除法</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     0 1 1 2	</span><br><span class="line">    --------</span><br><span class="line"> 11√ 1 2 3 5</span><br><span class="line">     1</span><br><span class="line">    --------</span><br><span class="line">     1 2</span><br><span class="line">     1 1</span><br><span class="line">     --------</span><br><span class="line">       1 3</span><br><span class="line">       1 1</span><br><span class="line">      -------</span><br><span class="line">         2 5</span><br><span class="line">         2 2</span><br><span class="line">         -----</span><br><span class="line">           3</span><br><span class="line">&#x2F;**</span><br><span class="line">	1、r &#x3D; 0 </span><br><span class="line">	   (r * 10 +1) &#x2F; 10 &#x3D; 0</span><br><span class="line">       r &#x3D; (r * 10 +1) % 10 &#x3D; 1</span><br><span class="line">    2、(r * 10 +1) &#x2F; 10 &#x3D; 1</span><br><span class="line">       r &#x3D; (r * 10 +1) % 10 &#x3D; 1</span><br><span class="line">    3、(r * 10 +1) &#x2F; 10 &#x3D; 1</span><br><span class="line">       r &#x3D; (r * 10 +1) % 10 &#x3D; 2</span><br><span class="line">    4、(r * 10 +1) &#x2F; 10 &#x3D; 2</span><br><span class="line">       r &#x3D; (r * 10 +1) % 10 &#x3D; 3</span><br><span class="line"> ——————————————————————————————————————————</span><br><span class="line"> 所以答案是 0112，余数为3</span><br></pre></td></tr></table></figure>
+
+<h5 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// A / b = C ... r, A &gt;= 0, b &gt; 0</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">div</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">    r = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = A.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i -- )</span><br><span class="line">    &#123;</span><br><span class="line">        r = r * <span class="number">10</span> + A[i];</span><br><span class="line">        C.push_back(r / b);</span><br><span class="line">        r %= b;</span><br><span class="line">    &#125;</span><br><span class="line">    reverse(C.<span class="built_in">begin</span>(), C.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">while</span> (C.<span class="built_in">size</span>() &gt; <span class="number">1</span> &amp;&amp; C.back() == <span class="number">0</span>) C.pop_back();</span><br><span class="line">    <span class="keyword">return</span> C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h5><p><strong>高精度除法</strong></p>
+<blockquote>
+<p>给定两个非负整数 A，BA，B，请你计算 A/BA/B 的商和余数。</p>
+<p><strong>输入格式</strong></p>
+<p>共两行，第一行包含整数 AA，第二行包含整数 BB。</p>
+<p><strong>输出格式</strong></p>
+<p>共两行，第一行输出所求的商，第二行输出所求余数。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤A的长度≤1000001≤A的长度≤100000,<br>1≤B≤100001≤B≤10000,<br>BB 一定不为 00</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;7</span><br><span class="line">&gt;2</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;3</span><br><span class="line">&gt;1</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><strong>解答</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">div</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;r)</span></span>&#123;</span><br><span class="line">   r = <span class="number">0</span>;</span><br><span class="line">   <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i = A.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">       r = r*<span class="number">10</span>+A[i];</span><br><span class="line">       C.push_back(r/b);</span><br><span class="line">       r = r%b;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">   由于下面输入方式是从后往前面输出，而这里我们得到的真正的数值，如 0001111类型的，所以我们需要反转vector</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   reverse(C.<span class="built_in">begin</span>(),C.<span class="built_in">end</span>());</span><br><span class="line">   <span class="comment">//除去前导零</span></span><br><span class="line">   <span class="keyword">while</span>(C.<span class="built_in">size</span>()&gt;<span class="number">1</span> &amp;&amp; C.back() == <span class="number">0</span>) C.pop_back();</span><br><span class="line">   <span class="keyword">return</span> C;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; A;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = a.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i-- ) A.push_back(a[i] - <span class="string">'0'</span>);</span><br><span class="line">    <span class="comment">//r为余数</span></span><br><span class="line">    <span class="keyword">int</span> r;</span><br><span class="line">    <span class="keyword">auto</span> C = div(A,b,r);</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = C.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i-- ) <span class="built_in">printf</span>(<span class="string">"%d"</span>,C[i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n%d"</span>,r);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程通信</title>
+    <url>/posts/53ad465c/</url>
+    <content><![CDATA[<h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><ul>
+<li>进程通信就是<strong>进程之间的消息传递</strong></li>
+<li>进程是分配系统资源的基本单位，因此各进程拥有的<strong>内存地址空间是相互独立的</strong></li>
+<li>为了保存安全，<strong>一个进程不能直接访问另外一个进程地址空间</strong></li>
+<li>进程通信的<strong>三种方法</strong><ul>
+<li>共享存储</li>
+<li>消息传递</li>
+<li>管道通信</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、共享存储"><a href="#二、共享存储" class="headerlink" title="二、共享存储"></a>二、共享存储</h3><p><img src="https://i.loli.net/2020/12/24/y1KZ8WzR6FCYm2n.png" alt="image-20201224100458183"></p>
+<h3 id="三、消息传递"><a href="#三、消息传递" class="headerlink" title="三、消息传递"></a>三、消息传递</h3><p><img src="https://i.loli.net/2020/12/24/EqkdhtyYgBus3AI.png" alt="image-20201224101158127"></p>
+<h3 id="四、管道通信"><a href="#四、管道通信" class="headerlink" title="四、管道通信"></a>四、管道通信</h3><p><img src="https://i.loli.net/2020/12/24/Tag7bNRrhxMcY1P.png" alt="image-20201224100913574"></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/24/V2ovCkfQgOZ48Nq.png" alt="image-20201224101327317"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
