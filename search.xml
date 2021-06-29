@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>IOC理论推导</title>
-    <url>/posts/ca68ff0d/</url>
-    <content><![CDATA[<h3 id="1-、原来实现业务流程"><a href="#1-、原来实现业务流程" class="headerlink" title="1 、原来实现业务流程"></a>1 、原来实现业务流程</h3><ol>
-<li>UserDao接口</li>
-<li>UserDaoImpl实现类</li>
-<li>UserService业务接口</li>
-<li>UserServiceImpl业务实现类</li>
-</ol>
-<p>在我们之前的业务中，用户的需求可能会影响我们原来的代码，我们需要根据用户的需求去修改源代码！如果程序的代码量十分大，修改一次的代价十分昂贵！</p>
-<h3 id="2、通过set方法降低耦合"><a href="#2、通过set方法降低耦合" class="headerlink" title="2、通过set方法降低耦合"></a>2、通过set方法降低耦合</h3><p>我们使用一个set接口实现，以及发生了革命性的变化</p>
-<p><img src="https://i.loli.net/2020/07/29/Q2UygLKMIdWhtpX.png" alt="image-20200729222813217"></p>
-<ul>
-<li><strong>之前，程序是主动创建对象，控制权在程序猿手上</strong></li>
-<li><strong>使用了set注入后，程序不再拥有主动性，而是变成了被动的接收对象</strong></li>
-</ul>
-<p>这种思想从本质上解决了问题，我们程序猿不用再去管理对象的创建了。</p>
-<p>系统的耦合度大大降低了，可以更加专注的在业务的实现上。<strong>这是IOC的原型</strong></p>
-<p><img src="https://i.loli.net/2020/07/29/d4KUb7tLpmD8RQX.png" alt="image-20200729223906856"></p>
-<h3 id="3-、IOC本质"><a href="#3-、IOC本质" class="headerlink" title="3 、IOC本质"></a>3 、IOC本质</h3><p><strong>控制反转IoC(Inversion of Control)，是一种设计思想，DI(依赖注入)是实现IoC的一种方法，</strong>也有人认为DI只是IoC的另一种说法。没有IoC的程序中 , 我们使用面向对象编程 , 对象的创建与对象间的依赖关系完全硬编码在程序中，对象的创建由程序自己控制，控制反转后将对象的创建转移给第三方，个人认为所谓控制反转就是：获得依赖对象的方式反转了。</p>
-<p>采用XML方式配置Bean的时候，Bean的定义信息是和实现分离的，而采用注解的方式可以把两者合为一体，Bean的定义信息直接以注解的形式定义在实现类中，从而达到了零配置的目的。</p>
-<p><strong>控制反转是一种通过描述（XML或注解）并通过第三方去生产或获取特定对象的方式。在Spring中实现控制反转的是IoC容器，其实现方法是依赖注入（Dependency Injection,DI）。</strong></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -Spring</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构概念</title>
     <url>/posts/9aeff161/</url>
     <content><![CDATA[<h2 id="数据结构学什么"><a href="#数据结构学什么" class="headerlink" title="数据结构学什么"></a>数据结构学什么</h2><ul>
@@ -133,31 +103,322 @@
       </tags>
   </entry>
   <entry>
-    <title>IOC创建对象的方式</title>
-    <url>/posts/f40a03f2/</url>
-    <content><![CDATA[<h3 id="1、使用无参构造创建对象，默认"><a href="#1、使用无参构造创建对象，默认" class="headerlink" title="1、使用无参构造创建对象，默认"></a>1、使用无参构造创建对象，默认</h3><h3 id="2、假设我们要使用有参构造创建对象"><a href="#2、假设我们要使用有参构造创建对象" class="headerlink" title="2、假设我们要使用有参构造创建对象"></a>2、假设我们要使用有参构造创建对象</h3><ul>
-<li>下标赋值</li>
+    <title>线性表</title>
+    <url>/posts/40f24371/</url>
+    <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="定义（逻辑结构）"><a href="#定义（逻辑结构）" class="headerlink" title="定义（逻辑结构）"></a>定义（逻辑结构）</h3><p>线性表是具有<font color='cornflowerblue'>相同</font>数据类型的n（n≥0）个<font color='red'>数据元素</font>的<font color='red'>有限序列</font>，其中n为<font color='red'>表长</font>，当n = 0时，线性表是一个<font color='red'>空表</font>。若用L命名线性表，则一般表示为：L = (a1,a2,….,ai,ai+1….,an)。</p>
+<ul>
+<li>相同数据类型：每个数据元素所占用的空间一样大。</li>
+<li>序列：有次序。</li>
+<li>有限：数据元素是有限的，如若“所有的整数按递增次序排列，并<font color='red'>不是线性表</font>”。</li>
+<li>描述线性表时，角标是从1开始的</li>
+<li>ai是线性表中“第i个”元素线性表中的<font color='red'>位序</font>，<strong>从1开始</strong></li>
+<li>a1是<font color='red'>表头元素</font>，an是<font color='red'>表尾元素</font>。</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    第一种,下标赋值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"0"</span> <span class="attr">value</span>=<span class="string">"dddd"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>线性表的逻辑特性：除了第一个元素之外，每一个元素有且仅有一个直接前驱。除最后一个元素外，每一个元素有且仅有一个直接后驱</strong></p>
+<h3 id="为什么要实现数据结构的操作"><a href="#为什么要实现数据结构的操作" class="headerlink" title="为什么要实现数据结构的操作"></a>为什么要实现数据结构的操作</h3><ul>
+<li>团队合作编程，你定义的数据结构要让别人能够很方便的使用（封装）</li>
+<li>将常用的操作/运算封装成函数，避免重复工作，降低出错的风险</li>
+</ul>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">   初始化表 InitList(&amp;L)</span><br><span class="line">   销毁表 DestoryList(&amp;L)</span><br><span class="line">   插入  ListInsert(&amp;L,i,e)</span><br><span class="line">删除  Listdelete(&amp;L,i,&amp;e)</span><br><span class="line">   按值查找	LocateElem(L,e)</span><br><span class="line">   按位查找	GetElem(L,i)</span><br><span class="line">   表长 Length(L)</span><br><span class="line">   输出操作 PrintList(L)</span><br><span class="line">   判空操作 Empty(L)</span><br></pre></td></tr></table></figure>
+
+<h3 id="物理结构"><a href="#物理结构" class="headerlink" title="物理结构"></a>物理结构</h3><h3 id="代码问题"><a href="#代码问题" class="headerlink" title="代码问题"></a>代码问题</h3><ul>
+<li>如何判空</li>
+<li>如何判断结点是否在表尾或者表头结点<ul>
+<li>后向/前向遍历的实现核心</li>
+</ul>
+</li>
+<li>如何在表头、表中、表尾插入/删除一个结点<ul>
+<li>插入、删除操作的不易错思路</li>
+</ul>
+</li>
+</ul>
+<h2 id="顺序表（顺序存储）"><a href="#顺序表（顺序存储）" class="headerlink" title="顺序表（顺序存储）"></a>顺序表（顺序存储）</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><strong>顺序表</strong>——用<font color='red'>顺序存储</font>的方式实现线性表</p>
+<p>顺序存储:把<font color='red'>逻辑上响铃</font>的元素存储在<font color='red'>物理位置上也相邻</font>的存储单元中，元素之间的关系由存储单元的邻接关系来体现</p>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><ul>
+<li><p>静态分配</p>
+<ul>
+<li>静态分配的实现下，如果数组存满了——》放弃治疗，顺序表的表长刚开始就已经确定了，无法更改。</li>
+</ul>
+</li>
+<li><p>动态分配</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MaxSize = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    ElemType *data;		<span class="comment">//指示动态分配数组的指针</span></span><br><span class="line">    <span class="keyword">int</span> MaxSize;	<span class="comment">//顺序表的最大容量</span></span><br><span class="line">    <span class="keyword">int</span> length;    <span class="comment">//顺序表的当前长度</span></span><br><span class="line">&#125;SqList; 	<span class="comment">//顺序表的类型定义</span></span><br><span class="line"><span class="comment">// new delete</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<li><strong>随机访问</strong>：即可以在O(1)时间内找到第i个元素</li>
+<li><strong>存储密度高</strong>：每个节点只存储数据元素。</li>
+<li><strong>拓展不方便</strong>：即使采用动态分配的方式实现，拓展长度的时间复杂度也比较高</li>
+<li><strong>删除、插入操作不方便，需要移动大量元素。</strong></li>
+</ol>
+<h3 id="基本操作-静态分配"><a href="#基本操作-静态分配" class="headerlink" title="基本操作(静态分配)"></a>基本操作(静态分配)</h3><p><strong>结构体定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MaxSize = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data[MaxSize];  <span class="comment">//用静态的“数组”存放数据元素</span></span><br><span class="line">    <span class="keyword">int</span> length;    <span class="comment">//顺序表的当前长度</span></span><br><span class="line">&#125;SqList; 	<span class="comment">//顺序表的类型定义</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>初始化表</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//构建一个空的线性表L，分配内存空间</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitList</span><span class="params">(&amp;L)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; MaxSize; i ++)&#123;</span><br><span class="line">        L.data[i] = <span class="number">0</span>;		<span class="comment">//将所有数据元素设置为默认初始值</span></span><br><span class="line">    &#125;</span><br><span class="line">    L.length = <span class="number">0</span>; <span class="comment">//顺序表初始长度为0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>插入操作</strong></p>
+<ul>
+<li><strong>注意位序、数组下标的关系,位序 = 数组下标 + 1</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在表L中的第i个位置上插入指定元素e</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ListInsert</span><span class="params">(Sqlist &amp;L,<span class="keyword">int</span> i,<span class="keyword">int</span> e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span> || i &gt; L.length + <span class="number">1</span>)			<span class="comment">//判断i的范围是否有效</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(L.length &gt;= MaxSize)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;						<span class="comment">//当前存储空间已满，不能插入</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = L.length;j &gt;= i;j--)	<span class="comment">//将第i个元素及以后的元素后移</span></span><br><span class="line">        L.data[j] = L.data[j<span class="number">-1</span>];</span><br><span class="line">    L.data[i<span class="number">-1</span>] = e;					<span class="comment">//在位置i处放入e</span></span><br><span class="line">    L.length++;							<span class="comment">// 长度加1</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>类型赋值</li>
+<li><strong>时间复杂度：T = O(n)</strong> </li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    第二种方式、通过类型创建对象，，不建议使用--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"java"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"xxxx"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>删除操作</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//删除表L中的第i个位置的元素，并用引用变量e返回，后续元素依次前移一个位置</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Listdelete</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> i,<span class="keyword">int</span> &amp;e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span> || i &gt; L.length)	<span class="comment">//判断i的范围是否有效</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    e = L.data[i<span class="number">-1</span>];			<span class="comment">//将被删除的元素赋值给e</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = i;j &lt; L.length; j++)</span><br><span class="line">        L.data[j<span class="number">-1</span>] = L.data[j];</span><br><span class="line">    L.length--;					<span class="comment">//线性表长度减1	</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>参数名</li>
+<li><strong>时间复杂度：T = O(n)</strong> </li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--第三种方式，直接通过参数名来设置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"Djc"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>按值查找</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在表L中查找给定元素的位序</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LocateElem</span><span class="params">(SqList L,<span class="keyword">int</span> e)</span></span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; L.length;i++)</span><br><span class="line">       <span class="keyword">if</span>(L.data[i] == e) <span class="keyword">return</span> i+<span class="number">1</span>;	<span class="comment">//下标为i的元素值等于e,返回值器位序 i+1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;							<span class="comment">//退出循环，说明查找失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>总结：在配置文件加载的过程中，容器中管理的对象就已经被初始化了</strong></p>
-<p><img src="https://i.loli.net/2020/07/30/IrKp3Nu5v142HGL.png" alt="image-20200730102652165"></p>
+<ul>
+<li><strong>时间复杂度：T = O(n)</strong> </li>
+</ul>
+<p><strong>按位查找</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在表L中查找具有给定位置的元素</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">GetElem</span><span class="params">(SqList L,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(i &lt; <span class="number">1</span> || i &gt; L.length)	<span class="comment">//判断i的范围是否有效</span></span><br><span class="line">       <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> L.data[i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度：T = O(1)</strong> </li>
+</ul>
+<h2 id="链表-链式存储"><a href="#链表-链式存储" class="headerlink" title="链表(链式存储)"></a>链表(链式存储)</h2><h3 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h3><p><strong>定义</strong>：每个节点除了存放数据元素之外，还要存储指向下一个节点的指针。</p>
+<p>优缺点</p>
+<ul>
+<li>优点：不要求大片连续空间，改变容量方便。</li>
+<li>缺点：不可随机存取，需要耗费一定空间存放指针。</li>
+</ul>
+<h4 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h4><p><strong>结构体定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span>&#123;</span>			<span class="comment">//定义单链表结构点类型</span></span><br><span class="line">    ElemType data;				<span class="comment">//数据域</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span>			<span class="comment">//指针域</span></span><br><span class="line">&#125;LNode,^LinkList;</span><br><span class="line"><span class="comment">//强调这是一个单链表			--使用LinkList</span></span><br><span class="line"><span class="comment">//强调这是一个结点			 --使用LNode *</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="不带头节点的单链表"><a href="#不带头节点的单链表" class="headerlink" title="不带头节点的单链表"></a>不带头节点的单链表</h5><p><strong>初始化</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InitList</span><span class="params">(LinkList &amp;L)</span></span>&#123;</span><br><span class="line">    L = <span class="literal">NULL</span>;	<span class="comment">//空表。暂时还没有任何一个结点</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>判断为空</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>插入操作</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在表L中的第i个位置(位序)上插入指定元素e</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ListInsert</span><span class="params">(LinkList &amp;L,<span class="keyword">int</span> i,ElemType e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span>)		<span class="comment">//i值不合法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(i == <span class="number">1</span>)&#123;		<span class="comment">//插入第1个结点的操作与其他结点操作不同。</span></span><br><span class="line">        LNode *s = (LNode *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">        s-&gt;data = e;</span><br><span class="line">        s-&gt;next = L;</span><br><span class="line">        L = s;	<span class="comment">//头指针指向新节点</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    LNode *p;		<span class="comment">//指针p指向当前扫描到的节点</span></span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;		<span class="comment">//当前p指向的是第几个节点</span></span><br><span class="line">    p = L;			<span class="comment">//L指向第1个结点（不是头结点）</span></span><br><span class="line">    <span class="keyword">while</span> (p != <span class="literal">NULL</span> &amp;&amp; j &lt; i<span class="number">-1</span>)&#123;		<span class="comment">//循环找到第i-1个结点</span></span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    	j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)		<span class="comment">//i值不合法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    LNode *s = (LNode *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">    s-&gt;data = e;</span><br><span class="line">    s-&gt;next = p-&gt;next;</span><br><span class="line">    p-&gt;next = s;		<span class="comment">//将结点s连到p之后</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;		<span class="comment">//插入成功</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="带头节点的单链表"><a href="#带头节点的单链表" class="headerlink" title="带头节点的单链表"></a>带头节点的单链表</h5><p><strong>初始化</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InitList</span><span class="params">(LinkList &amp;L)</span></span>&#123;</span><br><span class="line">    L = (LNode *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));		<span class="comment">//分配一个头节点</span></span><br><span class="line">    <span class="keyword">if</span>(L == <span class="literal">NULL</span>)			<span class="comment">//内存不足，分配失败</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    L-&gt;next = <span class="literal">NULL</span>;			<span class="comment">//头节点之后暂时还没有节点</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//头结点看成是第0个结点；</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>判断为空</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;next == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>插入操作</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在表L中的第i个位置(位序)上插入指定元素e</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ListInsert</span><span class="params">(LinkList &amp;L,<span class="keyword">int</span> i,ElemType e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span>)		<span class="comment">//i值不合法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    LNode *p;		<span class="comment">//指针p指向当前扫描到的节点</span></span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;		<span class="comment">//当前p指向的是第几个节点</span></span><br><span class="line">    p = L;			<span class="comment">//L指向头节点，头结点是第0个结点（不存数据）</span></span><br><span class="line">    <span class="keyword">while</span> (p != <span class="literal">NULL</span> &amp;&amp; j &lt; i<span class="number">-1</span>)&#123;		<span class="comment">//循环找到第i-1个结点</span></span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    	j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)		<span class="comment">//i值不合法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    LNode *s = (LNode *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">    s-&gt;data = e;</span><br><span class="line">    s-&gt;next = p-&gt;next;</span><br><span class="line">    p-&gt;next = s;		<span class="comment">//将结点s连到p之后</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;		<span class="comment">//插入成功</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(n)</li>
+</ul>
+<p><strong>指定结点的后插操作</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//后插操作：在p结点之后插入元素e</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InsertNode</span><span class="params">(LNode *p,ElemType e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    LNode *s = (LNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">    <span class="keyword">if</span>( s == <span class="literal">NULL</span>)	<span class="comment">//	内存分配失败</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    s-&gt;data = e;		<span class="comment">//用结点s保存数据元素e</span></span><br><span class="line">    s-&gt;next = p-&gt;next;</span><br><span class="line">    p-&gt;next = s;		<span class="comment">//将结点s连接到p之后</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(1)</li>
+</ul>
+<p><strong>指定结点的前插操作</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//前插操作：在p结点之后前入元素e</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InsertNode</span><span class="params">(LNode *p,ElemType e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    LNode *s = (LNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">    <span class="keyword">if</span>( s == <span class="literal">NULL</span>)	<span class="comment">//	内存分配失败</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    	由于找不到p结点的前一个结点，但为了实现前插操作，这里使用后插操作，将s插入p之后，</span></span><br><span class="line"><span class="comment">    	再将s、p的数据进行交换，以达到前插操作的效果</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    s-&gt;next = p-&gt;next;</span><br><span class="line">    p-&gt;next = s;		<span class="comment">//将结点s连接到p之后</span></span><br><span class="line">    s-&gt;data = p-&gt;data;		<span class="comment">//用s、p交换数据</span></span><br><span class="line">    p-&gt;data = e;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(1)</li>
+</ul>
+<p><strong>按位序删除</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ListDelete</span><span class="params">(LinkList &amp;L.<span class="keyword">int</span> i,ElemType &amp;e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    LNode *p;	<span class="comment">//指针p指向当前扫描的结点</span></span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;	<span class="comment">//当前p指向的是第几个节点</span></span><br><span class="line">    p = L;		<span class="comment">//L指向头结点，头节点是第0个结点（不存数据）</span></span><br><span class="line">    <span class="keyword">while</span>( p != <span class="literal">NULL</span> &amp;&amp; j &lt; i<span class="number">-1</span>)&#123;	<span class="comment">//循环找到第i-1个结点</span></span><br><span class="line">        p = p-next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)	<span class="comment">//i值不合法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;next == <span class="literal">NULL</span>)		<span class="comment">//第i-1个结点之后已无其他结点</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    LNode *q = p-&gt;next;		<span class="comment">//令q指向被删除结点</span></span><br><span class="line">    e = q-&gt;data;			<span class="comment">//用e返回元素的值</span></span><br><span class="line">    p-&gt;next = q-next;		<span class="comment">//将*q结点从链中“断开”</span></span><br><span class="line">    <span class="built_in">free</span>(q)					<span class="comment">//释放结点的存储空间</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;			<span class="comment">//删除成功</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(n)</li>
+</ul>
+<p><strong>删除指定结点p</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这里p结点不能是最后一个结点，否者p-&gt;next = NULL,而p-&gt;next-data就会出现错误</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">DeleteNode</span><span class="params">(LNode *p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    LNode *q = p-&gt;next;		<span class="comment">//令q指向*p的后继结点</span></span><br><span class="line">    p-&gt;data = p-&gt;next-&gt;data		<span class="comment">//和后继结点交换数据域</span></span><br><span class="line">    p-&gt;next = q-&gt;next;		<span class="comment">//将*q结点从链中断开</span></span><br><span class="line">    <span class="built_in">free</span>(q)					<span class="comment">//释放后继节点的存储空间</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(1)</li>
+</ul>
+<p><strong>按位查找</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//按位查找，返回第i个元素（带头结点）</span></span><br><span class="line"><span class="function">LNode * <span class="title">GetElem</span><span class="params">(LinkList L,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    LNode *p;		<span class="comment">//指针p指向当前扫描到的结点</span></span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;		<span class="comment">//当前p指向的是第几个结点</span></span><br><span class="line">    p = L;			<span class="comment">//L指向头结点，头结点是第0个结点（不存数据）</span></span><br><span class="line">    <span class="keyword">while</span>(p != <span class="literal">NULL</span> &amp;&amp; j &lt; i)&#123; <span class="comment">// 	循环找到第i个结点</span></span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    	j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//i值不合法，则返回一个NULL</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(n)</li>
+</ul>
+<p><strong>按值查找</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//按值查找，找到数据域 == e的结点</span></span><br><span class="line"><span class="function">LNode * <span class="title">LocateElem</span><span class="params">(LinkList L, ElemType e)</span></span>&#123;</span><br><span class="line">    LNode *p = L-&gt;next;</span><br><span class="line">    <span class="comment">//从第1个结点开始查找数据域为e的结点</span></span><br><span class="line">    <span class="keyword">while</span>(p != <span class="literal">NULL</span> &amp;&amp; !check(p-data,e))	<span class="comment">//check函数：两个ElemType是否相等</span></span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    <span class="keyword">return</span> p;	<span class="comment">//找到后返回该结点指针，否则返回NULL</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(n)</li>
+</ul>
+<p><strong>表的长度</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//求表的长度</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Length</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    LNode *p = L;</span><br><span class="line">    <span class="keyword">while</span>(p != <span class="literal">NULL</span>)&#123;	<span class="comment">//check函数：两个ElemType是否相等</span></span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    	len++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(n)</li>
+</ul>
+<h4 id="单链表的建立"><a href="#单链表的建立" class="headerlink" title="单链表的建立"></a>单链表的建立</h4><h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><ol>
+<li>初始化一个单链表</li>
+<li>每次取一个数据元素，插入到表尾/表头</li>
+</ol>
+<h5 id="尾插法"><a href="#尾插法" class="headerlink" title="尾插法"></a>尾插法</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//尾插法建立单链表</span></span><br><span class="line"><span class="function">LinkList <span class="title">List_TailInsert</span><span class="params">(LinkList &amp;L)</span></span>&#123;	<span class="comment">//正向建立单链表</span></span><br><span class="line">    <span class="keyword">int</span> x;								<span class="comment">//设置ElemType为整形</span></span><br><span class="line">    L = (LinkList)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));	<span class="comment">//建立头节点</span></span><br><span class="line">    LNode *s,*r = L;						<span class="comment">//r为表尾指针</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);			<span class="comment">//输入结点的值</span></span><br><span class="line">    <span class="keyword">while</span>(x != <span class="number">9999</span>)&#123;</span><br><span class="line">        s = (LNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">        s-&gt;data = x;</span><br><span class="line">        r-&gt;next = s;</span><br><span class="line">        r = s;		永远保持r(尾指针)指向最后一个结点</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">    &#125;</span><br><span class="line">    r-&gt;next = <span class="literal">NULL</span>;			<span class="comment">//尾结点设置为空</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(n)</li>
+</ul>
+<h5 id="头插法"><a href="#头插法" class="headerlink" title="头插法"></a>头插法</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">LinkList <span class="title">List_HeadInsert</span><span class="params">(LinkList &amp;L)</span></span>&#123;</span><br><span class="line">    LNode *s;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    L = (LinkList) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));	<span class="comment">//创建头结点;</span></span><br><span class="line">    L-next = <span class="literal">NULL</span>;				<span class="comment">//初始化为空链表</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);				<span class="comment">//输入结点的值</span></span><br><span class="line">    <span class="keyword">while</span>(x != <span class="number">9999</span>)&#123;</span><br><span class="line">        s = (LNode *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));	<span class="comment">//创建新的结点</span></span><br><span class="line">        s.data = x;</span><br><span class="line">        s.next = L-&gt;next;</span><br><span class="line">        L-next = s;		<span class="comment">//将新结点插入表中，L为头指针</span></span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);	</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>时间复杂度</strong>：O(n)</li>
+<li>应用于链表的逆置</li>
+</ul>
+<h3 id="双链表"><a href="#双链表" class="headerlink" title="双链表"></a>双链表</h3><h4 id="基本操作-2"><a href="#基本操作-2" class="headerlink" title="基本操作"></a>基本操作</h4><p><strong>结构体定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">DNode</span>&#123;</span>		<span class="comment">//定义双链表结点类型</span></span><br><span class="line">    ELemType data;			<span class="comment">//数据域</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">DNode</span> *<span class="title">prior</span>.*<span class="title">next</span>;</span>			<span class="comment">//前驱和后继结点</span></span><br><span class="line">&#125;DNode,*DLinklist;</span><br></pre></td></tr></table></figure>
+
+<p><strong>初始化双链表</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InitDLinkList</span><span class="params">(DLinkList &amp;L)</span></span>&#123;</span><br><span class="line">	L = (DNode *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(DNode));	<span class="comment">//分配头结点</span></span><br><span class="line">    <span class="keyword">if</span>(L == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;		<span class="comment">//内存不足，分配失败；</span></span><br><span class="line">    L-&gt;prior = <span class="literal">NULL</span>;	<span class="comment">//头结点的prior永远指向NULL</span></span><br><span class="line">    L-&gt;next = <span class="literal">NULL</span>;		<span class="comment">//头结点之后暂时还没有结点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>为空</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">(DNodeList L)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;next == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>插入</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在p结点之后插入s结点</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InsertNextDNode</span><span class="params">(DNode *p,DNode *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span> &amp;&amp; s == <span class="literal">NULL</span>)	<span class="comment">//非法参数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    s-&gt;next = p-&gt;next;</span><br><span class="line">    <span class="keyword">if</span>(p-next != <span class="literal">NULL</span>)		<span class="comment">//如果p结点有后继结点</span></span><br><span class="line">        p-next-prior = s;</span><br><span class="line">    s-&gt;prior = p;</span><br><span class="line">    p-&gt;next = s;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//删除p结点的后继节点</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InsertNextDNode</span><span class="params">(DNode *p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)	<span class="comment">//非法参数</span></span><br><span class="line">       DNode *q = p-&gt;next;	<span class="comment">//找到p的后继节点</span></span><br><span class="line">    <span class="keyword">if</span>(q != <span class="literal">NULL</span>)		<span class="comment">//p没有后续结点</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    p-next = q-&gt;next;</span><br><span class="line">   	<span class="keyword">if</span>(q-&gt;next != <span class="literal">NULL</span>)	<span class="comment">//q结点不是最后一个结点</span></span><br><span class="line">        q-next-prior = p;</span><br><span class="line">    <span class="built_in">free</span>(q);		<span class="comment">//释放结点空间</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h3><h4 id="循环单链表"><a href="#循环单链表" class="headerlink" title="循环单链表"></a>循环单链表</h4><p><strong>结构体定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span>&#123;</span>		<span class="comment">//定义单链表结点类型</span></span><br><span class="line">    ElemType data;			<span class="comment">//每个节点存放一个数据元素</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span>		<span class="comment">//指针指向下一个节点</span></span><br><span class="line">&#125;LNode,*LinkList;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>初始化</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//初始化一个循环单链表</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InitList</span><span class="params">(LinkList &amp;L)</span></span>&#123;</span><br><span class="line">	L = (LNode *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));	<span class="comment">//分配一个头结点</span></span><br><span class="line">    <span class="keyword">if</span>(L == <span class="literal">NULL</span>)		<span class="comment">//内存不足，分配失败</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    L-&gt;next = L;		<span class="comment">//头结点next指向头结点</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>判空</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断循环单链表是否为空</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L-next == L)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>是否达到表尾</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断结点p是否为循环单链表的表尾结点 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isTail</span><span class="params">(LinkList L,LNode *p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L-&gt;next == L)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="循环双链表"><a href="#循环双链表" class="headerlink" title="循环双链表"></a>循环双链表</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">表头结点的prior指向表尾结点；</span><br><span class="line">表尾结点的next指向头结点；</span><br></pre></td></tr></table></figure>
+
+<p><strong>结构体定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">DNode</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">DNode</span> *<span class="title">prior</span>,*<span class="title">next</span>;</span></span><br><span class="line">&#125;DNode,*DLinkList;</span><br></pre></td></tr></table></figure>
+
+<p><strong>初始化</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InitDLinkList</span><span class="params">(DLinkList &amp;L)</span></span>&#123;</span><br><span class="line">    L = (DNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(DNode));	<span class="comment">//分配一个头结点</span></span><br><span class="line">    <span class="keyword">if</span>(L == <span class="literal">NULL</span>)	<span class="comment">//内存不足，分配失败</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    L-&gt;prior = L;	<span class="comment">//头结点的prior指向头结点</span></span><br><span class="line">    L-&gt;next = L;	<span class="comment">//头结点的next指向头结点</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>判空</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断循环双链表是否为空</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">(DLinkList L)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L-next == L)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>是否达到表尾</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断结点p是否为循环双链表的表尾结点 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isTail</span><span class="params">(DLinkList L,DNode *p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L-&gt;next == L)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="静态链表"><a href="#静态链表" class="headerlink" title="静态链表"></a>静态链表</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>静态链表借组数组来描述线性表中的链式存储结构。</li>
+<li>分配一整片<strong>连续</strong>的内存空间，各个结点集中安置。</li>
+</ul>
+<p><strong>优缺点</strong></p>
+<ul>
+<li>优点<ul>
+<li>增删操作不需要大量移动元素</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>不能随机存取</li>
+<li>只能从头结点开始依次往后查找</li>
+<li><font color='red'>容量固定不可变</font></li>
+</ul>
+</li>
+</ul>
+<h2 id="顺序表与链表对比"><a href="#顺序表与链表对比" class="headerlink" title="顺序表与链表对比"></a>顺序表与链表对比</h2><h3 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h3><ul>
+<li>都属于线性表，都是线性结构</li>
+</ul>
+<h3 id="物理结构-存储结构"><a href="#物理结构-存储结构" class="headerlink" title="物理结构/存储结构"></a>物理结构/存储结构</h3><h4 id="顺序表（顺序存储）-1"><a href="#顺序表（顺序存储）-1" class="headerlink" title="顺序表（顺序存储）"></a>顺序表（顺序存储）</h4><ul>
+<li>优点<ul>
+<li>支持随机存取</li>
+<li>存储密度高</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>大片连续空间分配不方便</li>
+<li>改变容量不方便</li>
+</ul>
+</li>
+</ul>
+<h4 id="链表（链式存储）"><a href="#链表（链式存储）" class="headerlink" title="链表（链式存储）"></a>链表（链式存储）</h4><ul>
+<li>优点<ul>
+<li>离散的小空间分配方便</li>
+<li>改变容量方便</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>不可随机存取</li>
+<li>存储密度低</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据的运算-基本操作"><a href="#数据的运算-基本操作" class="headerlink" title="数据的运算/基本操作"></a>数据的运算/基本操作</h3><ul>
+<li><p>按值查找</p>
+<ul>
+<li>顺序表<ul>
+<li>无序——O(n)</li>
+<li>有序——O(log2n)</li>
+</ul>
+</li>
+<li>链表<ul>
+<li>O(n)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>按序查找</p>
+<ul>
+<li>顺序表<ul>
+<li>O(1)</li>
+</ul>
+</li>
+<li>链表<ul>
+<li>O(n)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>插入/删除</p>
+<ul>
+<li>顺序表,<strong>时间开销主要来自于移动元素</strong><ul>
+<li>O(n)</li>
+</ul>
+</li>
+<li>链表<strong>时间开销主要来自于查找元素</strong><ul>
+<li>O(n)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h3><ul>
+<li>表长难以预估、经常要增加/删除元素  ——链表</li>
+<li>表长可估计，查询（搜索）操作比较多  ——顺序表</li>
+</ul>
+<h3 id="开放性问题答题思路"><a href="#开放性问题答题思路" class="headerlink" title="开放性问题答题思路"></a>开放性问题答题思路</h3><p>eg：实现线性表时，用顺序表还是链表好</p>
+<p>：顺序表和链表的<font color='red'>逻辑结构</font>都是线性结构的，都属于线性表。</p>
+<p>但是二者的<font color='red'>存储结构</font>不同，顺序表采用顺序存储….(特点，带来的优缺点)；链表采用链式存储…(特点，导致的优缺点)。</p>
+<p>由于采用不同的存储方式实现，因此<font color='red'>基本操作</font>的实现效率也不同。<font color='red'>当初始化时</font>，…;<font color='red'>当插入数据元素时</font>，…;<font color='red'>当删除数据元素时</font>，…;当<font color='red'>查找一个数据元素时</font>,…;</p>
 ]]></content>
       <categories>
-        <category>后端</category>
+        <category>考研</category>
       </categories>
       <tags>
-        <tag>-笔记 -Mybatis</tag>
+        <tag>-笔记 -数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -202,6 +463,133 @@
 <p>因为现在大多数公司都在使用SpringBoot进行快速开发，学习SpringBoot的前提，需要完全掌握Spring和SpringMVC，</p>
 <p>承上启下的作用！</p>
 <h3 id="5、Spring的缺点"><a href="#5、Spring的缺点" class="headerlink" title="5、Spring的缺点"></a>5、Spring的缺点</h3><p><strong>弊端:发展了太久，违背了原来的理念，配置十分繁琐，人称：配置地狱</strong></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>中断-异常</title>
+    <url>/posts/a76ffb5a/</url>
+    <content><![CDATA[<h3 id="一、中断机制的诞生"><a href="#一、中断机制的诞生" class="headerlink" title="一、中断机制的诞生"></a>一、中断机制的诞生</h3><ul>
+<li><p>在单批道处理阶段，各个程序只能串行处理，系统资利用低，为了解决上诉问题，人们发明了操作系统（作为管理者），引入中断机制，实现了多道程序并发执行</p>
+</li>
+<li><p><strong>本质：发生中断就意味着需要操作系统介入，开展管理工作</strong></p>
+</li>
+</ul>
+<h3 id="二、中断的概念和作业"><a href="#二、中断的概念和作业" class="headerlink" title="二、中断的概念和作业"></a>二、中断的概念和作业</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><ul>
+<li>当中断发生时，CPU立即进入<strong>核心态</strong></li>
+<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理</li>
+<li>对于不同的中断信号，会进行不同的处理</li>
+</ul>
+<h4 id="2、中断的作用"><a href="#2、中断的作用" class="headerlink" title="2、中断的作用"></a>2、中断的作用</h4><p>​    发生了中断，就意味着需要操作系统介入，发展管理工作。由于操作系统的管理工作（比如进程切换、分配I/O设备等）需要使用特权指令，因此CPU需要从用户态转变成核心态。<strong>中断</strong>可以<strong>使CPU从用户态转变成核心态，使操作系统获得计算机的控制权</strong>.。有了中断，才能实现多道程序并发执行。</p>
+<h4 id="3、用户态、核心态切换的实现"><a href="#3、用户态、核心态切换的实现" class="headerlink" title="3、用户态、核心态切换的实现"></a>3、用户态、核心态切换的实现</h4><ul>
+<li><strong>“用户态—》核心态“</strong>是通过<strong>中断</strong>实现的。并且<strong>中断</strong>是<strong>唯一的</strong>方式</li>
+<li>”核心态—》用户态“的切换是通过<strong>执行一个特权指令</strong>，将程序状态字（PSW）的标志位设置为”用户态“</li>
+</ul>
+<h3 id="三、中断-广义的中断-分类"><a href="#三、中断-广义的中断-分类" class="headerlink" title="三、中断{广义的中断}分类"></a>三、中断{广义的中断}分类</h3><h4 id="1、内中断（异常、例外、陷入）"><a href="#1、内中断（异常、例外、陷入）" class="headerlink" title="1、内中断（异常、例外、陷入）"></a>1、内中断（异常、例外、陷入）</h4><ul>
+<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
+</li>
+<li><p>自愿中断</p>
+<ul>
+<li>指令中断</li>
+</ul>
+</li>
+<li><p>强迫中断</p>
+<ul>
+<li>硬件故障</li>
+<li>软件中断</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、外中断（中断-狭义的中断-）"><a href="#2、外中断（中断-狭义的中断-）" class="headerlink" title="2、外中断（中断{狭义的中断}）"></a>2、外中断（中断{狭义的中断}）</h4><ul>
+<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
+</li>
+<li><p>外设请求</p>
+</li>
+<li><p>人工干预</p>
+</li>
+</ul>
+<h3 id="四、外中断的处理过程"><a href="#四、外中断的处理过程" class="headerlink" title="四、外中断的处理过程"></a>四、外中断的处理过程</h3><p><img src="https://i.loli.net/2020/12/15/N1OuBLW9Zj7YbAy.png" alt="image-20201215203027037"></p>
+<h3 id="五、回顾"><a href="#五、回顾" class="headerlink" title="五、回顾"></a>五、回顾</h3><p><img src="https://i.loli.net/2020/12/15/OEjrGxoAeT5cUM4.png" alt="image-20201215203338519"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring常用配置</title>
+    <url>/posts/971b5adf/</url>
+    <content><![CDATA[<h3 id="1-、别名"><a href="#1-、别名" class="headerlink" title="1 、别名"></a>1 、别名</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--  别名：如果添加了别名，我们也可以使用别名来获取对象，id一样有可以--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"User"</span> <span class="attr">alias</span>=<span class="string">"userNew"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2、Bean的配置"><a href="#2、Bean的配置" class="headerlink" title="2、Bean的配置"></a>2、Bean的配置</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    id:bean的唯一标识符，也就是相当于我们学的对象名</span></span><br><span class="line"><span class="comment">    class：bean对象所对应的全限定名 ： 包名 + 类型</span></span><br><span class="line"><span class="comment">    name:也是别名，而且name更高级，可以同时取多个别名(通过空格、逗号分隔、分号)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"xxx"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span> <span class="attr">name</span>=<span class="string">"user,user2 uuu"</span> <span class="attr">scope</span>=<span class="string">"singleton"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、Import"><a href="#3、Import" class="headerlink" title="3、Import"></a>3、Import</h3><p>这个import，一般用于团队开发，它可以将多个配置文件 导入合并为一个。</p>
+<p>假设:现在项目中有多人开发，在三个人负责不同的类开发，不同的类需要注册在不同的bean中，我们可以利用import将所有人的beans.xml合并为一个。使用的时候，直接使用总的就可以了。</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IOC创建对象的方式</title>
+    <url>/posts/f40a03f2/</url>
+    <content><![CDATA[<h3 id="1、使用无参构造创建对象，默认"><a href="#1、使用无参构造创建对象，默认" class="headerlink" title="1、使用无参构造创建对象，默认"></a>1、使用无参构造创建对象，默认</h3><h3 id="2、假设我们要使用有参构造创建对象"><a href="#2、假设我们要使用有参构造创建对象" class="headerlink" title="2、假设我们要使用有参构造创建对象"></a>2、假设我们要使用有参构造创建对象</h3><ul>
+<li>下标赋值</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    第一种,下标赋值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"0"</span> <span class="attr">value</span>=<span class="string">"dddd"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>类型赋值</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    第二种方式、通过类型创建对象，，不建议使用--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"java"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"xxxx"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数名</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--第三种方式，直接通过参数名来设置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"User"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"Djc"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：在配置文件加载的过程中，容器中管理的对象就已经被初始化了</strong></p>
+<p><img src="https://i.loli.net/2020/07/30/IrKp3Nu5v142HGL.png" alt="image-20200730102652165"></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IOC理论推导</title>
+    <url>/posts/ca68ff0d/</url>
+    <content><![CDATA[<h3 id="1-、原来实现业务流程"><a href="#1-、原来实现业务流程" class="headerlink" title="1 、原来实现业务流程"></a>1 、原来实现业务流程</h3><ol>
+<li>UserDao接口</li>
+<li>UserDaoImpl实现类</li>
+<li>UserService业务接口</li>
+<li>UserServiceImpl业务实现类</li>
+</ol>
+<p>在我们之前的业务中，用户的需求可能会影响我们原来的代码，我们需要根据用户的需求去修改源代码！如果程序的代码量十分大，修改一次的代价十分昂贵！</p>
+<h3 id="2、通过set方法降低耦合"><a href="#2、通过set方法降低耦合" class="headerlink" title="2、通过set方法降低耦合"></a>2、通过set方法降低耦合</h3><p>我们使用一个set接口实现，以及发生了革命性的变化</p>
+<p><img src="https://i.loli.net/2020/07/29/Q2UygLKMIdWhtpX.png" alt="image-20200729222813217"></p>
+<ul>
+<li><strong>之前，程序是主动创建对象，控制权在程序猿手上</strong></li>
+<li><strong>使用了set注入后，程序不再拥有主动性，而是变成了被动的接收对象</strong></li>
+</ul>
+<p>这种思想从本质上解决了问题，我们程序猿不用再去管理对象的创建了。</p>
+<p>系统的耦合度大大降低了，可以更加专注的在业务的实现上。<strong>这是IOC的原型</strong></p>
+<p><img src="https://i.loli.net/2020/07/29/d4KUb7tLpmD8RQX.png" alt="image-20200729223906856"></p>
+<h3 id="3-、IOC本质"><a href="#3-、IOC本质" class="headerlink" title="3 、IOC本质"></a>3 、IOC本质</h3><p><strong>控制反转IoC(Inversion of Control)，是一种设计思想，DI(依赖注入)是实现IoC的一种方法，</strong>也有人认为DI只是IoC的另一种说法。没有IoC的程序中 , 我们使用面向对象编程 , 对象的创建与对象间的依赖关系完全硬编码在程序中，对象的创建由程序自己控制，控制反转后将对象的创建转移给第三方，个人认为所谓控制反转就是：获得依赖对象的方式反转了。</p>
+<p>采用XML方式配置Bean的时候，Bean的定义信息是和实现分离的，而采用注解的方式可以把两者合为一体，Bean的定义信息直接以注解的形式定义在实现类中，从而达到了零配置的目的。</p>
+<p><strong>控制反转是一种通过描述（XML或注解）并通过第三方去生产或获取特定对象的方式。在Spring中实现控制反转的是IoC容器，其实现方法是依赖注入（Dependency Injection,DI）。</strong></p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -270,23 +658,6 @@
 <li><p>其余的request、session、application这些只能在web开发中使用到</p>
 </li>
 </ol>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring常用配置</title>
-    <url>/posts/971b5adf/</url>
-    <content><![CDATA[<h3 id="1-、别名"><a href="#1-、别名" class="headerlink" title="1 、别名"></a>1 、别名</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--  别名：如果添加了别名，我们也可以使用别名来获取对象，id一样有可以--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"User"</span> <span class="attr">alias</span>=<span class="string">"userNew"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2、Bean的配置"><a href="#2、Bean的配置" class="headerlink" title="2、Bean的配置"></a>2、Bean的配置</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    id:bean的唯一标识符，也就是相当于我们学的对象名</span></span><br><span class="line"><span class="comment">    class：bean对象所对应的全限定名 ： 包名 + 类型</span></span><br><span class="line"><span class="comment">    name:也是别名，而且name更高级，可以同时取多个别名(通过空格、逗号分隔、分号)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"xxx"</span> <span class="attr">class</span>=<span class="string">"com.djc.pojo.User"</span> <span class="attr">name</span>=<span class="string">"user,user2 uuu"</span> <span class="attr">scope</span>=<span class="string">"singleton"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3、Import"><a href="#3、Import" class="headerlink" title="3、Import"></a>3、Import</h3><p>这个import，一般用于团队开发，它可以将多个配置文件 导入合并为一个。</p>
-<p>假设:现在项目中有多人开发，在三个人负责不同的类开发，不同的类需要注册在不同的bean中，我们可以利用import将所有人的beans.xml合并为一个。使用的时候，直接使用总的就可以了。</p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -387,38 +758,24 @@
       </tags>
   </entry>
   <entry>
-    <title>处理机调度、层次概念</title>
-    <url>/posts/c21ce3f9/</url>
-    <content><![CDATA[<h3 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h3><p>处理机调度：从就绪队列中<strong>按照一定的算法选择一个进程</strong>并将<strong>处理机分配给他</strong>运行，以实现进程的并发执行</p>
-<h3 id="二、三个层次"><a href="#二、三个层次" class="headerlink" title="二、三个层次"></a>二、三个层次</h3><h4 id="1、高级调度（作业调度）"><a href="#1、高级调度（作业调度）" class="headerlink" title="1、高级调度（作业调度）"></a>1、高级调度（作业调度）</h4><ul>
-<li>按一定的原则<strong>从外存上</strong>处于后备队列的作业中挑选一个（或多个）作业，将他们分配内存等必要资源，并建立<strong>相应的进程（建立PCB）</strong>，以使<strong>它们获得竞争处理机的权利</strong>.</li>
-<li>高级调度是外存与内存之间的调度，每个作业只调入一次，调出一次。<strong>作业调入时建立PCB，作业调出时才销毁PCB，</strong></li>
-<li>高级调度主要是指<strong>作业调入的问题</strong>，因为只有调入的时机才需要操作系统来确定，但调出的时机必然是作业运行结束后才调出，</li>
+    <title>操作系统的四个特征</title>
+    <url>/posts/d04bd5bc/</url>
+    <content><![CDATA[<h3 id="一、目录"><a href="#一、目录" class="headerlink" title="一、目录"></a>一、目录</h3><p><img src="https://i.loli.net/2020/12/05/qeNlfD3iR8P6wLz.png" alt="image-20201205153539331"></p>
+<h3 id="二、并发"><a href="#二、并发" class="headerlink" title="二、并发"></a>二、并发</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>并发</strong>：指两个或多个事件在同一时间间隔内发生。这些事件<strong>宏观上是同时发生</strong>的，但是<strong>微观上是交替发生</strong>的</p>
+<p><strong>易于混淆</strong>的概念：<strong>并行</strong>：指两个或多个事件<strong>同一时刻</strong>发生</p>
+<h4 id="2、操作系统的并发性"><a href="#2、操作系统的并发性" class="headerlink" title="2、操作系统的并发性"></a>2、操作系统的并发性</h4><p>​    操作系统的并发性：指计算机系统同时存在着多个运行着的程序</p>
+<h3 id="三、共享"><a href="#三、共享" class="headerlink" title="三、共享"></a>三、共享</h3><h4 id="1、概念-1"><a href="#1、概念-1" class="headerlink" title="1、概念"></a>1、概念</h4><p>​    共享：即<strong>资源共享</strong>，是指系统内的资源可供内存中多个并发执行的进程共同使用。</p>
+<p><img src="https://i.loli.net/2020/12/05/PbZ4SJHftFU5Gqp.png" alt="image-20201205155800371"></p>
+<p>​    </p>
+<h3 id="四、虚拟"><a href="#四、虚拟" class="headerlink" title="四、虚拟"></a>四、虚拟</h3><h4 id="1、概念-2"><a href="#1、概念-2" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>虚拟</strong>：指把一个物理上的实体变成若干个逻辑上的对应物，物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的</p>
+<p><img src="https://i.loli.net/2020/12/05/Aj7WMiY1uRqQUt5.png" alt="image-20201205160547807"></p>
+<h4 id="2、注意"><a href="#2、注意" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
+<li><strong><em>没有并发性，就没有虚拟性</em></strong></li>
 </ul>
-<h4 id="2、中级调度（内存调度）"><a href="#2、中级调度（内存调度）" class="headerlink" title="2、中级调度（内存调度）"></a>2、中级调度（内存调度）</h4><ul>
-<li>引入虚拟存储技术后，可以将暂时不能运行的进程调至到外存等待，等到它重新具备运行条件后且内存又稍有空闲后，再重新调入到内存中，目的是<strong>提高内存效率和系统吞吐量</strong></li>
-<li>暂时调到外存等待的进程的状态为“<strong>挂起状态</strong>”，<ul>
-<li><strong>PCB并不会一起调到外存</strong>，而是会<strong>常驻内存</strong></li>
-<li>被挂起的进程PCB会放到<strong>挂起队列</strong>中</li>
+<h3 id="五、异步"><a href="#五、异步" class="headerlink" title="五、异步"></a>五、异步</h3><h4 id="1、概念-3"><a href="#1、概念-3" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>异步：</strong>在多道程序环境下，运行多个程序并发执行，但<strong>由于资源有限</strong>，进程的执行不是一贯到底的，而是走走停停的，以不可预知的速度向前推进，这就是进程的异步性。</p>
+<h4 id="2、注意-1"><a href="#2、注意-1" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
+<li><strong><em>只有系统拥有并发性，才有可能导致异步性</em></strong></li>
 </ul>
-</li>
-<li><strong>中级调度就是决定将哪一个挂起状态的进程重新调入进程</strong><ul>
-<li>一个进程可能多次被调入调出内存，所以<strong>中级调度</strong>发生的频率要比高级调度要<strong>更高</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="3、低级调度（进程调度）"><a href="#3、低级调度（进程调度）" class="headerlink" title="3、低级调度（进程调度）"></a>3、低级调度（进程调度）</h4><ul>
-<li><strong>低级调度（进程调度）：按照某一种算法和策略从就绪队列中选取一个进程，将处理机分配给它</strong></li>
-<li>进程调度是操作系统中<strong>最基本的一种调度</strong></li>
-<li>进程调度的<strong>频率很高</strong>，一般几十毫秒一次</li>
-</ul>
-<h3 id="三、三层调度的联系对比"><a href="#三、三层调度的联系对比" class="headerlink" title="三、三层调度的联系对比"></a>三、三层调度的联系对比</h3><p><img src="https://i.loli.net/2020/12/26/5UKe1HpBxQyGZAj.png" alt="image-20201226104000403"></p>
-<h3 id="四、补充知识"><a href="#四、补充知识" class="headerlink" title="四、补充知识"></a>四、补充知识</h3><h4 id="1、进程的“挂状态”"><a href="#1、进程的“挂状态”" class="headerlink" title="1、进程的“挂状态”"></a>1、进程的“挂状态”</h4><ul>
-<li>就绪挂起</li>
-<li>堵塞挂起</li>
-</ul>
-<h4 id="2、七状态模型"><a href="#2、七状态模型" class="headerlink" title="2、七状态模型"></a>2、七状态模型</h4><p><img src="https://i.loli.net/2020/12/26/MDmwtQdg3pWeiJA.png" alt="image-20201226103617756"></p>
-<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/26/eVFG9HcDZ8EWdbM.png" alt="image-20201226104129845"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -572,109 +929,6 @@
       </tags>
   </entry>
   <entry>
-    <title>中断-异常</title>
-    <url>/posts/a76ffb5a/</url>
-    <content><![CDATA[<h3 id="一、中断机制的诞生"><a href="#一、中断机制的诞生" class="headerlink" title="一、中断机制的诞生"></a>一、中断机制的诞生</h3><ul>
-<li><p>在单批道处理阶段，各个程序只能串行处理，系统资利用低，为了解决上诉问题，人们发明了操作系统（作为管理者），引入中断机制，实现了多道程序并发执行</p>
-</li>
-<li><p><strong>本质：发生中断就意味着需要操作系统介入，开展管理工作</strong></p>
-</li>
-</ul>
-<h3 id="二、中断的概念和作业"><a href="#二、中断的概念和作业" class="headerlink" title="二、中断的概念和作业"></a>二、中断的概念和作业</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><ul>
-<li>当中断发生时，CPU立即进入<strong>核心态</strong></li>
-<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理</li>
-<li>对于不同的中断信号，会进行不同的处理</li>
-</ul>
-<h4 id="2、中断的作用"><a href="#2、中断的作用" class="headerlink" title="2、中断的作用"></a>2、中断的作用</h4><p>​    发生了中断，就意味着需要操作系统介入，发展管理工作。由于操作系统的管理工作（比如进程切换、分配I/O设备等）需要使用特权指令，因此CPU需要从用户态转变成核心态。<strong>中断</strong>可以<strong>使CPU从用户态转变成核心态，使操作系统获得计算机的控制权</strong>.。有了中断，才能实现多道程序并发执行。</p>
-<h4 id="3、用户态、核心态切换的实现"><a href="#3、用户态、核心态切换的实现" class="headerlink" title="3、用户态、核心态切换的实现"></a>3、用户态、核心态切换的实现</h4><ul>
-<li><strong>“用户态—》核心态“</strong>是通过<strong>中断</strong>实现的。并且<strong>中断</strong>是<strong>唯一的</strong>方式</li>
-<li>”核心态—》用户态“的切换是通过<strong>执行一个特权指令</strong>，将程序状态字（PSW）的标志位设置为”用户态“</li>
-</ul>
-<h3 id="三、中断-广义的中断-分类"><a href="#三、中断-广义的中断-分类" class="headerlink" title="三、中断{广义的中断}分类"></a>三、中断{广义的中断}分类</h3><h4 id="1、内中断（异常、例外、陷入）"><a href="#1、内中断（异常、例外、陷入）" class="headerlink" title="1、内中断（异常、例外、陷入）"></a>1、内中断（异常、例外、陷入）</h4><ul>
-<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
-</li>
-<li><p>自愿中断</p>
-<ul>
-<li>指令中断</li>
-</ul>
-</li>
-<li><p>强迫中断</p>
-<ul>
-<li>硬件故障</li>
-<li>软件中断</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、外中断（中断-狭义的中断-）"><a href="#2、外中断（中断-狭义的中断-）" class="headerlink" title="2、外中断（中断{狭义的中断}）"></a>2、外中断（中断{狭义的中断}）</h4><ul>
-<li><p>信号来源：CPU内部与当前执行的指令<strong>有关</strong></p>
-</li>
-<li><p>外设请求</p>
-</li>
-<li><p>人工干预</p>
-</li>
-</ul>
-<h3 id="四、外中断的处理过程"><a href="#四、外中断的处理过程" class="headerlink" title="四、外中断的处理过程"></a>四、外中断的处理过程</h3><p><img src="https://i.loli.net/2020/12/15/N1OuBLW9Zj7YbAy.png" alt="image-20201215203027037"></p>
-<h3 id="五、回顾"><a href="#五、回顾" class="headerlink" title="五、回顾"></a>五、回顾</h3><p><img src="https://i.loli.net/2020/12/15/OEjrGxoAeT5cUM4.png" alt="image-20201215203338519"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统发展和分类</title>
-    <url>/posts/2ce96af5/</url>
-    <content><![CDATA[<h3 id="一、手工操作阶段"><a href="#一、手工操作阶段" class="headerlink" title="一、手工操作阶段"></a>一、手工操作阶段</h3><h3 id="二、批处理阶段"><a href="#二、批处理阶段" class="headerlink" title="二、批处理阶段"></a>二、批处理阶段</h3><h4 id="1、单道批处理阶段"><a href="#1、单道批处理阶段" class="headerlink" title="1、单道批处理阶段"></a>1、单道批处理阶段</h4><p>引入<strong>脱机输入/输出技术</strong>（用磁带完成），并<strong>监督程序</strong>负责控制作业的输入、输出。</p>
-<p><strong>优点</strong>：缓解了一定程序的人机速度矛盾，资源利用率有所提高</p>
-<p><strong>缺点</strong>：<strong>内存中仅能由一道程序运行</strong>，只有该程序运行结束后才能调入下一道程序，<strong>CPU有大量的时间是空闲等待I/O完成</strong>，资源利用依然低。</p>
-<h4 id="2、多批道处理系统"><a href="#2、多批道处理系统" class="headerlink" title="2、多批道处理系统"></a>2、多批道处理系统</h4><p><strong>操作系统正式诞生</strong>，并引入了<strong>中断技术</strong>，由操作系统负责管理这些程序的执行，各个程序并发执行。</p>
-<p><strong>优点</strong>：多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源，<strong>资源利用率大幅度提升</strong>，CPU和其他资源保持“忙碌”状态，系统吞吐量增大</p>
-<p><strong>缺点</strong>：用户响应时间长，<strong>没有人机交互功能</strong>（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p>
-<h3 id="三、分时操作系统"><a href="#三、分时操作系统" class="headerlink" title="三、分时操作系统"></a>三、分时操作系统</h3><p>：计算机以<strong>时间片</strong>为单位轮转为<strong>各个用户/作业服务</strong>，各个用户可通过终端与计算机进行交互</p>
-<p><strong>优点</strong>：用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</p>
-<p><strong>缺点</strong>：<strong>不能优先处理一些紧急任务</strong>。操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</p>
-<h3 id="四、实时操作系统"><a href="#四、实时操作系统" class="headerlink" title="四、实时操作系统"></a>四、实时操作系统</h3><p><strong>优点</strong>：<strong>能够优先响应一些紧急任务</strong>，某些紧急任务不需要时间片排队。</p>
-<p>在实时操作系统的控制下，计算机系统接受到外部信号后及时进行处理，并且要<strong>在严格的时限内处理完事件。</strong></p>
-<p>实时操作系统的主要特点是<strong>及时性和可靠性</strong></p>
-<h3 id="五、思维导图"><a href="#五、思维导图" class="headerlink" title="五、思维导图"></a>五、思维导图</h3><p><img src="https://i.loli.net/2020/12/05/EnZ5Vka3DG7pzgN.png" alt="image-20201205204558085"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统的四个特征</title>
-    <url>/posts/d04bd5bc/</url>
-    <content><![CDATA[<h3 id="一、目录"><a href="#一、目录" class="headerlink" title="一、目录"></a>一、目录</h3><p><img src="https://i.loli.net/2020/12/05/qeNlfD3iR8P6wLz.png" alt="image-20201205153539331"></p>
-<h3 id="二、并发"><a href="#二、并发" class="headerlink" title="二、并发"></a>二、并发</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>并发</strong>：指两个或多个事件在同一时间间隔内发生。这些事件<strong>宏观上是同时发生</strong>的，但是<strong>微观上是交替发生</strong>的</p>
-<p><strong>易于混淆</strong>的概念：<strong>并行</strong>：指两个或多个事件<strong>同一时刻</strong>发生</p>
-<h4 id="2、操作系统的并发性"><a href="#2、操作系统的并发性" class="headerlink" title="2、操作系统的并发性"></a>2、操作系统的并发性</h4><p>​    操作系统的并发性：指计算机系统同时存在着多个运行着的程序</p>
-<h3 id="三、共享"><a href="#三、共享" class="headerlink" title="三、共享"></a>三、共享</h3><h4 id="1、概念-1"><a href="#1、概念-1" class="headerlink" title="1、概念"></a>1、概念</h4><p>​    共享：即<strong>资源共享</strong>，是指系统内的资源可供内存中多个并发执行的进程共同使用。</p>
-<p><img src="https://i.loli.net/2020/12/05/PbZ4SJHftFU5Gqp.png" alt="image-20201205155800371"></p>
-<p>​    </p>
-<h3 id="四、虚拟"><a href="#四、虚拟" class="headerlink" title="四、虚拟"></a>四、虚拟</h3><h4 id="1、概念-2"><a href="#1、概念-2" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>虚拟</strong>：指把一个物理上的实体变成若干个逻辑上的对应物，物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的</p>
-<p><img src="https://i.loli.net/2020/12/05/Aj7WMiY1uRqQUt5.png" alt="image-20201205160547807"></p>
-<h4 id="2、注意"><a href="#2、注意" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
-<li><strong><em>没有并发性，就没有虚拟性</em></strong></li>
-</ul>
-<h3 id="五、异步"><a href="#五、异步" class="headerlink" title="五、异步"></a>五、异步</h3><h4 id="1、概念-3"><a href="#1、概念-3" class="headerlink" title="1、概念"></a>1、概念</h4><p><strong>异步：</strong>在多道程序环境下，运行多个程序并发执行，但<strong>由于资源有限</strong>，进程的执行不是一贯到底的，而是走走停停的，以不可预知的速度向前推进，这就是进程的异步性。</p>
-<h4 id="2、注意-1"><a href="#2、注意-1" class="headerlink" title="2、注意"></a>2、注意</h4><ul>
-<li><strong><em>只有系统拥有并发性，才有可能导致异步性</em></strong></li>
-</ul>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>排序</title>
     <url>/posts/a444b428/</url>
     <content><![CDATA[<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h4 id="主要思想-分治"><a href="#主要思想-分治" class="headerlink" title="主要思想:分治"></a>主要思想:分治</h4><p><strong>特点</strong></p>
@@ -776,6 +1030,157 @@
       </tags>
   </entry>
   <entry>
+    <title>操作系统发展和分类</title>
+    <url>/posts/2ce96af5/</url>
+    <content><![CDATA[<h3 id="一、手工操作阶段"><a href="#一、手工操作阶段" class="headerlink" title="一、手工操作阶段"></a>一、手工操作阶段</h3><h3 id="二、批处理阶段"><a href="#二、批处理阶段" class="headerlink" title="二、批处理阶段"></a>二、批处理阶段</h3><h4 id="1、单道批处理阶段"><a href="#1、单道批处理阶段" class="headerlink" title="1、单道批处理阶段"></a>1、单道批处理阶段</h4><p>引入<strong>脱机输入/输出技术</strong>（用磁带完成），并<strong>监督程序</strong>负责控制作业的输入、输出。</p>
+<p><strong>优点</strong>：缓解了一定程序的人机速度矛盾，资源利用率有所提高</p>
+<p><strong>缺点</strong>：<strong>内存中仅能由一道程序运行</strong>，只有该程序运行结束后才能调入下一道程序，<strong>CPU有大量的时间是空闲等待I/O完成</strong>，资源利用依然低。</p>
+<h4 id="2、多批道处理系统"><a href="#2、多批道处理系统" class="headerlink" title="2、多批道处理系统"></a>2、多批道处理系统</h4><p><strong>操作系统正式诞生</strong>，并引入了<strong>中断技术</strong>，由操作系统负责管理这些程序的执行，各个程序并发执行。</p>
+<p><strong>优点</strong>：多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源，<strong>资源利用率大幅度提升</strong>，CPU和其他资源保持“忙碌”状态，系统吞吐量增大</p>
+<p><strong>缺点</strong>：用户响应时间长，<strong>没有人机交互功能</strong>（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p>
+<h3 id="三、分时操作系统"><a href="#三、分时操作系统" class="headerlink" title="三、分时操作系统"></a>三、分时操作系统</h3><p>：计算机以<strong>时间片</strong>为单位轮转为<strong>各个用户/作业服务</strong>，各个用户可通过终端与计算机进行交互</p>
+<p><strong>优点</strong>：用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</p>
+<p><strong>缺点</strong>：<strong>不能优先处理一些紧急任务</strong>。操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</p>
+<h3 id="四、实时操作系统"><a href="#四、实时操作系统" class="headerlink" title="四、实时操作系统"></a>四、实时操作系统</h3><p><strong>优点</strong>：<strong>能够优先响应一些紧急任务</strong>，某些紧急任务不需要时间片排队。</p>
+<p>在实时操作系统的控制下，计算机系统接受到外部信号后及时进行处理，并且要<strong>在严格的时限内处理完事件。</strong></p>
+<p>实时操作系统的主要特点是<strong>及时性和可靠性</strong></p>
+<h3 id="五、思维导图"><a href="#五、思维导图" class="headerlink" title="五、思维导图"></a>五、思维导图</h3><p><img src="https://i.loli.net/2020/12/05/EnZ5Vka3DG7pzgN.png" alt="image-20201205204558085"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>系统调用</title>
+    <url>/posts/4f5d4e8d/</url>
+    <content><![CDATA[<h3 id="一-什么是系统调用，有何作用"><a href="#一-什么是系统调用，有何作用" class="headerlink" title="一 什么是系统调用，有何作用"></a>一 什么是系统调用，有何作用</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p>应用程序通过<strong>系统调用</strong>请求操作系统的服务。系统中的各种共享资源都由操作系统统一掌管，因此在用户程序中，凡是与资源有关的操作（如存储分配、I/O操作、文件管理等），都必须通过系统调用的方式向操作系统提供服务请求，由操作系统代为完成</p>
+<h4 id="2、作用"><a href="#2、作用" class="headerlink" title="2、作用"></a>2、作用</h4><p>可以保证系统的稳定性和安全性，防止用户进行非法操作</p>
+<h4 id="3、分类（功能）"><a href="#3、分类（功能）" class="headerlink" title="3、分类（功能）"></a>3、分类（功能）</h4><ul>
+<li>设备管理<ul>
+<li>完成设备的请求/释放/启动等功能</li>
+</ul>
+</li>
+<li>文件管理<ul>
+<li>完成文件的读/写/创建/删除等功能</li>
+</ul>
+</li>
+<li>进程控制<ul>
+<li>完成进程的创建/撤销/阻塞/唤醒/等功能</li>
+</ul>
+</li>
+<li>进程通信<ul>
+<li>完成进程之间的消息传递/信号传递等功能</li>
+</ul>
+</li>
+<li>内存管理<ul>
+<li>完成内存的分配/回收等功能</li>
+</ul>
+</li>
+</ul>
+<h4 id="4、注意"><a href="#4、注意" class="headerlink" title="4、注意"></a>4、注意</h4><p>​    系统调用相关处理涉及到对系统资源的管理、对进程的控制。这些功能需要<strong>执行一些特权指令</strong>才能完成，因此<strong>系统调用的相关处理</strong>，需要<strong>在核心态完成</strong></p>
+<h3 id="二-系统调用和函数库的区别"><a href="#二-系统调用和函数库的区别" class="headerlink" title="二 系统调用和函数库的区别"></a>二 系统调用和函数库的区别</h3><p><img src="https://i.loli.net/2020/12/18/ujoQrK3UiRtsWcw.png" alt="image-20201218111839800"></p>
+<h3 id="三-系统调用背后的过程"><a href="#三-系统调用背后的过程" class="headerlink" title="三 系统调用背后的过程"></a>三 系统调用背后的过程</h3><p><img src="https://i.loli.net/2020/12/18/a563MetRrPnzjZh.png" alt="image-20201218112528140"></p>
+<h3 id="四-知识回顾"><a href="#四-知识回顾" class="headerlink" title="四 知识回顾"></a>四 知识回顾</h3><p><img src="https://i.loli.net/2020/12/18/62QAHhde1g8Gpzf.png" alt="image-20201218112743161"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>处理机调度、层次概念</title>
+    <url>/posts/c21ce3f9/</url>
+    <content><![CDATA[<h3 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h3><p>处理机调度：从就绪队列中<strong>按照一定的算法选择一个进程</strong>并将<strong>处理机分配给他</strong>运行，以实现进程的并发执行</p>
+<h3 id="二、三个层次"><a href="#二、三个层次" class="headerlink" title="二、三个层次"></a>二、三个层次</h3><h4 id="1、高级调度（作业调度）"><a href="#1、高级调度（作业调度）" class="headerlink" title="1、高级调度（作业调度）"></a>1、高级调度（作业调度）</h4><ul>
+<li>按一定的原则<strong>从外存上</strong>处于后备队列的作业中挑选一个（或多个）作业，将他们分配内存等必要资源，并建立<strong>相应的进程（建立PCB）</strong>，以使<strong>它们获得竞争处理机的权利</strong>.</li>
+<li>高级调度是外存与内存之间的调度，每个作业只调入一次，调出一次。<strong>作业调入时建立PCB，作业调出时才销毁PCB，</strong></li>
+<li>高级调度主要是指<strong>作业调入的问题</strong>，因为只有调入的时机才需要操作系统来确定，但调出的时机必然是作业运行结束后才调出，</li>
+</ul>
+<h4 id="2、中级调度（内存调度）"><a href="#2、中级调度（内存调度）" class="headerlink" title="2、中级调度（内存调度）"></a>2、中级调度（内存调度）</h4><ul>
+<li>引入虚拟存储技术后，可以将暂时不能运行的进程调至到外存等待，等到它重新具备运行条件后且内存又稍有空闲后，再重新调入到内存中，目的是<strong>提高内存效率和系统吞吐量</strong></li>
+<li>暂时调到外存等待的进程的状态为“<strong>挂起状态</strong>”，<ul>
+<li><strong>PCB并不会一起调到外存</strong>，而是会<strong>常驻内存</strong></li>
+<li>被挂起的进程PCB会放到<strong>挂起队列</strong>中</li>
+</ul>
+</li>
+<li><strong>中级调度就是决定将哪一个挂起状态的进程重新调入进程</strong><ul>
+<li>一个进程可能多次被调入调出内存，所以<strong>中级调度</strong>发生的频率要比高级调度要<strong>更高</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="3、低级调度（进程调度）"><a href="#3、低级调度（进程调度）" class="headerlink" title="3、低级调度（进程调度）"></a>3、低级调度（进程调度）</h4><ul>
+<li><strong>低级调度（进程调度）：按照某一种算法和策略从就绪队列中选取一个进程，将处理机分配给它</strong></li>
+<li>进程调度是操作系统中<strong>最基本的一种调度</strong></li>
+<li>进程调度的<strong>频率很高</strong>，一般几十毫秒一次</li>
+</ul>
+<h3 id="三、三层调度的联系对比"><a href="#三、三层调度的联系对比" class="headerlink" title="三、三层调度的联系对比"></a>三、三层调度的联系对比</h3><p><img src="https://i.loli.net/2020/12/26/5UKe1HpBxQyGZAj.png" alt="image-20201226104000403"></p>
+<h3 id="四、补充知识"><a href="#四、补充知识" class="headerlink" title="四、补充知识"></a>四、补充知识</h3><h4 id="1、进程的“挂状态”"><a href="#1、进程的“挂状态”" class="headerlink" title="1、进程的“挂状态”"></a>1、进程的“挂状态”</h4><ul>
+<li>就绪挂起</li>
+<li>堵塞挂起</li>
+</ul>
+<h4 id="2、七状态模型"><a href="#2、七状态模型" class="headerlink" title="2、七状态模型"></a>2、七状态模型</h4><p><img src="https://i.loli.net/2020/12/26/MDmwtQdg3pWeiJA.png" alt="image-20201226103617756"></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/26/eVFG9HcDZ8EWdbM.png" alt="image-20201226104129845"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线程概念与多线程模型</title>
+    <url>/posts/3971d124/</url>
+    <content><![CDATA[<h3 id="一、什么是线程，为什么要引入线程"><a href="#一、什么是线程，为什么要引入线程" class="headerlink" title="一、什么是线程，为什么要引入线程"></a>一、什么是线程，为什么要引入线程</h3><p><img src="https://i.loli.net/2020/12/24/o7UagnA9ZLlehpB.png" alt="image-20201224103051529"></p>
+<ul>
+<li>线程是<strong>一个基本的CPU执行单元</strong>，也是<strong>程序执行流的最小单位</strong>。</li>
+<li></li>
+</ul>
+<h3 id="二、引入线程机制后，有什么变化"><a href="#二、引入线程机制后，有什么变化" class="headerlink" title="二、引入线程机制后，有什么变化"></a>二、引入线程机制后，有什么变化</h3><p><img src="https://i.loli.net/2020/12/24/W5mpHxk6glcXnrP.png" alt="image-20201224103311213"></p>
+<h3 id="三、线程的重要属性"><a href="#三、线程的重要属性" class="headerlink" title="三、线程的重要属性"></a>三、线程的重要属性</h3><p><img src="https://i.loli.net/2020/12/24/t4VSpF7yecUiY2g.png" alt="image-20201224104737922"></p>
+<h3 id="四、实现方式"><a href="#四、实现方式" class="headerlink" title="四、实现方式"></a>四、实现方式</h3><h4 id="1、用户级线程"><a href="#1、用户级线程" class="headerlink" title="1、用户级线程"></a>1、用户级线程</h4><ul>
+<li><p>用户级线程由应用程序通过线程库来实现的</p>
+</li>
+<li><p>所有的<strong>线程管理工作</strong>都由<strong>应用程序</strong>负责（包括线程切换）</p>
+</li>
+<li><p>用户级线程，<strong>线程切换</strong>可以在<strong>用户态下即可完成</strong>，无需操作系统的干预</p>
+</li>
+<li><p>用户级线程对用户不透明，对操作系统透明</p>
+</li>
+<li><p>用户级线程，就是“从用户视角看到的线程”</p>
+<p><img src="https://i.loli.net/2020/12/24/g86KlfCz3BxHPhM.png" alt="image-20201224110917123"></p>
+</li>
+</ul>
+<h4 id="2、内核级线程"><a href="#2、内核级线程" class="headerlink" title="2、内核级线程"></a>2、内核级线程</h4><ul>
+<li><strong>内核级线程管理工作</strong>由<strong>操作系统内核</strong>完成。</li>
+<li>线程调度、切换等工作都由内核完成，因此<strong>内核级线程的切换</strong>必然需要在<strong>核心态</strong>下才能完成</li>
+<li>”内核级线程“就是”从操作系统内核视角才能看到的线程“</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/24/UyoGcdegKJFWku7.png" alt="image-20201224111539618"></p>
+<h4 id="3、组合模式"><a href="#3、组合模式" class="headerlink" title="3、组合模式"></a>3、组合模式</h4><ul>
+<li>同时支持用户级线程和内核级线程，将n个用户级线程映射到m个内核级线程上（n&gt;=m）;</li>
+<li><strong>内核级线程才是处理机分配的单位</strong></li>
+<li><img src="https://i.loli.net/2020/12/24/jaX4oh6FTmctWRy.png" alt="image-20201224111727851"></li>
+<li></li>
+</ul>
+<h3 id="五、多线程模型"><a href="#五、多线程模型" class="headerlink" title="五、多线程模型"></a>五、多线程模型</h3><h4 id="1、多对一模型"><a href="#1、多对一模型" class="headerlink" title="1、多对一模型"></a>1、多对一模型</h4><p><img src="https://i.loli.net/2020/12/24/QD4V3I7ajKLbvEn.png" alt="image-20201224112057178"></p>
+<h4 id="2、一对一模型"><a href="#2、一对一模型" class="headerlink" title="2、一对一模型"></a>2、一对一模型</h4><p><img src="https://i.loli.net/2020/12/24/XpCsl7TmuntqGEA.png" alt="image-20201224112328130"></p>
+<h4 id="3、多对多模型"><a href="#3、多对多模型" class="headerlink" title="3、多对多模型"></a>3、多对多模型</h4><p><img src="https://i.loli.net/2020/12/24/nZIym2Fghwp9u65.png" alt="image-20201224112443274"></p>
+<h3 id="六、总"><a href="#六、总" class="headerlink" title="六、总"></a>六、总</h3><p><img src="https://i.loli.net/2020/12/24/SJustWoQIp1lE2f.png" alt="image-20201224112624565"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何新建Mybatis</title>
     <url>/posts/8fdbde0d/</url>
     <content><![CDATA[<h3 id="1、搭建环境"><a href="#1、搭建环境" class="headerlink" title="1、搭建环境"></a>1、搭建环境</h3><p>搭建数据库</p>
@@ -856,144 +1261,47 @@
       </tags>
   </entry>
   <entry>
-    <title>线程概念与多线程模型</title>
-    <url>/posts/3971d124/</url>
-    <content><![CDATA[<h3 id="一、什么是线程，为什么要引入线程"><a href="#一、什么是线程，为什么要引入线程" class="headerlink" title="一、什么是线程，为什么要引入线程"></a>一、什么是线程，为什么要引入线程</h3><p><img src="https://i.loli.net/2020/12/24/o7UagnA9ZLlehpB.png" alt="image-20201224103051529"></p>
+    <title>运行机制-体系结构</title>
+    <url>/posts/31685368/</url>
+    <content><![CDATA[<h3 id="一、运行机制"><a href="#一、运行机制" class="headerlink" title="一、运行机制"></a>一、运行机制</h3><h4 id="1、指令"><a href="#1、指令" class="headerlink" title="1、指令"></a>1、指令</h4><p>1.概念：处理器（CPU）能识别、执行的最基本命令</p>
+<p>2.分类：</p>
 <ul>
-<li>线程是<strong>一个基本的CPU执行单元</strong>，也是<strong>程序执行流的最小单位</strong>。</li>
-<li></li>
+<li>特权指令：不允许用户程序使用</li>
+<li>非特权指令</li>
 </ul>
-<h3 id="二、引入线程机制后，有什么变化"><a href="#二、引入线程机制后，有什么变化" class="headerlink" title="二、引入线程机制后，有什么变化"></a>二、引入线程机制后，有什么变化</h3><p><img src="https://i.loli.net/2020/12/24/W5mpHxk6glcXnrP.png" alt="image-20201224103311213"></p>
-<h3 id="三、线程的重要属性"><a href="#三、线程的重要属性" class="headerlink" title="三、线程的重要属性"></a>三、线程的重要属性</h3><p><img src="https://i.loli.net/2020/12/24/t4VSpF7yecUiY2g.png" alt="image-20201224104737922"></p>
-<h3 id="四、实现方式"><a href="#四、实现方式" class="headerlink" title="四、实现方式"></a>四、实现方式</h3><h4 id="1、用户级线程"><a href="#1、用户级线程" class="headerlink" title="1、用户级线程"></a>1、用户级线程</h4><ul>
-<li><p>用户级线程由应用程序通过线程库来实现的</p>
-</li>
-<li><p>所有的<strong>线程管理工作</strong>都由<strong>应用程序</strong>负责（包括线程切换）</p>
-</li>
-<li><p>用户级线程，<strong>线程切换</strong>可以在<strong>用户态下即可完成</strong>，无需操作系统的干预</p>
-</li>
-<li><p>用户级线程对用户不透明，对操作系统透明</p>
-</li>
-<li><p>用户级线程，就是“从用户视角看到的线程”</p>
-<p><img src="https://i.loli.net/2020/12/24/g86KlfCz3BxHPhM.png" alt="image-20201224110917123"></p>
-</li>
+<h4 id="2、处理器状态"><a href="#2、处理器状态" class="headerlink" title="2、处理器状态"></a>2、处理器状态</h4><p>1.分类</p>
+<ul>
+<li>用户态（目态）：次时CPU只能执行非特权指令</li>
+<li>核心态（管态）：特权指令、非特权指令都能执行</li>
 </ul>
-<h4 id="2、内核级线程"><a href="#2、内核级线程" class="headerlink" title="2、内核级线程"></a>2、内核级线程</h4><ul>
-<li><strong>内核级线程管理工作</strong>由<strong>操作系统内核</strong>完成。</li>
-<li>线程调度、切换等工作都由内核完成，因此<strong>内核级线程的切换</strong>必然需要在<strong>核心态</strong>下才能完成</li>
-<li>”内核级线程“就是”从操作系统内核视角才能看到的线程“</li>
+<p>2、怎么判断状态</p>
+<p>用程序状态字寄存器（PSW）中的某标志位来标识当前处理器处于什么状态。如 0为用户态，1为核心态。</p>
+<h4 id="3、两种程序"><a href="#3、两种程序" class="headerlink" title="3、两种程序"></a>3、两种程序</h4><p>1.分类</p>
+<ul>
+<li>内核程序：操作系统的内核程序是系统的管理者。既可以执行特权指令，也可以执行非特权指令，运行在核心态。</li>
+<li>应用程序：为了保证系统的安全运行，普通应用程序只能执行非特权指令，运行在用户态。</li>
 </ul>
-<p><img src="https://i.loli.net/2020/12/24/UyoGcdegKJFWku7.png" alt="image-20201224111539618"></p>
-<h4 id="3、组合模式"><a href="#3、组合模式" class="headerlink" title="3、组合模式"></a>3、组合模式</h4><ul>
-<li>同时支持用户级线程和内核级线程，将n个用户级线程映射到m个内核级线程上（n&gt;=m）;</li>
-<li><strong>内核级线程才是处理机分配的单位</strong></li>
-<li><img src="https://i.loli.net/2020/12/24/jaX4oh6FTmctWRy.png" alt="image-20201224111727851"></li>
-<li></li>
-</ul>
-<h3 id="五、多线程模型"><a href="#五、多线程模型" class="headerlink" title="五、多线程模型"></a>五、多线程模型</h3><h4 id="1、多对一模型"><a href="#1、多对一模型" class="headerlink" title="1、多对一模型"></a>1、多对一模型</h4><p><img src="https://i.loli.net/2020/12/24/QD4V3I7ajKLbvEn.png" alt="image-20201224112057178"></p>
-<h4 id="2、一对一模型"><a href="#2、一对一模型" class="headerlink" title="2、一对一模型"></a>2、一对一模型</h4><p><img src="https://i.loli.net/2020/12/24/XpCsl7TmuntqGEA.png" alt="image-20201224112328130"></p>
-<h4 id="3、多对多模型"><a href="#3、多对多模型" class="headerlink" title="3、多对多模型"></a>3、多对多模型</h4><p><img src="https://i.loli.net/2020/12/24/nZIym2Fghwp9u65.png" alt="image-20201224112443274"></p>
-<h3 id="六、总"><a href="#六、总" class="headerlink" title="六、总"></a>六、总</h3><p><img src="https://i.loli.net/2020/12/24/SJustWoQIp1lE2f.png" alt="image-20201224112624565"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>系统调用</title>
-    <url>/posts/4f5d4e8d/</url>
-    <content><![CDATA[<h3 id="一-什么是系统调用，有何作用"><a href="#一-什么是系统调用，有何作用" class="headerlink" title="一 什么是系统调用，有何作用"></a>一 什么是系统调用，有何作用</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p>应用程序通过<strong>系统调用</strong>请求操作系统的服务。系统中的各种共享资源都由操作系统统一掌管，因此在用户程序中，凡是与资源有关的操作（如存储分配、I/O操作、文件管理等），都必须通过系统调用的方式向操作系统提供服务请求，由操作系统代为完成</p>
-<h4 id="2、作用"><a href="#2、作用" class="headerlink" title="2、作用"></a>2、作用</h4><p>可以保证系统的稳定性和安全性，防止用户进行非法操作</p>
-<h4 id="3、分类（功能）"><a href="#3、分类（功能）" class="headerlink" title="3、分类（功能）"></a>3、分类（功能）</h4><ul>
-<li>设备管理<ul>
-<li>完成设备的请求/释放/启动等功能</li>
-</ul>
+<h3 id="二、内核"><a href="#二、内核" class="headerlink" title="二、内核"></a>二、内核</h3><h4 id="1、图解"><a href="#1、图解" class="headerlink" title="1、图解"></a>1、图解</h4><p><img src="https://i.loli.net/2020/12/05/FZJ1NXgrkG6aMKi.png" alt="image-20201205211540841"></p>
+<h4 id="2、概念"><a href="#2、概念" class="headerlink" title="2、概念"></a>2、概念</h4><ul>
+<li><p>内核是计算机上配置的<strong>底层软件</strong>，是操作系统最基本、最核心的部分。</p>
 </li>
-<li>文件管理<ul>
-<li>完成文件的读/写/创建/删除等功能</li>
-</ul>
-</li>
-<li>进程控制<ul>
-<li>完成进程的创建/撤销/阻塞/唤醒/等功能</li>
-</ul>
-</li>
-<li>进程通信<ul>
-<li>完成进程之间的消息传递/信号传递等功能</li>
-</ul>
-</li>
-<li>内存管理<ul>
-<li>完成内存的分配/回收等功能</li>
-</ul>
+<li><p>实现操作系统内核功能的哪些程序就是内核程序</p>
+<p><img src="https://i.loli.net/2020/12/15/94Az5WIhvfPgsyn.png" alt="image-20201215193609256"></p>
 </li>
 </ul>
-<h4 id="4、注意"><a href="#4、注意" class="headerlink" title="4、注意"></a>4、注意</h4><p>​    系统调用相关处理涉及到对系统资源的管理、对进程的控制。这些功能需要<strong>执行一些特权指令</strong>才能完成，因此<strong>系统调用的相关处理</strong>，需要<strong>在核心态完成</strong></p>
-<h3 id="二-系统调用和函数库的区别"><a href="#二-系统调用和函数库的区别" class="headerlink" title="二 系统调用和函数库的区别"></a>二 系统调用和函数库的区别</h3><p><img src="https://i.loli.net/2020/12/18/ujoQrK3UiRtsWcw.png" alt="image-20201218111839800"></p>
-<h3 id="三-系统调用背后的过程"><a href="#三-系统调用背后的过程" class="headerlink" title="三 系统调用背后的过程"></a>三 系统调用背后的过程</h3><p><img src="https://i.loli.net/2020/12/18/a563MetRrPnzjZh.png" alt="image-20201218112528140"></p>
-<h3 id="四-知识回顾"><a href="#四-知识回顾" class="headerlink" title="四 知识回顾"></a>四 知识回顾</h3><p><img src="https://i.loli.net/2020/12/18/62QAHhde1g8Gpzf.png" alt="image-20201218112743161"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>调度算法的评判标准</title>
-    <url>/posts/110d173/</url>
-    <content><![CDATA[<h3 id="一、CPU利用率"><a href="#一、CPU利用率" class="headerlink" title="一、CPU利用率"></a>一、CPU利用率</h3><ul>
-<li>CPU“忙碌”的时间占总时间的比例</li>
-<li>利用率 = 忙碌的时间 / 总时间</li>
+<h4 id="3、内核分类"><a href="#3、内核分类" class="headerlink" title="3、内核分类"></a>3、内核分类</h4><ul>
+<li>大内核、微内核</li>
 </ul>
-<p><img src="https://i.loli.net/2020/12/26/Dzav7BIkj8Z3Spe.png" alt="image-20201226112636011"></p>
-<h3 id="二、系统吞吐量"><a href="#二、系统吞吐量" class="headerlink" title="二、系统吞吐量"></a>二、系统吞吐量</h3><ul>
-<li><strong>系统吞吐量</strong>：单位时间内完成作业的数量</li>
-<li><strong>系统吞吐量</strong> = 总共完成了多少作业 / 总共花了多少时间</li>
-</ul>
-<p><img src="https://i.loli.net/2020/12/26/G7SYZwVAfk28DJF.png" alt="image-20201226112952425"></p>
-<h3 id="三、周转时间"><a href="#三、周转时间" class="headerlink" title="三、周转时间"></a>三、周转时间</h3><ul>
-<li>周转时间：指作业<strong>被提交到系统开始</strong>，到<strong>作业完成为止</strong>的这段时间间隔</li>
-<li>包括四个部分<ul>
-<li>作业在外存。后备队列上等待作业调度（高级调度）的时间</li>
-<li>进程在就绪队列上等待进程调度（低级调度）的时间</li>
-<li>进程在CPU上执行的时间</li>
-<li>进程等待I/O操作完成的时间</li>
-</ul>
+<p><img src="https://i.loli.net/2020/12/15/SxdQ7uCcHRInYqZ.png" alt="image-20201215193804729"></p>
+<ul>
+<li><p>大内核、微内核的优缺点</p>
+<p><img src="https://i.loli.net/2020/12/15/9tDKGPLcXmofMbw.png" alt="image-20201215194114688"></p>
 </li>
-<li><strong>后三个部分在一个作业上在整个处理过程中，可能发生多次。</strong></li>
-</ul>
-<h4 id="1、周转时间、平均周转时间"><a href="#1、周转时间、平均周转时间" class="headerlink" title="1、周转时间、平均周转时间"></a>1、周转时间、平均周转时间</h4><ul>
-<li>（作业）周转时间 = 作业完成时间 — 作业提交时间<ul>
-<li>对于用户来说，更关心自己的单个作业的周转时间</li>
-</ul>
-</li>
-<li>平均周转时间 = 各个作业时间之和 / 作业数<ul>
-<li>对于操作系统来说，更关心系统的整体表现，因此更关心所有作业的周转时间的平均值</li>
-</ul>
+<li><p>类比</p>
+<p><img src="https://i.loli.net/2020/12/15/hcy6SJYFe7Q9ZDo.png" alt="image-20201215194403334"></p>
 </li>
 </ul>
-<h4 id="2、带权周转时间、平均带权周转时间"><a href="#2、带权周转时间、平均带权周转时间" class="headerlink" title="2、带权周转时间、平均带权周转时间"></a>2、带权周转时间、平均带权周转时间</h4><ul>
-<li>带权周转时间 = 作业周转时间 / 作业实际运行的时间 = （作业完成时间-作业提交的时间） / 作业实际运行的时间<ul>
-<li>带权周转时间越低，用户满意度更高</li>
-<li>带权周转时间必然 &gt;= 1</li>
-<li>带权周转时间与周转时间都是越小越好</li>
-</ul>
-</li>
-<li>平均带权周转时间 = 各个作业带权周转时间之和 / 作业数</li>
-</ul>
-<h3 id="四、等待时间"><a href="#四、等待时间" class="headerlink" title="四、等待时间"></a>四、等待时间</h3><ul>
-<li><strong>等待时间</strong>：指<strong>进程/作业处于等待处理机状态时间之和</strong>，等待时间越长，用户满意度越低</li>
-<li>对于<strong>进程</strong>来说,，等待时间就是指进程建立后<strong>等待被服务的时间之和</strong>，在等待I/O完成的期间其实进程也是在被服务的，所有不计入的等待时间</li>
-<li>对于<strong>作业</strong>来说，不仅要考虑<strong>建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间</strong></li>
-</ul>
-<h3 id="五、响应时间"><a href="#五、响应时间" class="headerlink" title="五、响应时间"></a>五、响应时间</h3><ul>
-<li>响应时间：指从用户<strong>提交请求</strong>到<strong>首次产生响应</strong>所用的时间</li>
-</ul>
-<h3 id="六、计算"><a href="#六、计算" class="headerlink" title="六、计算"></a>六、计算</h3><p><img src="https://i.loli.net/2020/12/26/Fv4Sdg6MkT7InNA.png" alt="image-20201226162238234"></p>
-<h3 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h3><p><img src="https://i.loli.net/2020/12/26/RO7BiEb5LnhSKpq.png" alt="image-20201226160424754"></p>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p><img src="https://i.loli.net/2020/12/15/dDoiBXmfkvrjlQx.png" alt="image-20201215194829134"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -1149,97 +1457,6 @@
       </tags>
   </entry>
   <entry>
-    <title>运行机制-体系结构</title>
-    <url>/posts/31685368/</url>
-    <content><![CDATA[<h3 id="一、运行机制"><a href="#一、运行机制" class="headerlink" title="一、运行机制"></a>一、运行机制</h3><h4 id="1、指令"><a href="#1、指令" class="headerlink" title="1、指令"></a>1、指令</h4><p>1.概念：处理器（CPU）能识别、执行的最基本命令</p>
-<p>2.分类：</p>
-<ul>
-<li>特权指令：不允许用户程序使用</li>
-<li>非特权指令</li>
-</ul>
-<h4 id="2、处理器状态"><a href="#2、处理器状态" class="headerlink" title="2、处理器状态"></a>2、处理器状态</h4><p>1.分类</p>
-<ul>
-<li>用户态（目态）：次时CPU只能执行非特权指令</li>
-<li>核心态（管态）：特权指令、非特权指令都能执行</li>
-</ul>
-<p>2、怎么判断状态</p>
-<p>用程序状态字寄存器（PSW）中的某标志位来标识当前处理器处于什么状态。如 0为用户态，1为核心态。</p>
-<h4 id="3、两种程序"><a href="#3、两种程序" class="headerlink" title="3、两种程序"></a>3、两种程序</h4><p>1.分类</p>
-<ul>
-<li>内核程序：操作系统的内核程序是系统的管理者。既可以执行特权指令，也可以执行非特权指令，运行在核心态。</li>
-<li>应用程序：为了保证系统的安全运行，普通应用程序只能执行非特权指令，运行在用户态。</li>
-</ul>
-<h3 id="二、内核"><a href="#二、内核" class="headerlink" title="二、内核"></a>二、内核</h3><h4 id="1、图解"><a href="#1、图解" class="headerlink" title="1、图解"></a>1、图解</h4><p><img src="https://i.loli.net/2020/12/05/FZJ1NXgrkG6aMKi.png" alt="image-20201205211540841"></p>
-<h4 id="2、概念"><a href="#2、概念" class="headerlink" title="2、概念"></a>2、概念</h4><ul>
-<li><p>内核是计算机上配置的<strong>底层软件</strong>，是操作系统最基本、最核心的部分。</p>
-</li>
-<li><p>实现操作系统内核功能的哪些程序就是内核程序</p>
-<p><img src="https://i.loli.net/2020/12/15/94Az5WIhvfPgsyn.png" alt="image-20201215193609256"></p>
-</li>
-</ul>
-<h4 id="3、内核分类"><a href="#3、内核分类" class="headerlink" title="3、内核分类"></a>3、内核分类</h4><ul>
-<li>大内核、微内核</li>
-</ul>
-<p><img src="https://i.loli.net/2020/12/15/SxdQ7uCcHRInYqZ.png" alt="image-20201215193804729"></p>
-<ul>
-<li><p>大内核、微内核的优缺点</p>
-<p><img src="https://i.loli.net/2020/12/15/9tDKGPLcXmofMbw.png" alt="image-20201215194114688"></p>
-</li>
-<li><p>类比</p>
-<p><img src="https://i.loli.net/2020/12/15/hcy6SJYFe7Q9ZDo.png" alt="image-20201215194403334"></p>
-</li>
-</ul>
-<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p><img src="https://i.loli.net/2020/12/15/dDoiBXmfkvrjlQx.png" alt="image-20201215194829134"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>进程状态的转换</title>
-    <url>/posts/ada646f9/</url>
-    <content><![CDATA[<h3 id="一、概括"><a href="#一、概括" class="headerlink" title="一、概括"></a>一、概括</h3><p><img src="https://i.loli.net/2020/12/22/EOQtlMj316C72vV.png" alt="image-20201222200250316"></p>
-<h3 id="二、进程的状态"><a href="#二、进程的状态" class="headerlink" title="二、进程的状态"></a>二、进程的状态</h3><h4 id="1、三种基本状态"><a href="#1、三种基本状态" class="headerlink" title="1、三种基本状态"></a>1、三种基本状态</h4><ul>
-<li>运行态<ul>
-<li>占用CPU，并在CPU上运行</li>
-<li>在单核处理机环境下，每一个时刻最多只由一个进程处于运行态（双核环境下由两个进程处于运行态）</li>
-</ul>
-</li>
-<li>就绪态<ul>
-<li>依据具备运行条件，但由于没有空闲的CPU，而暂时不能运行。</li>
-<li>进程已经拥有了除处理机之外的所有需要的资源，一旦获取处理机，就可以立刻进入运行态开始运行</li>
-</ul>
-</li>
-<li>阻塞态<ul>
-<li>因等待一事件而暂时不能运行</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、另外两种状态"><a href="#2、另外两种状态" class="headerlink" title="2、另外两种状态"></a>2、另外两种状态</h4><ul>
-<li>创建状态<ul>
-<li>操作系统需要完成创建进程，操作系统为该进程分配所需要的内存空间等资源，并为其初始化PCB</li>
-</ul>
-</li>
-<li>终止状态<ul>
-<li>进程运行结束，需要撤销进程</li>
-<li>操作系统需要完成撤销进程相关的工作，完成将分配给进程的资源回收，撤销进程PCB等工作</li>
-</ul>
-</li>
-</ul>
-<h3 id="三-进程的转换"><a href="#三-进程的转换" class="headerlink" title="三 进程的转换"></a>三 进程的转换</h3><p><img src="https://i.loli.net/2020/12/22/CFziGAK976WSVQf.png" alt="image-20201222202632115"></p>
-<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四 总结"></a>四 总结</h3><p><img src="https://i.loli.net/2020/12/22/mo21wSXtpCODsYr.png" alt="image-20201222202732624"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>进程控制</title>
     <url>/posts/d9c2550/</url>
     <content><![CDATA[<h3 id="一-基本概念"><a href="#一-基本概念" class="headerlink" title="一 基本概念"></a>一 基本概念</h3><h4 id="1、什么是进程控制"><a href="#1、什么是进程控制" class="headerlink" title="1、什么是进程控制"></a>1、什么是进程控制</h4><p>​    进程控制的主要功能就是对系统中的所有进程进行有效的管理，它具有创建新进程、撤销已有进程、实现进程转换等功能</p>
@@ -1263,6 +1480,67 @@
 <h4 id="2、进程的终止"><a href="#2、进程的终止" class="headerlink" title="2、进程的终止"></a>2、进程的终止</h4><p><img src="https://i.loli.net/2020/12/22/2SA34PLszkRBeKG.png" alt="image-20201222205844888"></p>
 <h4 id="3、进程的阻塞、唤醒"><a href="#3、进程的阻塞、唤醒" class="headerlink" title="3、进程的阻塞、唤醒"></a>3、进程的阻塞、唤醒</h4><p><img src="https://i.loli.net/2020/12/22/E7rFRDTq3fBviCK.png" alt="image-20201222210009333"></p>
 <h4 id="4、进程的切换"><a href="#4、进程的切换" class="headerlink" title="4、进程的切换"></a>4、进程的切换</h4><p><img src="https://i.loli.net/2020/12/22/QaUOc8WrXDRjJAs.png" alt="image-20201222210112018"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调度算法的评判标准</title>
+    <url>/posts/110d173/</url>
+    <content><![CDATA[<h3 id="一、CPU利用率"><a href="#一、CPU利用率" class="headerlink" title="一、CPU利用率"></a>一、CPU利用率</h3><ul>
+<li>CPU“忙碌”的时间占总时间的比例</li>
+<li>利用率 = 忙碌的时间 / 总时间</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/Dzav7BIkj8Z3Spe.png" alt="image-20201226112636011"></p>
+<h3 id="二、系统吞吐量"><a href="#二、系统吞吐量" class="headerlink" title="二、系统吞吐量"></a>二、系统吞吐量</h3><ul>
+<li><strong>系统吞吐量</strong>：单位时间内完成作业的数量</li>
+<li><strong>系统吞吐量</strong> = 总共完成了多少作业 / 总共花了多少时间</li>
+</ul>
+<p><img src="https://i.loli.net/2020/12/26/G7SYZwVAfk28DJF.png" alt="image-20201226112952425"></p>
+<h3 id="三、周转时间"><a href="#三、周转时间" class="headerlink" title="三、周转时间"></a>三、周转时间</h3><ul>
+<li>周转时间：指作业<strong>被提交到系统开始</strong>，到<strong>作业完成为止</strong>的这段时间间隔</li>
+<li>包括四个部分<ul>
+<li>作业在外存。后备队列上等待作业调度（高级调度）的时间</li>
+<li>进程在就绪队列上等待进程调度（低级调度）的时间</li>
+<li>进程在CPU上执行的时间</li>
+<li>进程等待I/O操作完成的时间</li>
+</ul>
+</li>
+<li><strong>后三个部分在一个作业上在整个处理过程中，可能发生多次。</strong></li>
+</ul>
+<h4 id="1、周转时间、平均周转时间"><a href="#1、周转时间、平均周转时间" class="headerlink" title="1、周转时间、平均周转时间"></a>1、周转时间、平均周转时间</h4><ul>
+<li>（作业）周转时间 = 作业完成时间 — 作业提交时间<ul>
+<li>对于用户来说，更关心自己的单个作业的周转时间</li>
+</ul>
+</li>
+<li>平均周转时间 = 各个作业时间之和 / 作业数<ul>
+<li>对于操作系统来说，更关心系统的整体表现，因此更关心所有作业的周转时间的平均值</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、带权周转时间、平均带权周转时间"><a href="#2、带权周转时间、平均带权周转时间" class="headerlink" title="2、带权周转时间、平均带权周转时间"></a>2、带权周转时间、平均带权周转时间</h4><ul>
+<li>带权周转时间 = 作业周转时间 / 作业实际运行的时间 = （作业完成时间-作业提交的时间） / 作业实际运行的时间<ul>
+<li>带权周转时间越低，用户满意度更高</li>
+<li>带权周转时间必然 &gt;= 1</li>
+<li>带权周转时间与周转时间都是越小越好</li>
+</ul>
+</li>
+<li>平均带权周转时间 = 各个作业带权周转时间之和 / 作业数</li>
+</ul>
+<h3 id="四、等待时间"><a href="#四、等待时间" class="headerlink" title="四、等待时间"></a>四、等待时间</h3><ul>
+<li><strong>等待时间</strong>：指<strong>进程/作业处于等待处理机状态时间之和</strong>，等待时间越长，用户满意度越低</li>
+<li>对于<strong>进程</strong>来说,，等待时间就是指进程建立后<strong>等待被服务的时间之和</strong>，在等待I/O完成的期间其实进程也是在被服务的，所有不计入的等待时间</li>
+<li>对于<strong>作业</strong>来说，不仅要考虑<strong>建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间</strong></li>
+</ul>
+<h3 id="五、响应时间"><a href="#五、响应时间" class="headerlink" title="五、响应时间"></a>五、响应时间</h3><ul>
+<li>响应时间：指从用户<strong>提交请求</strong>到<strong>首次产生响应</strong>所用的时间</li>
+</ul>
+<h3 id="六、计算"><a href="#六、计算" class="headerlink" title="六、计算"></a>六、计算</h3><p><img src="https://i.loli.net/2020/12/26/Fv4Sdg6MkT7InNA.png" alt="image-20201226162238234"></p>
+<h3 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h3><p><img src="https://i.loli.net/2020/12/26/RO7BiEb5LnhSKpq.png" alt="image-20201226160424754"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -1363,6 +1641,119 @@
 </li>
 </ul>
 <h3 id="五-总结"><a href="#五-总结" class="headerlink" title="五 总结"></a>五 总结</h3><p><img src="https://i.loli.net/2020/12/22/7ZcXxpruak6qKjU.png" alt="image-20201222200132634"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程状态的转换</title>
+    <url>/posts/ada646f9/</url>
+    <content><![CDATA[<h3 id="一、概括"><a href="#一、概括" class="headerlink" title="一、概括"></a>一、概括</h3><p><img src="https://i.loli.net/2020/12/22/EOQtlMj316C72vV.png" alt="image-20201222200250316"></p>
+<h3 id="二、进程的状态"><a href="#二、进程的状态" class="headerlink" title="二、进程的状态"></a>二、进程的状态</h3><h4 id="1、三种基本状态"><a href="#1、三种基本状态" class="headerlink" title="1、三种基本状态"></a>1、三种基本状态</h4><ul>
+<li>运行态<ul>
+<li>占用CPU，并在CPU上运行</li>
+<li>在单核处理机环境下，每一个时刻最多只由一个进程处于运行态（双核环境下由两个进程处于运行态）</li>
+</ul>
+</li>
+<li>就绪态<ul>
+<li>依据具备运行条件，但由于没有空闲的CPU，而暂时不能运行。</li>
+<li>进程已经拥有了除处理机之外的所有需要的资源，一旦获取处理机，就可以立刻进入运行态开始运行</li>
+</ul>
+</li>
+<li>阻塞态<ul>
+<li>因等待一事件而暂时不能运行</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、另外两种状态"><a href="#2、另外两种状态" class="headerlink" title="2、另外两种状态"></a>2、另外两种状态</h4><ul>
+<li>创建状态<ul>
+<li>操作系统需要完成创建进程，操作系统为该进程分配所需要的内存空间等资源，并为其初始化PCB</li>
+</ul>
+</li>
+<li>终止状态<ul>
+<li>进程运行结束，需要撤销进程</li>
+<li>操作系统需要完成撤销进程相关的工作，完成将分配给进程的资源回收，撤销进程PCB等工作</li>
+</ul>
+</li>
+</ul>
+<h3 id="三-进程的转换"><a href="#三-进程的转换" class="headerlink" title="三 进程的转换"></a>三 进程的转换</h3><p><img src="https://i.loli.net/2020/12/22/CFziGAK976WSVQf.png" alt="image-20201222202632115"></p>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四 总结"></a>四 总结</h3><p><img src="https://i.loli.net/2020/12/22/mo21wSXtpCODsYr.png" alt="image-20201222202732624"></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>-笔记 -操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程调度的时机、切换与过程、调度方式</title>
+    <url>/posts/7f586123/</url>
+    <content><![CDATA[<h3 id="一、时机"><a href="#一、时机" class="headerlink" title="一、时机"></a>一、时机</h3><h4 id="1、什么时候需要进程调度"><a href="#1、什么时候需要进程调度" class="headerlink" title="1、什么时候需要进程调度"></a>1、什么时候需要进程调度</h4><ul>
+<li>当前运行的进程<strong>主动放弃</strong>处理机(<strong>在有的系统中只允许进程主动放弃处理机</strong>)<ul>
+<li>进程正常终止</li>
+<li>进程发生异常而终止</li>
+</ul>
+</li>
+<li>当前运行的进程<strong>被动放弃</strong>处理机<ul>
+<li>分给进程的时间片用完了</li>
+<li>有更高优先级的进程进入就绪队列</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、什么时候不能进行进程调度"><a href="#2、什么时候不能进行进程调度" class="headerlink" title="2、什么时候不能进行进程调度"></a>2、什么时候不能进行进程调度</h4><ul>
+<li>在<strong>处理中断</strong>的过程中。</li>
+<li>进程在<strong>操作系统内核程序临界区</strong>中<ul>
+<li>进程<strong>是可以在</strong>普通临界区中是可以进行调度与切换的</li>
+</ul>
+</li>
+<li>在<strong>原子操作过程中（原语）</strong>。</li>
+</ul>
+<h3 id="二、切换与过程"><a href="#二、切换与过程" class="headerlink" title="二、切换与过程"></a>二、切换与过程</h3><h4 id="1、”狭义的调度“与“切换”的区别"><a href="#1、”狭义的调度“与“切换”的区别" class="headerlink" title="1、”狭义的调度“与“切换”的区别"></a>1、”狭义的调度“与“切换”的区别</h4><ul>
+<li>狭义的进程调度是<strong>从就绪队列中选中一个要运行的进程</strong>（这个进程可以是<strong>刚刚被暂停执行的</strong>，也可以是<strong>另一个进程</strong>，后面一种就需要<strong>进程切换</strong>）</li>
+<li><strong>进程切换是指一个进程让出处理机，然后由另外一个进程使用处理机</strong></li>
+<li><strong>广度的进程调度</strong>包括<strong>选择一个进程和进程切换</strong>两个步骤</li>
+</ul>
+<h4 id="2、进程切换的过程需要什么"><a href="#2、进程切换的过程需要什么" class="headerlink" title="2、进程切换的过程需要什么"></a>2、进程切换的过程需要什么</h4><ul>
+<li>对原来运行进程的数据进行保存</li>
+<li>对新进程的数据进行恢复</li>
+</ul>
+<h4 id="3、注意点"><a href="#3、注意点" class="headerlink" title="3、注意点"></a>3、注意点</h4><ul>
+<li><strong>进程切换是有代价的</strong>，因此如果<strong>过于频繁的</strong>进行<strong>进程调度，切换</strong>。必然会使<strong>整个系统的效率降低</strong>，使系统大部分时间都花在进程切换上，而真正执行进程的时间变短</li>
+</ul>
+<h3 id="三、方式"><a href="#三、方式" class="headerlink" title="三、方式"></a>三、方式</h3><h4 id="1、非剥夺调度方式（非抢占式）"><a href="#1、非剥夺调度方式（非抢占式）" class="headerlink" title="1、非剥夺调度方式（非抢占式）"></a>1、非剥夺调度方式（非抢占式）</h4><ul>
+<li><strong>非剥夺调度方式</strong>，又称<strong>非抢占式</strong>。即，只允许进程主动放弃处理机。在运行状态期间即便又更加紧急的任务到达，当前进程依旧会继续使用处理机，直到该进程终止或者主动要求进入阻塞态。</li>
+<li>优缺点<ul>
+<li>优点<ul>
+<li>实现简单</li>
+<li>系统开销小</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>无法处理紧急任务</li>
+<li>只适合早期批处理系统</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、剥夺调度方式（抢占式）"><a href="#2、剥夺调度方式（抢占式）" class="headerlink" title="2、剥夺调度方式（抢占式）"></a>2、剥夺调度方式（抢占式）</h4><ul>
+<li><strong>剥夺调度方式</strong>，又称<strong>抢占式</strong>。当一个进程正在处理机上执行时，如果有一个更重要或者紧急的进程需要使用处理机时，则立刻停止正在执行的进程，将处理机分配给更紧急重要的进程。</li>
+<li>优缺点<ul>
+<li>优点<ul>
+<li>可以优先处理更紧急的进程</li>
+<li>实现让各进程按时间片轮转执行的功能（通过时钟中断）</li>
+<li>适合于分时操作系统、实时操作系统</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p><img src="https://i.loli.net/2020/12/26/VaJfO2i4bG8rCtH.png" alt="image-20201226111643433"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -1516,78 +1907,6 @@
 <h3 id="三、消息传递"><a href="#三、消息传递" class="headerlink" title="三、消息传递"></a>三、消息传递</h3><p><img src="https://i.loli.net/2020/12/24/EqkdhtyYgBus3AI.png" alt="image-20201224101158127"></p>
 <h3 id="四、管道通信"><a href="#四、管道通信" class="headerlink" title="四、管道通信"></a>四、管道通信</h3><p><img src="https://i.loli.net/2020/12/24/Tag7bNRrhxMcY1P.png" alt="image-20201224100913574"></p>
 <h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p><img src="https://i.loli.net/2020/12/24/V2ovCkfQgOZ48Nq.png" alt="image-20201224101327317"></p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>-笔记 -操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>进程调度的时机、切换与过程、调度方式</title>
-    <url>/posts/7f586123/</url>
-    <content><![CDATA[<h3 id="一、时机"><a href="#一、时机" class="headerlink" title="一、时机"></a>一、时机</h3><h4 id="1、什么时候需要进程调度"><a href="#1、什么时候需要进程调度" class="headerlink" title="1、什么时候需要进程调度"></a>1、什么时候需要进程调度</h4><ul>
-<li>当前运行的进程<strong>主动放弃</strong>处理机(<strong>在有的系统中只允许进程主动放弃处理机</strong>)<ul>
-<li>进程正常终止</li>
-<li>进程发生异常而终止</li>
-</ul>
-</li>
-<li>当前运行的进程<strong>被动放弃</strong>处理机<ul>
-<li>分给进程的时间片用完了</li>
-<li>有更高优先级的进程进入就绪队列</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、什么时候不能进行进程调度"><a href="#2、什么时候不能进行进程调度" class="headerlink" title="2、什么时候不能进行进程调度"></a>2、什么时候不能进行进程调度</h4><ul>
-<li>在<strong>处理中断</strong>的过程中。</li>
-<li>进程在<strong>操作系统内核程序临界区</strong>中<ul>
-<li>进程<strong>是可以在</strong>普通临界区中是可以进行调度与切换的</li>
-</ul>
-</li>
-<li>在<strong>原子操作过程中（原语）</strong>。</li>
-</ul>
-<h3 id="二、切换与过程"><a href="#二、切换与过程" class="headerlink" title="二、切换与过程"></a>二、切换与过程</h3><h4 id="1、”狭义的调度“与“切换”的区别"><a href="#1、”狭义的调度“与“切换”的区别" class="headerlink" title="1、”狭义的调度“与“切换”的区别"></a>1、”狭义的调度“与“切换”的区别</h4><ul>
-<li>狭义的进程调度是<strong>从就绪队列中选中一个要运行的进程</strong>（这个进程可以是<strong>刚刚被暂停执行的</strong>，也可以是<strong>另一个进程</strong>，后面一种就需要<strong>进程切换</strong>）</li>
-<li><strong>进程切换是指一个进程让出处理机，然后由另外一个进程使用处理机</strong></li>
-<li><strong>广度的进程调度</strong>包括<strong>选择一个进程和进程切换</strong>两个步骤</li>
-</ul>
-<h4 id="2、进程切换的过程需要什么"><a href="#2、进程切换的过程需要什么" class="headerlink" title="2、进程切换的过程需要什么"></a>2、进程切换的过程需要什么</h4><ul>
-<li>对原来运行进程的数据进行保存</li>
-<li>对新进程的数据进行恢复</li>
-</ul>
-<h4 id="3、注意点"><a href="#3、注意点" class="headerlink" title="3、注意点"></a>3、注意点</h4><ul>
-<li><strong>进程切换是有代价的</strong>，因此如果<strong>过于频繁的</strong>进行<strong>进程调度，切换</strong>。必然会使<strong>整个系统的效率降低</strong>，使系统大部分时间都花在进程切换上，而真正执行进程的时间变短</li>
-</ul>
-<h3 id="三、方式"><a href="#三、方式" class="headerlink" title="三、方式"></a>三、方式</h3><h4 id="1、非剥夺调度方式（非抢占式）"><a href="#1、非剥夺调度方式（非抢占式）" class="headerlink" title="1、非剥夺调度方式（非抢占式）"></a>1、非剥夺调度方式（非抢占式）</h4><ul>
-<li><strong>非剥夺调度方式</strong>，又称<strong>非抢占式</strong>。即，只允许进程主动放弃处理机。在运行状态期间即便又更加紧急的任务到达，当前进程依旧会继续使用处理机，直到该进程终止或者主动要求进入阻塞态。</li>
-<li>优缺点<ul>
-<li>优点<ul>
-<li>实现简单</li>
-<li>系统开销小</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>无法处理紧急任务</li>
-<li>只适合早期批处理系统</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、剥夺调度方式（抢占式）"><a href="#2、剥夺调度方式（抢占式）" class="headerlink" title="2、剥夺调度方式（抢占式）"></a>2、剥夺调度方式（抢占式）</h4><ul>
-<li><strong>剥夺调度方式</strong>，又称<strong>抢占式</strong>。当一个进程正在处理机上执行时，如果有一个更重要或者紧急的进程需要使用处理机时，则立刻停止正在执行的进程，将处理机分配给更紧急重要的进程。</li>
-<li>优缺点<ul>
-<li>优点<ul>
-<li>可以优先处理更紧急的进程</li>
-<li>实现让各进程按时间片轮转执行的功能（通过时钟中断）</li>
-<li>适合于分时操作系统、实时操作系统</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p><img src="https://i.loli.net/2020/12/26/VaJfO2i4bG8rCtH.png" alt="image-20201226111643433"></p>
 ]]></content>
       <categories>
         <category>操作系统</category>
