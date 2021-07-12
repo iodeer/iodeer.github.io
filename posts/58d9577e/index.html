@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"postsocial","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="字符串的基本概念，模式匹配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="串">
+<meta property="og:url" content="http://yoursite.com/posts/58d9577e/index.html">
+<meta property="og:site_name" content="小丁的小屋">
+<meta property="og:description" content="字符串的基本概念，模式匹配">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-12T15:44:28.966Z">
+<meta property="article:modified_time" content="2021-07-12T16:01:52.021Z">
+<meta property="article:author" content="小丁">
+<meta property="article:tag" content="-笔记 -数据结构">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/posts/58d9577e/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>串 | 小丁的小屋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+
+<link rel="alternate" href="/rss2.xml" title="小丁的小屋" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+        <a href="https://your-url" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小丁的小屋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/58d9577e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="小丁">
+      <meta itemprop="description" content="最美的相遇，不言过往；最好的离别，不问归期。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小丁的小屋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          串
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-12 23:44:28" itemprop="dateCreated datePublished" datetime="2021-07-12T23:44:28+08:00">2021-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-13 00:01:52" itemprop="dateModified" datetime="2021-07-13T00:01:52+08:00">2021-07-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">字符串的基本概念，模式匹配</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>定义：</strong>即<font color='red'>字符串</font>，是由零个或多个<font color='red'>字符</font>组成的有限序列。一般标记为 S = “    a xx sda an”。</p>
+<ul>
+<li>其中 S是<font color='red'>串名</font>，</li>
+<li>字符的个数n称为<font color='red'>串的长度</font><ul>
+<li>n = 0时的串称为<font color='red'>空串</font>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>术语</strong></p>
+<ul>
+<li>子串：串中任意多个<font color='red'>连续的</font>字符组成的的子序列称为该串的子串。<ul>
+<li>空串也是字串</li>
+</ul>
+</li>
+<li>主串：包含子串的串。</li>
+<li>字符在主串中的位置：字符在串中的序号，<strong>从1开始</strong>。</li>
+<li>字串在主串中的位置：字串在第一个字符在主串中的位置。<strong>从1开始</strong></li>
+<li>空格串：由一个或多个空格组成的串，长度是串中空格字符的个数，<strong>空格串不是空串</strong>。</li>
+</ul>
+<h3 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h3><p>串的逻辑结构和线性表极为相似，区别仅在于<strong>串的数据对象限定为字符集</strong>，<strong>基本操作对象通常是以<font color='red'>字串</font>作为操作对象</strong>。</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">StrAssign(&amp;T , chars): 赋值操作。把串T赋值给chars</span><br><span class="line">StrCopy(&amp;T, S): 复制操作。由串S复制得到串T。</span><br><span class="line">StrEmpty(S): 判空操作。若S为空串，则返回True，否则返回False。</span><br><span class="line">StrLength(S): 求串长。返回串S的元素个数。</span><br><span class="line">ClearString(&amp;S): 求空操作。将S清为空串。</span><br><span class="line">DestroyString(&amp;S): 销毁串。将串S销毁(回收存储空间).</span><br><span class="line">Concat(&amp;S,S1,S2): 串联结。用T返回由S1和S2链接而成的新串。</span><br><span class="line">SubString(&amp;Sub,S,pos,len):求子串。用Sub返回串S的第pos个字符起长度为len的子串。</span><br><span class="line">Index(S,T): 定位操作。若主串S中存在与串T值相同的子串，则返回它在主串S中第一次出现的位置；否则函数值为0.</span><br><span class="line">StrCompare(S,T):比较操作，若S&gt;T,则返回值&gt;0;若S&#x3D;T,则返回值&#x3D;0； 若S&lt;T,则返回值&lt;0.</span><br></pre></td></tr></table></figure>
+
+<h2 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h2><p><strong>定长顺序存储—结构体定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXLEN 255		<span class="comment">//预定义最长串长为255</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> ch[MAXLEN];	<span class="comment">//每个分量存储一个字符,静态数组</span></span><br><span class="line">    <span class="keyword">int</span> length;			<span class="comment">//串的实际长度</span></span><br><span class="line">&#125;SString;</span><br><span class="line"><span class="comment">//为了使数组的下标与串的位置相等，数组从下标1开始。ch[0]是空的</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>堆分配存储—结构体定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXLEN 255		<span class="comment">//预定义最长串长为255</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> *ch;		<span class="comment">//按串长分配存储区。ch指向串的基地址。</span></span><br><span class="line">    <span class="keyword">int</span> length;		<span class="comment">//串的长度</span></span><br><span class="line">&#125;HString;			<span class="comment">//动态数组实现，堆分配实现</span></span><br><span class="line"></span><br><span class="line">HString S;</span><br><span class="line">S.ch = (<span class="keyword">char</span> *) <span class="built_in">malloc</span>(MAXLEN * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));		<span class="comment">//需要手动free</span></span><br><span class="line">S-&gt;length = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>链式存储——结构体定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">StringNode</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> ch;		<span class="comment">//每个结点存1个字符</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">StringNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;StringNode,* <span class="keyword">String</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	char类型一个字节，struct StringNode * 占四个字节</span></span><br><span class="line"><span class="comment">	这样的结构体存储密度低。</span></span><br><span class="line"><span class="comment">	为了改进该存储结构，提高存储密度，我们把每个结构体存储的数据提高</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">StringNode</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> ch[<span class="number">4</span>];		<span class="comment">//每个结点存1个字符</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">StringNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;StringNode,* <span class="keyword">String</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本操作（基于静态数组）"><a href="#基本操作（基于静态数组）" class="headerlink" title="基本操作（基于静态数组）"></a>基本操作（基于静态数组）</h2><p><strong>求子串</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//SubString(&amp;Sub,S,pos,len):求子串。用Sub返回串S的第pos个字符起长度为len的子串。</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">SubString</span><span class="params">(SString &amp;Sub,SString S,<span class="keyword">int</span> pos,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="comment">//子串范围越界</span></span><br><span class="line">    <span class="keyword">if</span>(pos + len <span class="number">-1</span> &gt; S.length)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = pos; i &lt; pos + len; i++)&#123;</span><br><span class="line">        Sub.ch[i - pos + <span class="number">1</span>] = S.ch[i];</span><br><span class="line">        Sub.length = len;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>串比较</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//StrCompare(S,T):比较操作，若S&gt;T,则返回值&gt;0;若S=T,则返回值=0； 若S&lt;T,则返回值&lt;0.</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">StrCompare</span><span class="params">(SString S,SString T)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= S.length &amp;&amp; i&lt;=T.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(S.ch[i] != T.ch[i])</span><br><span class="line">            <span class="keyword">return</span> S.ch[i] - T.ch[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//扫描过的所有字符都相同，则长度长的串更大</span></span><br><span class="line">    <span class="keyword">return</span> S.length - T.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>定位操作</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Index(S,T): 定位操作。若主串S中存在与串T值相同的子串，则返回它在主串S中第一次出现的位置；否则函数值为0.</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">int</span><span class="params">(SString S,SString T)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> n = StrLength(S),m = StrLength(T);</span><br><span class="line">    SString sub;	<span class="comment">//用于暂存子串</span></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= n-m+<span class="number">1</span>)&#123;</span><br><span class="line">        SubString(sub, S, i,m);</span><br><span class="line">        <span class="keyword">if</span>(StrCompare(sub,T) != <span class="number">0</span>) i++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> i ;<span class="comment">//返回子串在主串中的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;		<span class="comment">//S中不存在与T相等的子串。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><p><strong>定义：</strong>在主串中找到与模式串相同的子串，并返回其所在位置。</p>
+<ul>
+<li>子串：主串的一部分，一定存在。</li>
+<li>模式串：不一定能在主串中找到。</li>
+</ul>
+<h3 id="朴素模式匹配算法"><a href="#朴素模式匹配算法" class="headerlink" title="朴素模式匹配算法"></a>朴素模式匹配算法</h3><ul>
+<li><p><strong><font color='red'>暴力求解</font></strong></p>
+</li>
+<li><p>假定<strong>主串长度为n，模式串长度为m</strong></p>
+</li>
+<li><p>概念：将主串中<strong><font color='red'>所有长度为m的子串依次与模式串对比</font></strong>，直到找到一个完全匹配的子串，或者所有子串都不匹配。</p>
+<ul>
+<li>最多有<strong>n-m+1</strong>个子串</li>
+</ul>
+</li>
+<li><p><strong>最坏时间复杂度：O(nm)</strong></p>
+<p><strong>最好时间复杂度：O(n)</strong></p>
+</li>
+</ul>
+<p><strong>代码实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用基本操作实现算法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">int</span><span class="params">(SString S,SString T)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> n = StrLength(S),m = StrLength(T);</span><br><span class="line">    SString sub;	<span class="comment">//用于暂存子串</span></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= n-m+<span class="number">1</span>)&#123;		<span class="comment">//最多对比n-m+1个子串</span></span><br><span class="line">        SubString(sub, S, i,m);</span><br><span class="line">        <span class="keyword">if</span>(StrCompare(sub,T) != <span class="number">0</span>) i++;		<span class="comment">//如果不匹配，就尝试匹配下一个子串</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> i ;<span class="comment">//返回子串在主串中的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;		<span class="comment">//S中不存在与T相等的子串，匹配失败。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不使用基本操作实现算法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">int</span><span class="params">(SString S,SString T)</span></span>&#123;</span><br><span class="line">  	<span class="keyword">int</span> i = <span class="number">1</span>,j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= S.length &amp;&amp; j &lt;= T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(S.ch[i] == T.ch[j])&#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;	<span class="comment">//子串匹配比较</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;	<span class="comment">//匹配失败，指针后退重新开始匹配</span></span><br><span class="line">            i = i - j + <span class="number">2</span> ;</span><br><span class="line">            j = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(j &gt; T.length) 	<span class="comment">//匹配成功</span></span><br><span class="line">        <span class="keyword">return</span> i-T.length;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><ul>
+<li><strong><font color='red'>最坏时间复杂度 O(m+n)</font></strong><ul>
+<li><strong>next数组时间复杂度：O(m)</strong></li>
+<li><strong>模式匹配过程最坏时间复杂度：O(n)   //主串不回溯</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="手算next数组"><a href="#手算next数组" class="headerlink" title="手算next数组"></a>手算next数组</h4><ul>
+<li><strong><font color='red'>next[1]都无脑写0</font></strong></li>
+<li><strong><font color='red'>next[2]都无脑写1</font></strong></li>
+<li><strong><font color='red'>其他next</font></strong>：在不匹配的位置前，划一根分界限，模式串一步一步往后退，<strong>直到分界线之前“能对上”，或者模式串完全跨越分界线为止</strong>。此时j指向哪里，next数组就是多少。</li>
+</ul>
+<p><strong>代码实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//next[] 当匹配失败时，j指针需要回溯到多少位</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Index_KMP</span><span class="params">(SString S,SString T,<span class="keyword">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>,j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= S.length &amp;&amp; j &lt; T.length)&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">        	1、当j==0时，也就是在匹配过程中，模式串和子串第一个字符就匹配失败，需要换下一个子串并且模式串的指针后退到第一个字符的位置，但在next数组中，对于以上的情况，把j设置为0，所有我们碰到j==0时，我们需要把j++，并且i++，与匹配成功时的操作相同。</span></span><br><span class="line"><span class="comment">        	2、子串和模式串的某一字符匹配成功时，移动到下一个字符，进行匹配，直到完全匹配或者匹配失败的全款</span></span><br><span class="line"><span class="comment">        **/</span></span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">0</span> || S.ch[i] == T.ch[j])&#123;	</span><br><span class="line">            i++;</span><br><span class="line">            j++;		<span class="comment">//继续比较后面的字符</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            j = next[j];	<span class="comment">//匹配失败时，主串指针i不回溯，模式串指针向右移动</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(j &gt; T.length) 	<span class="comment">//匹配成功</span></span><br><span class="line">        <span class="keyword">return</span> i-T.length;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> -笔记 -数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/2fce5ec8/" rel="prev" title="特殊矩阵">
+      <i class="fa fa-chevron-left"></i> 特殊矩阵
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑结构"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">1.2.</span> <span class="nav-text">基本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储结构"><span class="nav-number">2.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作（基于静态数组）"><span class="nav-number">3.</span> <span class="nav-text">基本操作（基于静态数组）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式匹配"><span class="nav-number">4.</span> <span class="nav-text">模式匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#朴素模式匹配算法"><span class="nav-number">4.1.</span> <span class="nav-text">朴素模式匹配算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KMP算法"><span class="nav-number">4.2.</span> <span class="nav-text">KMP算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#手算next数组"><span class="nav-number">4.2.1.</span> <span class="nav-text">手算next数组</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小丁"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">小丁</p>
+  <div class="site-description" itemprop="description">最美的相遇，不言过往；最好的离别，不问归期。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/iodeer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iodeer" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+            <h3 class="widget-title">Tag Cloud</h3>
+            <div id="myCanvasContainer" class="widget tagcloud">
+                <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-Mybatis/" rel="tag">-笔记 -Mybatis</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-Spring/" rel="tag">-笔记 -Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">-笔记 -操作系统</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">-笔记 -数据结构</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/" rel="tag">-笔记 -算法</a><span class="tag-list-count">3</span></li></ul>
+                </canvas>
+            </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div> 
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020-06 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小丁</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <!-- 文件位置：~/theme/next/layout/_layout.swig-->
+  <!--
+  <script type="text/javascript" src="/js/fireworks.js"></script>
+   -->
+
+ <script type="text/javascript" src="/js/clicklove.js"></script>
+ 
+</body>
+</html>
