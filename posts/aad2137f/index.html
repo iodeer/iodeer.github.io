@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"postsocial","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="顺序查找、折半查找、分块查找、B树、散列查找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查找算法">
+<meta property="og:url" content="http://yoursite.com/posts/aad2137f/index.html">
+<meta property="og:site_name" content="小丁的小屋">
+<meta property="og:description" content="顺序查找、折半查找、分块查找、B树、散列查找">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-21T12:24:54.333Z">
+<meta property="article:modified_time" content="2021-08-21T12:33:59.407Z">
+<meta property="article:author" content="小丁">
+<meta property="article:tag" content="-笔记 -数据结构">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/posts/aad2137f/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>查找算法 | 小丁的小屋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+
+<link rel="alternate" href="/rss2.xml" title="小丁的小屋" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+        <a href="https://your-url" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小丁的小屋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">35</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/aad2137f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="小丁">
+      <meta itemprop="description" content="最美的相遇，不言过往；最好的离别，不问归期。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小丁的小屋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          查找算法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-21 20:24:54 / 修改时间：20:33:59" itemprop="dateCreated datePublished" datetime="2021-08-21T20:24:54+08:00">2021-08-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">顺序查找、折半查找、分块查找、B树、散列查找</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><ul>
+<li><font color='red'>查找</font>——在数据集合中寻早曼珠某种条件的数据元素的过程称为查找</li>
+<li><font color='red'>查找表</font>(查找结构) —— 用于查找的数据集合称为查找表，它由同一类型的数据元素(或记录)组成</li>
+<li><font color='red'>关键字</font>——数据元素中唯一标识该元素的某个数据项的值，使用基于关键字的查找，查找结果因该是<strong>唯一</strong>的。</li>
+</ul>
+<h3 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h3><ul>
+<li>查找符合条件的数据元素<ul>
+<li><strong>静态查找表</strong><ul>
+<li>仅仅关注查找速度即可</li>
+</ul>
+</li>
+<li>查找表不会发生改变</li>
+</ul>
+</li>
+<li>插入、删除某个数据元素<ul>
+<li><strong>动态查找表</strong><ul>
+<li>关注查找速度</li>
+<li>关注删除、增加操作是否方便</li>
+</ul>
+</li>
+<li>查找表会发生改变</li>
+</ul>
+</li>
+</ul>
+<h3 id="查找算法的评价指标"><a href="#查找算法的评价指标" class="headerlink" title="查找算法的评价指标"></a>查找算法的评价指标</h3><ul>
+<li><strong>查找长度：</strong>——在查找运算中，需要对比关键字的次数称为查找长度</li>
+<li><strong>平均查找长度（ASL）：</strong>——所有查找过程中进行关键字的比较次数的平均值</li>
+</ul>
+<p><strong>评价一个查找算法的效率时，通常考虑查找成功、查找失败两种情况的ASL。</strong></p>
+<h2 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h2><p>定义：又名”线性查找“，通常用于<strong>线性表</strong></p>
+<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p><strong>遍历</strong></p>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>					<span class="comment">//查找表的数据结构(顺序表)</span></span><br><span class="line">    ElemType *elem;				<span class="comment">//动态数组基址</span></span><br><span class="line">    <span class="keyword">int</span> TableLen;				<span class="comment">//表的长度</span></span><br><span class="line">&#125;SSTable;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序查找（普通模式）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Search_Seq</span><span class="params">(SSTable st,ElemType key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; st.TableLen ; ++i)&#123;</span><br><span class="line">        <span class="comment">//查找成功则返回元素下标</span></span><br><span class="line">        <span class="keyword">if</span>(St.elem[i] == key)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//查找失败，返回-1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序查找（哨兵模式）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Search_Seq</span><span class="params">(SSTable st,ElemType key)</span></span>&#123;</span><br><span class="line">    <span class="comment">//数组的元素从1开始</span></span><br><span class="line">    <span class="keyword">int</span> st.elem[<span class="number">0</span>] = key;		<span class="comment">//哨兵</span></span><br><span class="line">    <span class="comment">//若数组中存在key则返回其下标，由于elem[0] = key，不存在则返回0；</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = TableLen;st.elem[i] != key ; --i);	</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//优点：无需判断是否越界，效率更高</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查找效率分析"><a href="#查找效率分析" class="headerlink" title="查找效率分析"></a>查找效率分析</h4><ul>
+<li><p>ASL(成功) = （n+1）/ 2</p>
+</li>
+<li><p>ASL(失败) =    n+1</p>
+</li>
+</ul>
+<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><h4 id="有序表的优化"><a href="#有序表的优化" class="headerlink" title="有序表的优化"></a>有序表的优化</h4><p>当发现数已经大于本身时，可以判定查找失败。</p>
+<h5 id="用查找判定树分析ASL"><a href="#用查找判定树分析ASL" class="headerlink" title="用查找判定树分析ASL"></a>用查找判定树分析ASL</h5><ul>
+<li>一个成功结点的查找长度 = 自身所在层数</li>
+<li>一个失败结点的查找长度 = 其父节点所在层数</li>
+<li>默认情况下，各种失败情况或者成功情况都等概率发生</li>
+</ul>
+<h4 id="被查概率不相等"><a href="#被查概率不相等" class="headerlink" title="被查概率不相等"></a>被查概率不相等</h4><p><strong>被查找概率打的放在靠前位置</strong></p>
+<ul>
+<li>提高查找成功的ASL</li>
+<li>降低了查找失败的ASL</li>
+</ul>
+<h2 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><ul>
+<li>适用于<strong>有序</strong>的<strong>顺序表</strong><ul>
+<li>有序——为了判断目标值是在哪个区间</li>
+<li>顺序表——为了随机访问</li>
+</ul>
+</li>
+</ul>
+<h3 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h3><h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>					<span class="comment">//查找表的数据结构(顺序表)</span></span><br><span class="line">    ElemType *elem;				<span class="comment">//动态数组基址</span></span><br><span class="line">    <span class="keyword">int</span> TableLen;				<span class="comment">//表的长度</span></span><br><span class="line">&#125;SSTable;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//折半查找</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Binary_Search</span><span class="params">(SSTable L,ElemType key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>,high = L.TableLen - <span class="number">1</span>,mid;</span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">        mid = (low + high) / <span class="number">2</span>;		<span class="comment">//取中间位置</span></span><br><span class="line">        <span class="keyword">if</span>(L.elem[mid] == key)</span><br><span class="line">            <span class="keyword">return</span> mid;				<span class="comment">//查找成功则返回所在位置</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(L.elem[mid] &gt; key)</span><br><span class="line">            high = mid - <span class="number">1</span>;			<span class="comment">//从前半部分继续查找</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            low = mid + <span class="number">1</span>;			<span class="comment">//从后半部分继续查找</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;					<span class="comment">//查找失败，返回-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查找判定树"><a href="#查找判定树" class="headerlink" title="查找判定树"></a>查找判定树</h3><h4 id="构造（-mid-low-high-2）"><a href="#构造（-mid-low-high-2）" class="headerlink" title="构造（ mid = (low + high) / 2）"></a>构造（ mid = (low + high) / 2）</h4><ul>
+<li>如果当前low和high之间由<strong><font color='red'>奇数个</font></strong>元素，则mid分隔后，<strong><font color='red'>左右两部分元素个数相等</font></strong></li>
+<li>如果当前low和high之间有<strong><font color='red'>偶数个</font></strong>元素，则mid分隔后，<strong><font color='red'>左半部分比右半部分少一个元素</font></strong></li>
+</ul>
+<p>折半查找的判定树中，若mid = { (low + high) / 2}(向下取整),则对于任何一个结点，必有：<strong><font color='red'>右子树结点数 — 左子树结点数 = 0或1</font></strong></p>
+<ul>
+<li><p>折半查找的判定树<strong><font color='red'>一定是平衡二叉树</font></strong></p>
+</li>
+<li><p>折半查找的判定树中，<strong><font color='red'>只有最下面一层是不满的</font></strong></p>
+<p>因此，元素个数为n时<strong><font color='red'>树高h = { ㏒( n + 1)}(向上取整)</font></strong></p>
+</li>
+</ul>
+<p><strong>注意：</strong>在折半查找判定树中的方形结点是虚构的，它并不计入比较的次数中</p>
+<h3 id="折半查找效率"><a href="#折半查找效率" class="headerlink" title="折半查找效率"></a>折半查找效率</h3><p><strong>时间复杂度：O(㏒n)</strong></p>
+<h2 id="分块查找"><a href="#分块查找" class="headerlink" title="分块查找"></a>分块查找</h2><h3 id="算法思想-2"><a href="#算法思想-2" class="headerlink" title="算法思想"></a>算法思想</h3><ul>
+<li>特点：块内无序，块间有序</li>
+<li>索引表中保存每个分块的最大关键字和分块存储区间</li>
+</ul>
+<p><strong><font color='red'>分块查找</font></strong>，又称<strong><font color='red'>索引顺序查找</font></strong>，算法过程如下：</p>
+<ol>
+<li>在索引表中确定带查找记录所属分块(可顺序，可折半)</li>
+<li>在块内顺序查找</li>
+</ol>
+<p>若索引表中不包含目标关键字，则折半查找索引表最终停在low&gt;high,要<strong><font color='red'>在low所指分块中查找</font></strong></p>
+<ul>
+<li>low&gt;high退一步——》low == high == mid<ul>
+<li>elem[mid] &gt; key ====&gt; high = mid -1; (也就是low = mid &gt; high)</li>
+<li>elem[mid] &lt; key ====&gt; low = mid +1;( 也就是low = mid +1 &gt; mid = high)</li>
+</ul>
+</li>
+</ul>
+<h3 id="算法实现-2"><a href="#算法实现-2" class="headerlink" title="算法实现"></a>算法实现</h3><h4 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//索引表</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    ElemType MaxValue;		<span class="comment">//块内最大值	</span></span><br><span class="line">    <span class="keyword">int</span> low,high;			<span class="comment">//块区间的头尾下标</span></span><br><span class="line">&#125;Index;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序表存储实际元素</span></span><br><span class="line">ElemType List[<span class="number">100</span>];</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查找效率分析ASL"><a href="#查找效率分析ASL" class="headerlink" title="查找效率分析ASL"></a>查找效率分析ASL</h3><h2 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h2><h3 id="5叉查找树"><a href="#5叉查找树" class="headerlink" title="5叉查找树"></a>5叉查找树</h3><p><strong>结点定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//5叉排序树的结点定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    ElemType keys[<span class="number">4</span>];			<span class="comment">//最多4个关键字</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">child</span>[5];</span>			<span class="comment">//最多五个孩子</span></span><br><span class="line">    <span class="keyword">int</span> num;			<span class="comment">//结点中有几个关键字</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>结点最少一个关键字，2个分叉</p>
+<p>最多4个关键字，5个分叉</p>
+<p>结点内关键字有序</p>
+</li>
+</ul>
+<h3 id="B树基本概念"><a href="#B树基本概念" class="headerlink" title="B树基本概念"></a>B树基本概念</h3><p><strong>定义：</strong><font color='red'>B树</font>，又称<font color='red'>多路平衡(所有子树的高度都要相同)查找树</font>，B树中所有结点的<font color='red'>孩子个数的最大值称为B树的阶</font>，通常用m表示。一颗<font color='red'>m阶B树</font>或为空树，或为满足如下特性的m叉树：</p>
+<ol>
+<li>树中每个结点至多有m棵子树，即至多含有m-1个关键字</li>
+<li>若根结点不是终端结点，则至少有两棵子树</li>
+<li><font color='red'>除根结点外</font>的所有非叶节点至少有<font color='red'>{m / 2}(向上取整) 棵子树</font>，即至少含有 <font color='red'>{ m / 2 }(向上取整) - 1个关键字</font>。</li>
+<li>所有的<font color='cornflowerblue'>叶结点</font>都出现在同一层次上，并且不带有信息(可以视为外部节点或类似于折半查找判定树的查找失败结点，实际上这些结点不存在，指向这些结点的指针为空)</li>
+</ol>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p><strong>核心要求：</strong></p>
+<ol>
+<li>对m阶B树——除根结点外，结点关键字数<font color='red'>⌈m / 2⌉ — 1 ≤ n ≤ m - 1</font></li>
+<li>子树0 &lt; 关键字1 &lt; 子树1 &lt; 关键字2 &lt; …</li>
+</ol>
+<p><strong>插入过程：</strong></p>
+<ul>
+<li>新元素一定是插入到最底层”终端节点”，用<strong>“查找”来确定插入位置</strong></li>
+<li>在插入key后，若导致原结点关键字超过上限，则从中间位置( <font color='red'>⌈m / 2⌉</font> )将其中的关键字<font color='red'>分为两部分</font>，左部分包含的关键放在原结点，右部分包含的关键字放在新结点中，中间位置( <font color='red'>⌈m / 2⌉</font> )的结点插入原结点的父节点。==分裂操作</li>
+<li>若此时导致<font color='red'>其父结点的关键字</font>个数也<font color='red'>超过</font>了<font color='red'>上限</font>，则<font color='red'>继续</font>进行这种<font color='red'>分裂</font>操作，直至这个过程传到根结点为止，<font color='red'>进而导致B树高度增1</font></li>
+</ul>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p><strong>删除非终端结点：</strong></p>
+<p>若被删除关键字在<font color='red'>非终端结点</font>，则用<font color='red'>直接前驱或直接后继来替代被删除的关键字</font>；</p>
+<ul>
+<li><font color='red'>直接前驱</font>：当前关键字<font color='red'>左侧指针所指子树中“最右下”的元素</font></li>
+<li><font color='red'>直接后继</font>：当前关键字<font color='red'>右侧指针所指子树中“最左下”的元素</font></li>
+</ul>
+<p><strong><font color='red'>对非终端结点关键字的删除，必然可以转化为对终端结点的删除操作</font></strong></p>
+<p><strong>删除终端结点</strong>：</p>
+<ul>
+<li><p>若删除终端结点的某一关键字后，关键字数量没有低于下限，则直接删除，否则</p>
+</li>
+<li><p><font color='red'>兄弟够借</font>。若被删除关键字所在结点删除前的关键字个数低于下限，且与此结点右（或左）兄弟结点的关键字个数该很充裕，则需要调整该结点、右（或左）兄弟结点及其双亲结点(父子换位法)</p>
+</li>
+<li><p><font color='red'>兄弟不够借</font>。若被删除关键字所在结点删除前的关键字个数低于下限，且此时与该结点相邻的左、右兄弟结点的关键字个数均为 ⌈m / 2⌉—1，则将关键字删除后<font color='red'>与左(或右)兄弟结点</font>及<font color='red'>双亲结点中的关键字</font>进行合并。</p>
+<p>在合并过程中，双亲结点中的关键字个数会减1。若其双亲结点是根结点且关键字个数减少至0（根结点关键字个数为1时，有两颗子树），则直接将根结点删除，合并后的新结点为根；若双亲结点不是根结点，且关键字个数减少到⌈m / 2⌉—2，则又要与它自己的兄弟结点进行调整或合并操作，并重复上述步骤，直至符合B树的要求为止。</p>
+</li>
+</ul>
+<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p><strong>定义：</strong>一棵m阶的B+树需满足下列条件：</p>
+<ol>
+<li>每个分支结点最多有m棵子树</li>
+<li><font color='red'>非叶根点至少有两棵子树</font>，其余每个分支结点至少有⌈m / 2⌉ 棵子树。</li>
+<li><font color='red'>结点的子树个数与关键字个数相等</font>。</li>
+<li>所有<font color='red'>叶结点包含全部关键字及指向相应记录的指针</font>，叶结点中将关键字按大小顺序排列，并且<font color='red'>相邻叶结点按大小顺序相互连接起来</font>.</li>
+<li>所有分支结点(可视为索引的索引)中<font color='red'>仅</font>包含<font color='red'>它的各个子结点(即下一级的索引块)中关键字的最大值</font>及<font color='red'>指向其子节点的指针</font>。</li>
+</ol>
+<p><strong>B+树，在查找过程中，非叶结点上的关键字值等于给定值时并不终止，而是继续向下查找，直到叶结点上的关键字为止。所以<font color='red'>在B+树上查找时，无论查找成功与否，每次查找都是一条从根结点到叶结点的路径</font></strong>。</p>
+<h3 id="B树与B-树的差异"><a href="#B树与B-树的差异" class="headerlink" title="B树与B+树的差异"></a>B树与B+树的差异</h3><ul>
+<li><p>子树个数</p>
+<ul>
+<li>在B+树中，具有n个关键字的结点只<font color='red'>含有<strong>n</strong>棵子树</font>，即每个关键字对应一颗子树</li>
+<li>在B树中，具有n个关键字的结点<font color='red'>含有<strong>n+1</strong>棵子树</font>。</li>
+</ul>
+</li>
+<li><p>关键字个数</p>
+<ul>
+<li>在B+树中，每个结点(非根内部结点)的关键字个数n的范围是<font color='red'>⌈m / 2⌉  ≤ n ≤ m</font>(根结点：1 ≤ n ≤ m)；</li>
+<li>在B树中，每个结点(非根内部结点)的关键字个数n的范围是<font color='red'>⌈m / 2⌉  ≤ n ≤ m-1</font>(根结点：1 ≤ n ≤ m-1)；</li>
+</ul>
+</li>
+<li><p>叶结点与非叶结点包含的信息</p>
+<ul>
+<li>在B+树中，<font color='red'>叶结点包含信息，所有非叶节点仅其索引作用</font>，非叶结点的每个索引项只含有对应子树的最大关键字和指向该子树的指针，不含有该关键字对应记录的存储地址。</li>
+</ul>
+</li>
+<li><p>在B+树中，叶结点包含了全部关键字，即在非叶结点中出现的关键字也会出现在叶结点中,<font color='red'>重复的</font></p>
+<p>在B树中，叶结点(最外层内部结点)包含的关键字和其他结点包含的关键字是<font color='red'>不重复的</font>.</p>
+</li>
+</ul>
+<h2 id="散列查找"><a href="#散列查找" class="headerlink" title="散列查找"></a>散列查找</h2><h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><p><strong>定义：</strong>又称<font color='red'>哈希表</font>，是一种数据结构，特点是：数据元素的<font color='red'>关键字</font>与其<font color='red'>存储地址直接相关</font>.</p>
+<ul>
+<li>通过<font color='red'>“散列函数(哈希函数)</font>：Addr = H(key)”来建立关键字与存储地址的联系</li>
+</ul>
+<p><strong>术语</strong></p>
+<ul>
+<li><font color='red'>同义词</font>：不同的关键字通过散列函数映射到同一个值</li>
+<li><font color='red'>冲突</font>：通过散列函数确定的为止已经存放了其他元素</li>
+<li><strong><font color='red'>装填因子α  =  表中记录数 / 散列表长度</font></strong><ul>
+<li>装填因子会直接影响散列表的查找效率</li>
+</ul>
+</li>
+</ul>
+<h3 id="处理冲突的方法"><a href="#处理冲突的方法" class="headerlink" title="处理冲突的方法"></a><strong>处理冲突的方法</strong></h3><h4 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h4><ul>
+<li>把所有“同义词”存储到一个链表中。</li>
+</ul>
+<h4 id="开发定址法"><a href="#开发定址法" class="headerlink" title="开发定址法"></a>开发定址法</h4><p><strong>定义</strong>：指可存放心表项的空闲地址既向它的同义词表项开放，又向它的非同义词表项开放，</p>
+<p><strong>数学递推公式： H(i) = ( H(key) + d( i )) % m</strong></p>
+<ul>
+<li>m表示散列表的表长</li>
+<li>d(i) 为增量序列</li>
+<li>i 表示第i次发生冲突</li>
+</ul>
+<p><strong>增量序列的取定</strong></p>
+<ul>
+<li><p>线性探测法</p>
+<ul>
+<li><p>d(i) = 0，1，2，3，4… m-1；即发生冲突时，每次往后探测相邻的下一个单元是否为空。</p>
+</li>
+<li><p>缺点：这种方法会造成<font color='red'>同义词、非同义词在相邻的散列地址上“聚集</font>”起来，大大降低查找效率。</p>
+<p><strong><font color='red'>越早遇到空位置，就可以越早确定查找失败，提高效率</font></strong></p>
+</li>
+</ul>
+</li>
+<li><p>平方探测法</p>
+<ul>
+<li>d(i) = 0²，1²，-1²，2²，-2²，3²，-3²，4²,-4²… k², -k²；(k ≤ m/2)</li>
+<li><strong>m必须是一个可以表示称<font color='red'> 4j + 3的素数</font>{7,11…..}，才能探测到所有的为止</strong></li>
+</ul>
+</li>
+<li><p>伪随机序列法</p>
+<ul>
+<li>d(i)是一个伪随机序列，如d(i) = 0,1,4,7,12…</li>
+</ul>
+</li>
+</ul>
+<p><strong>开放地址法在删除结点时，不能简单的将被删除的空间置为空，否则将<font color='red'>截断在它之后填入散列表的同义词结点的查找路径</font>，可以<font color='red'>做一个”删除标记”，进行逻辑删除</font>。</strong></p>
+<h3 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h3><ul>
+<li>除留余数法——H(key)  =  key % p<ul>
+<li>散列表长度为m，取一个不大于但最接近或等于m的<font color='red'>质数</font>p<ul>
+<li>质数取模，分布跟均匀，冲突更少</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>直接定址法——H(key)  = key 或 H(key) = a * key + b<ul>
+<li>a和b是常数。这种方法计算最简单，且<strong><font color='red'>不会产生冲突</font></strong>，<font color='red'>它适合关键字的分布基本连续的情况</font>，若关键字分布不连续，空位较多，则会造成存储空间的浪费.</li>
+</ul>
+</li>
+<li>数字分析法——选取数码分布较为均匀的若干位作为散列地址。<ul>
+<li><strong><font color='red'>适合已知的关键字集合。</font></strong></li>
+<li>设关键字是r进制数，而r个数码在各位上出现的频率不一定相同，可能在某些位上分布均匀一些，每种数码出现的机会均等；而在某些位上分布不均匀，只有某集中数码经常出现，此时应该<font color='red'>选取数码分布较为均匀的若干位作为散列地址</font>。</li>
+</ul>
+</li>
+<li>平方取中法——去关键字的平方值的中间几位作为散列地址。<ul>
+<li>这种方法取关键字的平方值的中间极为作为散列地址</li>
+<li><font color='red'>得到的散列地址与关键字的每位都有关系</font></li>
+</ul>
+</li>
+</ul>
+<p><strong>散列查找是典型“<font color='red'>用空间换时间</font>”的算法，只要散列函数设计的合理，则散列表越长，冲突的概率就越低</strong></p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> -笔记 -数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/7b216a3b/" rel="prev" title="树">
+      <i class="fa fa-chevron-left"></i> 树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/b6c47025/" rel="next" title="队列">
+      队列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#术语"><span class="nav-number">1.1.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见操作"><span class="nav-number">1.2.</span> <span class="nav-text">常见操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找算法的评价指标"><span class="nav-number">1.3.</span> <span class="nav-text">查找算法的评价指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序查找"><span class="nav-number">2.</span> <span class="nav-text">顺序查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想"><span class="nav-number">2.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">2.2.</span> <span class="nav-text">算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">2.2.1.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找效率分析"><span class="nav-number">2.2.2.</span> <span class="nav-text">查找效率分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法优化"><span class="nav-number">2.3.</span> <span class="nav-text">算法优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有序表的优化"><span class="nav-number">2.3.1.</span> <span class="nav-text">有序表的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#用查找判定树分析ASL"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">用查找判定树分析ASL</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#被查概率不相等"><span class="nav-number">2.3.2.</span> <span class="nav-text">被查概率不相等</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#折半查找"><span class="nav-number">3.</span> <span class="nav-text">折半查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想-1"><span class="nav-number">3.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现-1"><span class="nav-number">3.2.</span> <span class="nav-text">算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找判定树"><span class="nav-number">3.3.</span> <span class="nav-text">查找判定树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造（-mid-low-high-2）"><span class="nav-number">3.3.1.</span> <span class="nav-text">构造（ mid &#x3D; (low + high) &#x2F; 2）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折半查找效率"><span class="nav-number">3.4.</span> <span class="nav-text">折半查找效率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分块查找"><span class="nav-number">4.</span> <span class="nav-text">分块查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想-2"><span class="nav-number">4.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现-2"><span class="nav-number">4.2.</span> <span class="nav-text">算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-2"><span class="nav-number">4.2.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找效率分析ASL"><span class="nav-number">4.3.</span> <span class="nav-text">查找效率分析ASL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B树"><span class="nav-number">5.</span> <span class="nav-text">B树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5叉查找树"><span class="nav-number">5.1.</span> <span class="nav-text">5叉查找树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B树基本概念"><span class="nav-number">5.2.</span> <span class="nav-text">B树基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">5.3.</span> <span class="nav-text">插入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">5.3.1.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-树"><span class="nav-number">5.4.</span> <span class="nav-text">B+树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B树与B-树的差异"><span class="nav-number">5.5.</span> <span class="nav-text">B树与B+树的差异</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#散列查找"><span class="nav-number">6.</span> <span class="nav-text">散列查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#散列表"><span class="nav-number">6.1.</span> <span class="nav-text">散列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理冲突的方法"><span class="nav-number">6.2.</span> <span class="nav-text">处理冲突的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拉链法"><span class="nav-number">6.2.1.</span> <span class="nav-text">拉链法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开发定址法"><span class="nav-number">6.2.2.</span> <span class="nav-text">开发定址法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列函数"><span class="nav-number">6.3.</span> <span class="nav-text">散列函数</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小丁"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">小丁</p>
+  <div class="site-description" itemprop="description">最美的相遇，不言过往；最好的离别，不问归期。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/iodeer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iodeer" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+            <h3 class="widget-title">Tag Cloud</h3>
+            <div id="myCanvasContainer" class="widget tagcloud">
+                <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-Mybatis/" rel="tag">-笔记 -Mybatis</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-Spring/" rel="tag">-笔记 -Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">-笔记 -操作系统</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">-笔记 -数据结构</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/" rel="tag">-笔记 -算法</a><span class="tag-list-count">3</span></li></ul>
+                </canvas>
+            </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div> 
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020-06 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小丁</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <!-- 文件位置：~/theme/next/layout/_layout.swig-->
+  <!--
+  <script type="text/javascript" src="/js/fireworks.js"></script>
+   -->
+
+ <script type="text/javascript" src="/js/clicklove.js"></script>
+ 
+</body>
+</html>
